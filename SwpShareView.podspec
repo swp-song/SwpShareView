@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.license               = { :type => "MIT", :file => "LICENSE" }
   s.author                = { "swp-song" => "396587868@qq.com" }
   s.source                = { :git => "https://github.com/swp-song/SwpShareView.git", :tag => s.version }
-  s.source_files          = "SwpShareView"
+  s.source_files          = "SwpShareView/**/*.{h,m}"
   s.requires_arc          = true
   s.resource              = "SwpShareView/Resources/SwpShareView.bundle"
   s.framework             = "UIKit", "Foundation"
