@@ -251,5 +251,6 @@ NSString * const SwpShareToQzone            = @"SwpShare-SwpShareToQzone-QQ空�
 NSString * const SwpShareToTencent          = @"SwpShare-SwpShareToTencent-腾讯微博-SwpShareView.bundle/share_tencent";
 NSString * const SwpShareToWechatSession    = @"SwpShare-SwpShareToWechatSession-微信好友-SwpShareView.bundle/share_wechat";
 NSString * const SwpShareToWechatTimeline   = @"SwpShare-SwpShareToWechatTimeline-朋友圈-SwpShareView.bundle/share_wechattimeline";
-NSString * const SwpShareToToSina           = @"SwpShare-SwpShareToToSina-新浪微博-SwpShareView.bundle/share_sina";
+NSString * const SwpShareToSina             = @"SwpShare-SwpShareToSina-新浪微博-SwpShareView.bundle/share_sina";
+NSString * const SwpShareToCopyURL          = @"SwpShare-SwpShareToCopyURL-复制链接-SwpShareView.bundle/share_copy_url";
 

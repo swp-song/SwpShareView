@@ -22,7 +22,8 @@ UIKIT_EXTERN NSString * const SwpShareToQzone;
 UIKIT_EXTERN NSString * const SwpShareToTencent;
 UIKIT_EXTERN NSString * const SwpShareToWechatSession;
 UIKIT_EXTERN NSString * const SwpShareToWechatTimeline;
-UIKIT_EXTERN NSString * const SwpShareToToSina;
+UIKIT_EXTERN NSString * const SwpShareToSina;
+UIKIT_EXTERN NSString * const SwpShareToCopyURL;
 
 
 

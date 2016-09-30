@@ -23,7 +23,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mine_customer_service" translatesAutoresizingMaskIntoConstraints="NO" id="xp6-Mt-HrS"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="share_default.png" translatesAutoresizingMaskIntoConstraints="NO" id="xp6-Mt-HrS"/>
                 </subviews>
             </view>
             <constraints>
@@ -43,6 +43,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="mine_customer_service" width="17" height="17"/>
+        <image name="share_default.png" width="40" height="40"/>
     </resources>
 </document>
