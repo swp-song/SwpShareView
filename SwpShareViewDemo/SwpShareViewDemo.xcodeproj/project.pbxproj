@@ -1,0 +1,471 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2D50003E1D9E42DD00EAF199 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D50003D1D9E42DD00EAF199 /* main.m */; };
+		2D5000411D9E42DD00EAF199 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5000401D9E42DD00EAF199 /* AppDelegate.m */; };
+		2D5000441D9E42DD00EAF199 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5000431D9E42DD00EAF199 /* ViewController.m */; };
+		2D5000471D9E42DD00EAF199 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D5000451D9E42DD00EAF199 /* Main.storyboard */; };
+		2D5000491D9E42DD00EAF199 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D5000481D9E42DD00EAF199 /* Assets.xcassets */; };
+		2D50004C1D9E42DD00EAF199 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D50004A1D9E42DD00EAF199 /* LaunchScreen.storyboard */; };
+		2D5000641D9E430800EAF199 /* SwpShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5000561D9E430800EAF199 /* SwpShareModel.m */; };
+		2D5000651D9E430800EAF199 /* SwpShareView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2D5000581D9E430800EAF199 /* SwpShareView.bundle */; };
+		2D5000661D9E430800EAF199 /* SwpShareViewTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D50005B1D9E430800EAF199 /* SwpShareViewTools.m */; };
+		2D5000671D9E430800EAF199 /* UIView+SwpShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D50005D1D9E430800EAF199 /* UIView+SwpShareView.m */; };
+		2D5000681D9E430800EAF199 /* SwpShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5000601D9E430800EAF199 /* SwpShareView.m */; };
+		2D5000691D9E430800EAF199 /* SwpShareViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5000621D9E430800EAF199 /* SwpShareViewCell.m */; };
+		2D50006A1D9E430800EAF199 /* SwpShareViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D5000631D9E430800EAF199 /* SwpShareViewCell.xib */; };
+		5B4281A2C0AF077587C0B58E /* libPods-SwpShareViewDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 400E6D4064A6001ED0C155C9 /* libPods-SwpShareViewDemo.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		04A20854887750CCBEE5590A /* Pods-SwpShareViewDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwpShareViewDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwpShareViewDemo/Pods-SwpShareViewDemo.release.xcconfig"; sourceTree = "<group>"; };
+		2D5000391D9E42DD00EAF199 /* SwpShareViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwpShareViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D50003D1D9E42DD00EAF199 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2D50003F1D9E42DD00EAF199 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2D5000401D9E42DD00EAF199 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2D5000421D9E42DD00EAF199 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		2D5000431D9E42DD00EAF199 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		2D5000461D9E42DD00EAF199 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2D5000481D9E42DD00EAF199 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2D50004B1D9E42DD00EAF199 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2D50004D1D9E42DD00EAF199 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2D5000551D9E430800EAF199 /* SwpShareModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwpShareModel.h; sourceTree = "<group>"; };
+		2D5000561D9E430800EAF199 /* SwpShareModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwpShareModel.m; sourceTree = "<group>"; };
+		2D5000581D9E430800EAF199 /* SwpShareView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SwpShareView.bundle; sourceTree = "<group>"; };
+		2D50005A1D9E430800EAF199 /* SwpShareViewTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwpShareViewTools.h; sourceTree = "<group>"; };
+		2D50005B1D9E430800EAF199 /* SwpShareViewTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwpShareViewTools.m; sourceTree = "<group>"; };
+		2D50005C1D9E430800EAF199 /* UIView+SwpShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SwpShareView.h"; sourceTree = "<group>"; };
+		2D50005D1D9E430800EAF199 /* UIView+SwpShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SwpShareView.m"; sourceTree = "<group>"; };
+		2D50005F1D9E430800EAF199 /* SwpShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwpShareView.h; sourceTree = "<group>"; };
+		2D5000601D9E430800EAF199 /* SwpShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwpShareView.m; sourceTree = "<group>"; };
+		2D5000611D9E430800EAF199 /* SwpShareViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwpShareViewCell.h; sourceTree = "<group>"; };
+		2D5000621D9E430800EAF199 /* SwpShareViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwpShareViewCell.m; sourceTree = "<group>"; };
+		2D5000631D9E430800EAF199 /* SwpShareViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwpShareViewCell.xib; sourceTree = "<group>"; };
+		36860BD75366810331D17F09 /* Pods-SwpShareViewDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwpShareViewDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwpShareViewDemo/Pods-SwpShareViewDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		400E6D4064A6001ED0C155C9 /* libPods-SwpShareViewDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SwpShareViewDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2D5000361D9E42DD00EAF199 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B4281A2C0AF077587C0B58E /* libPods-SwpShareViewDemo.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		143A9DC54DE6B6E8C83F7C18 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				36860BD75366810331D17F09 /* Pods-SwpShareViewDemo.debug.xcconfig */,
+				04A20854887750CCBEE5590A /* Pods-SwpShareViewDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		2D5000301D9E42DD00EAF199 = {
+			isa = PBXGroup;
+			children = (
+				2D50003B1D9E42DD00EAF199 /* SwpShareViewDemo */,
+				2D50003A1D9E42DD00EAF199 /* Products */,
+				143A9DC54DE6B6E8C83F7C18 /* Pods */,
+				47C2D874A696C08A3D1A536F /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		2D50003A1D9E42DD00EAF199 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2D5000391D9E42DD00EAF199 /* SwpShareViewDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2D50003B1D9E42DD00EAF199 /* SwpShareViewDemo */ = {
+			isa = PBXGroup;
+			children = (
+				2D5000531D9E430800EAF199 /* SwpShareView */,
+				2D50003F1D9E42DD00EAF199 /* AppDelegate.h */,
+				2D5000401D9E42DD00EAF199 /* AppDelegate.m */,
+				2D5000421D9E42DD00EAF199 /* ViewController.h */,
+				2D5000431D9E42DD00EAF199 /* ViewController.m */,
+				2D5000451D9E42DD00EAF199 /* Main.storyboard */,
+				2D5000481D9E42DD00EAF199 /* Assets.xcassets */,
+				2D50004A1D9E42DD00EAF199 /* LaunchScreen.storyboard */,
+				2D50004D1D9E42DD00EAF199 /* Info.plist */,
+				2D50003C1D9E42DD00EAF199 /* Supporting Files */,
+			);
+			path = SwpShareViewDemo;
+			sourceTree = "<group>";
+		};
+		2D50003C1D9E42DD00EAF199 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2D50003D1D9E42DD00EAF199 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2D5000531D9E430800EAF199 /* SwpShareView */ = {
+			isa = PBXGroup;
+			children = (
+				2D5000541D9E430800EAF199 /* Models */,
+				2D5000571D9E430800EAF199 /* Resources */,
+				2D5000591D9E430800EAF199 /* SwpShareViewTools */,
+				2D50005E1D9E430800EAF199 /* Views */,
+			);
+			name = SwpShareView;
+			path = ../../SwpShareView;
+			sourceTree = "<group>";
+		};
+		2D5000541D9E430800EAF199 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2D5000551D9E430800EAF199 /* SwpShareModel.h */,
+				2D5000561D9E430800EAF199 /* SwpShareModel.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2D5000571D9E430800EAF199 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2D5000581D9E430800EAF199 /* SwpShareView.bundle */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		2D5000591D9E430800EAF199 /* SwpShareViewTools */ = {
+			isa = PBXGroup;
+			children = (
+				2D50005A1D9E430800EAF199 /* SwpShareViewTools.h */,
+				2D50005B1D9E430800EAF199 /* SwpShareViewTools.m */,
+				2D50005C1D9E430800EAF199 /* UIView+SwpShareView.h */,
+				2D50005D1D9E430800EAF199 /* UIView+SwpShareView.m */,
+			);
+			path = SwpShareViewTools;
+			sourceTree = "<group>";
+		};
+		2D50005E1D9E430800EAF199 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2D50005F1D9E430800EAF199 /* SwpShareView.h */,
+				2D5000601D9E430800EAF199 /* SwpShareView.m */,
+				2D5000611D9E430800EAF199 /* SwpShareViewCell.h */,
+				2D5000621D9E430800EAF199 /* SwpShareViewCell.m */,
+				2D5000631D9E430800EAF199 /* SwpShareViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		47C2D874A696C08A3D1A536F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				400E6D4064A6001ED0C155C9 /* libPods-SwpShareViewDemo.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2D5000381D9E42DD00EAF199 /* SwpShareViewDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2D5000501D9E42DD00EAF199 /* Build configuration list for PBXNativeTarget "SwpShareViewDemo" */;
+			buildPhases = (
+				5F4D80194C940902A7BBF7BA /* [CP] Check Pods Manifest.lock */,
+				2D5000351D9E42DD00EAF199 /* Sources */,
+				2D5000361D9E42DD00EAF199 /* Frameworks */,
+				2D5000371D9E42DD00EAF199 /* Resources */,
+				D670308749779B41992B8090 /* [CP] Embed Pods Frameworks */,
+				CF17AB9B178F9CEF74D37F89 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwpShareViewDemo;
+			productName = SwpShareViewDemo;
+			productReference = 2D5000391D9E42DD00EAF199 /* SwpShareViewDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2D5000311D9E42DD00EAF199 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = swp_song;
+				TargetAttributes = {
+					2D5000381D9E42DD00EAF199 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 2D5000341D9E42DD00EAF199 /* Build configuration list for PBXProject "SwpShareViewDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2D5000301D9E42DD00EAF199;
+			productRefGroup = 2D50003A1D9E42DD00EAF199 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2D5000381D9E42DD00EAF199 /* SwpShareViewDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2D5000371D9E42DD00EAF199 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D50004C1D9E42DD00EAF199 /* LaunchScreen.storyboard in Resources */,
+				2D50006A1D9E430800EAF199 /* SwpShareViewCell.xib in Resources */,
+				2D5000491D9E42DD00EAF199 /* Assets.xcassets in Resources */,
+				2D5000471D9E42DD00EAF199 /* Main.storyboard in Resources */,
+				2D5000651D9E430800EAF199 /* SwpShareView.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5F4D80194C940902A7BBF7BA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CF17AB9B178F9CEF74D37F89 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwpShareViewDemo/Pods-SwpShareViewDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D670308749779B41992B8090 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwpShareViewDemo/Pods-SwpShareViewDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2D5000351D9E42DD00EAF199 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D5000641D9E430800EAF199 /* SwpShareModel.m in Sources */,
+				2D5000681D9E430800EAF199 /* SwpShareView.m in Sources */,
+				2D5000441D9E42DD00EAF199 /* ViewController.m in Sources */,
+				2D5000671D9E430800EAF199 /* UIView+SwpShareView.m in Sources */,
+				2D5000411D9E42DD00EAF199 /* AppDelegate.m in Sources */,
+				2D5000691D9E430800EAF199 /* SwpShareViewCell.m in Sources */,
+				2D5000661D9E430800EAF199 /* SwpShareViewTools.m in Sources */,
+				2D50003E1D9E42DD00EAF199 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		2D5000451D9E42DD00EAF199 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2D5000461D9E42DD00EAF199 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2D50004A1D9E42DD00EAF199 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2D50004B1D9E42DD00EAF199 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2D50004E1D9E42DD00EAF199 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		2D50004F1D9E42DD00EAF199 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2D5000511D9E42DD00EAF199 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 36860BD75366810331D17F09 /* Pods-SwpShareViewDemo.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = SwpShareViewDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "swp-song.SwpShareViewDemo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2D5000521D9E42DD00EAF199 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04A20854887750CCBEE5590A /* Pods-SwpShareViewDemo.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = SwpShareViewDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "swp-song.SwpShareViewDemo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D5000341D9E42DD00EAF199 /* Build configuration list for PBXProject "SwpShareViewDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D50004E1D9E42DD00EAF199 /* Debug */,
+				2D50004F1D9E42DD00EAF199 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D5000501D9E42DD00EAF199 /* Build configuration list for PBXNativeTarget "SwpShareViewDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D5000511D9E42DD00EAF199 /* Debug */,
+				2D5000521D9E42DD00EAF199 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2D5000311D9E42DD00EAF199 /* Project object */;
+}
