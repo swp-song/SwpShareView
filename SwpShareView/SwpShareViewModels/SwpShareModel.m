@@ -11,9 +11,68 @@
 @implementation SwpShareModel
 
 
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareWithShareKey:setSwpShareTitle:setSwpShareImageName:    ( 数据处理 )
+ *
+ *  @ param  swpShareKey
+ *
+ *  @ param  swpShareTitle
+ *
+ *  @ param  swpShareImageName
+ *
+ *  @ return SwpShareModel
+ */
++ (instancetype)swpShareWithShareKey:(NSString *)swpShareKey setSwpShareTitle:(NSString *)swpShareTitle setSwpShareImageName:(NSString *)swpShareImageName {
+    return [[SwpShareModel alloc] initWithShareKey:swpShareKey setSwpShareTitle:swpShareTitle setSwpShareImageName:swpShareImageName];
+}
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  initWithShareKey:setSwpShareTitle:setSwpShareImageName:    ( 数据处理 )
+ *
+ *  @ param  swpShareKey
+ *
+ *  @ param  swpShareTitle
+ *
+ *  @ param  swpShareImageName
+ *
+ *  @ return SwpShareModel
+ */
+- (instancetype)initWithShareKey:(NSString *)swpShareKey setSwpShareTitle:(NSString *)swpShareTitle setSwpShareImageName:(NSString *)swpShareImageName  {
+
+    if (self = [super init]) {
+        _swpShareKey       = swpShareKey;
+        _swpShareTitle     = swpShareTitle;
+        _swpShareImageName = swpShareImageName;
+    }
+    return self;
+}
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareWihtDictionary:    ( 数据处理 )
+ *
+ *  @ param  dictionary
+ *
+ *  @ return SwpShareModel
+ */
 + (instancetype)swpShareWihtDictionary:(NSDictionary *)dictionary {
     return [[self alloc] initWithDictionary:dictionary];
 }
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  initWithDictionary:    ( 数据处理 )
+ *
+ *  @ param  dictionary
+ *
+ *  @ return SwpShareModel
+ */
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     
     if (self = [super init]) {
@@ -23,6 +82,16 @@
     }
     return self;
 }
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareWihtGroup: ( 数据处理 < 一组 > )
+ *
+ *  @ param  dictionary
+ *
+ *  @ return NSArray<SwpShareModel *>
+ */
 + (NSArray<SwpShareModel *> *)swpShareWihtGroup:(NSArray<NSDictionary *> *)dictionarys {
     
     NSMutableArray *models = [NSMutableArray array];

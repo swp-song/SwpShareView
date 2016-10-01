@@ -8,13 +8,23 @@
 
 #import "SwpShareViewTools.h"
 
-#import <POP/POP.h>
+
+/*! ---------------------- Tool       ---------------------- !*/
+#import <POP/POP.h>                     // POP
+/*! ---------------------- Tool       ---------------------- !*/
+
+/*! ---------------------- Controller ---------------------- !*/
+/*! ---------------------- Controller ---------------------- !*/
+
+/*! ---------------------- View       ---------------------- !*/
+/*! ---------------------- View       ---------------------- !*/
+
+/*! ---------------------- Model      ---------------------- !*/
+/*! ---------------------- Model      ---------------------- !*/
 
 @implementation SwpShareViewTools
 
-
-
-/*!
+/**!
  *  @ author swp_song
  *
  *  @ brief  swpShareViewToolsScreenWidth ( 取出 设备 实际的宽度值 )
@@ -25,7 +35,7 @@
     return [[UIScreen mainScreen] bounds].size.width;
 }
 
-/*!
+/**!
  *  @ author swp_song
  *
  *  @ brief  swpShareViewToolsScreenHeight     ( 取出 设备 实际的高度值 )
@@ -36,67 +46,49 @@
     return [[UIScreen mainScreen] bounds].size.height;
 }
 
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareViewToolsMainScreen    ( 取出 设备 实际 frame )
+ *
+ *  @ return CGRect
+ */
 + (CGRect)swpShareViewToolsMainScreen {
     return UIScreen.mainScreen.bounds;
 }
 
-
-
-+ (UIColor *)swpShareViewToolsWithHexadecimal:(NSInteger)hexadecimalValue {
-    return [[self class] swpShareViewToolsWithHexadecimal:hexadecimalValue alpha:1];
-}
-/*!
+/**!
  *  @ author swp_song
  *
- *  @ brief  swpColorWithHexadecimal:alpha: ( 使用 十六进制值 设置 颜色 )
+ *  @ brief  swpShareViewToolsCheckFrame:    ( 验证 frame 大小 )
  *
- *  @ param  hexadecimalValue
+ *  @ param  frame
  *
- *  @ param  alpha
- *
- *  @ return UIColor
+ *  @ return CGRect
  */
-+ (UIColor *)swpShareViewToolsWithHexadecimal:(NSInteger)hexadecimalValue alpha:(CGFloat)alpha {
-    return [UIColor colorWithRed:((float)((hexadecimalValue & 0xFF0000) >> 16)) / 255.0 green:((float)((hexadecimalValue & 0xFF00) >> 8)) / 255.0 blue:((float)(hexadecimalValue & 0xFF)) / 255.0 alpha:alpha];
++ (CGRect)swpShareViewToolsCheckFrame:(CGRect)frame {
+    if ([SwpShareViewTools swpShareViewToolsScreenHeight] < frame.size.height) {
+        frame.origin.y    = 30;
+        frame.size.height = [SwpShareViewTools swpShareViewToolsScreenHeight] - frame.origin.y * 2;
+    }
+    if ([SwpShareViewTools swpShareViewToolsScreenWidth]  < frame.size.width) {
+        frame.origin.x    = 30;
+        frame.size.width  = [SwpShareViewTools swpShareViewToolsScreenWidth]  - frame.origin.x * 2;
+    }
+    return frame;
 }
 
-
-+ (void)swpShareViewToolsCenterAnimation:(UIView *)addAnimationView setFromValue:(CGPoint)fromValue setToValue:(CGPoint)toValue animationCompletionBlock:(void(^)(BOOL finished))animationCompletionBlock {
-    
-    POPSpringAnimation *springAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPViewCenter];
-    springAnimation.fromValue           = [NSValue valueWithCGPoint:fromValue];
-    springAnimation.toValue             = [NSValue valueWithCGPoint:toValue];
-    springAnimation.springBounciness    = 10.0f;
-    springAnimation.springSpeed         = 5.0f;
-    [springAnimation setCompletionBlock:^(POPAnimation *animation, BOOL finished) {
-        if (animationCompletionBlock) animationCompletionBlock(finished);
-    }];
-    [addAnimationView pop_addAnimation:springAnimation forKey:nil];
-}
-
-+ (void)swpShareViewToolsAlphaAnimation:(UIView *)addAnimationView setFromValue:(CGFloat)fromValue setToValue:(CGFloat)toValue animationCompletionBlock:(void(^)(BOOL finished))animationCompletionBlock {
-    
-    POPBasicAnimation *positionAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
-    positionAnimation.fromValue           = @(fromValue);
-    positionAnimation.toValue             = @(toValue);
-    [positionAnimation setCompletionBlock:^(POPAnimation *animation, BOOL finished) {
-        if (animationCompletionBlock) animationCompletionBlock (finished);
-    }];
-    [addAnimationView pop_addAnimation:positionAnimation forKey:nil];
-}
-
-
-+ (void)swpShareViewToolsSetLabelWith:(UILabel *)label setTitle:(NSString *)title setFontSize:(CGFloat)fontSize  setTitleColor:(UIColor *)titleColor {
-    
-    label.font      = [UIFont fontWithName:@"GillSans-Italic" size:fontSize];
-    label.text      = title ? title : @"Title";
-    label.textColor = titleColor ? titleColor : [UIColor blackColor];
-}
-
-
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareViewToolsDataProcessing: ( 数据 处理 )
+ *
+ *  @ param  data
+ *
+ *  @ return NSArray<NSDictionary *>
+ */
 + (NSArray<NSDictionary *> *)swpShareViewToolsDataProcessing:(NSArray<NSString *> *)data {
-
-   
     NSMutableArray *dictionarys = [NSMutableArray array];
     [data enumerateObjectsUsingBlock:^(NSString * _Nonnull shareKey, NSUInteger index, BOOL * _Nonnull stop) {
         NSArray<NSString *> *array      = [shareKey componentsSeparatedByString:@"-"];
@@ -110,53 +102,75 @@
     return dictionarys.copy;
 }
 
-
-
-+ (CGRect)swpShareViewToolsCheckFrame:(CGRect)frame {
-    
-    
-    if ([SwpShareViewTools swpShareViewToolsScreenHeight] < frame.size.height) {
-        frame.origin.y    = 30;
-        frame.size.height = [SwpShareViewTools swpShareViewToolsScreenHeight] - frame.origin.y * 2;
-    }
-    
-    if ([SwpShareViewTools swpShareViewToolsScreenWidth] < frame.size.width) {
-        frame.origin.x    = 30;
-        frame.size.width  = [SwpShareViewTools swpShareViewToolsScreenWidth]  - frame.origin.x * 2;
-    }
-    
-    return frame;
-}
-
-#pragma mark - Set View UITapGestureRecognizer Method
-/*!
- *  @author swp_song
+/**!
+ *  @ author swp_song
  *
- *  @brief  swpShareViewToolsSetTapGestureRecognizer:setViewTag:setClickCount:setTarget:setAction:setCancelsTouchesInView:    ( 绑定 一个 点击事件 给一个 view )
+ *  @ brief  swpShareViewToolsSetLabelWith:setTitle:setFontSize:setTitleColor:  ( 设置 label 公共 属性 )
  *
- *  @param  view
+ *  @ param  label
  *
- *  @param  tag
+ *  @ param  title
  *
- *  @param  count
+ *  @ param  fontSize
  *
- *  @param  target
- *
- *  @param  action
- *
- *  @param  cancels
- *
- *  @return UITapGestureRecognizer
+ *  @ param  titleColor
  */
-+ (UITapGestureRecognizer *)swpShareViewToolsSetTapGestureRecognizer:(UIView *)view setViewTag:(NSInteger)tag setClickCount:(NSInteger)count setTarget:(id)target setAction:(SEL)action setCancelsTouchesInView:(BOOL)cancels {
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
-    tap.numberOfTapsRequired    = count;
-    tap.cancelsTouchesInView    = cancels;
-    view.tag                    = tag;
-    [tap addTarget:target action:action];
-    view.userInteractionEnabled = YES;
-    [view addGestureRecognizer:tap];
-    return tap;
++ (void)swpShareViewToolsSetLabelWith:(UILabel *)label setTitle:(NSString *)title setFontSize:(CGFloat)fontSize  setTitleColor:(UIColor *)titleColor {
+    label.font      = [UIFont fontWithName:@"GillSans-Italic" size:fontSize];
+    label.text      = title ? title : @"Title";
+    label.textColor = titleColor ? titleColor : [UIColor blackColor];
 }
+
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareViewToolsCenterAnimation:setFromValue:setToValue:animationCompletionBlock: ( View Center 动画 效果 )
+ *
+ *  @ param  addAnimationView
+ *
+ *  @ param  fromValue
+ *
+ *  @ param  toValue
+ *
+ *  @ param  animationCompletionBlock
+ */
++ (void)swpShareViewToolsCenterAnimation:(UIView *)addAnimationView setFromValue:(CGPoint)fromValue setToValue:(CGPoint)toValue animationCompletionBlock:(void(^)(BOOL finished))animationCompletionBlock {
+    
+    POPSpringAnimation *springAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPViewCenter];
+    springAnimation.fromValue           = [NSValue valueWithCGPoint:fromValue];
+    springAnimation.toValue             = [NSValue valueWithCGPoint:toValue];
+    springAnimation.springBounciness    = 10.0f;
+    springAnimation.springSpeed         = 5.0f;
+    [springAnimation setCompletionBlock:^(POPAnimation *animation, BOOL finished) {
+        if (animationCompletionBlock) animationCompletionBlock(finished);
+    }];
+    [addAnimationView pop_addAnimation:springAnimation forKey:nil];
+}
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareViewToolsAlphaAnimation:setFromValue:setToValue:animationCompletionBlock: ( View Alpha 动画 效果 )
+ *
+ *  @ param  addAnimationView
+ *
+ *  @ param  fromValue
+ *
+ *  @ param  toValue
+ *
+ *  @ param  animationCompletionBlock
+ */
++ (void)swpShareViewToolsAlphaAnimation:(UIView *)addAnimationView setFromValue:(CGFloat)fromValue setToValue:(CGFloat)toValue animationCompletionBlock:(void(^)(BOOL finished))animationCompletionBlock {
+    
+    POPBasicAnimation *positionAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
+    positionAnimation.fromValue           = @(fromValue);
+    positionAnimation.toValue             = @(toValue);
+    [positionAnimation setCompletionBlock:^(POPAnimation *animation, BOOL finished) {
+        if (animationCompletionBlock) animationCompletionBlock (finished);
+    }];
+    [addAnimationView pop_addAnimation:positionAnimation forKey:nil];
+}
+
 
 @end

@@ -10,7 +10,7 @@
 
 #import "SwpShareHeader.h"
 
-@interface ViewController ()
+@interface ViewController () <SwpShareViewDelegate>
 
 
 @property (nonatomic, weak) IBOutlet UIButton *button;
@@ -32,14 +32,31 @@
 
 
 - (IBAction)clickButton:(UIButton *)button {
-    
-    
-    [SwpShareView swpShareViewShowWithData:@[SwpShareToQQ, SwpShareToQzone, SwpShareToTencent, SwpShareToWechatSession, SwpShareToWechatTimeline, SwpShareToSina, SwpShareToCopyURL]];
 
+    SwpShareView *swpShareView = [SwpShareView swpShareViewShowWithData:@[
+                                                                          SwpShareToQQ,
+                                                                          SwpShareToQzone,
+                                                                          SwpShareToTencent,
+                                                                          SwpShareToWechatSession,
+                                                                          SwpShareToWechatTimeline,
+                                                                          SwpShareToSina,
+                                                                          SwpShareToCopyURL]];
     
+    swpShareView.delegate = self;
+    
+    // block 回调
+    [swpShareView swpShareListViewDidSelectIndex:^(SwpShareView * _Nonnull swpShareView, NSInteger didSelectIndex, NSString * _Nonnull swpShareKey) {
+        NSLog(@"%@", swpShareKey);
+    }];
+
 }
 
 
+
+// 代理 回调
+- (void)swpShareView:(SwpShareView *)swpShareView didSelectIndex:(NSInteger)index swpShareKey:(NSString *)swpShareKey {
+    NSLog(@"%@", swpShareKey);
+}
 
 
 

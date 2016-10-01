@@ -13,13 +13,14 @@
 		2D5000471D9E42DD00EAF199 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D5000451D9E42DD00EAF199 /* Main.storyboard */; };
 		2D5000491D9E42DD00EAF199 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D5000481D9E42DD00EAF199 /* Assets.xcassets */; };
 		2D50004C1D9E42DD00EAF199 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D50004A1D9E42DD00EAF199 /* LaunchScreen.storyboard */; };
-		2D5000C61D9F7B8200EAF199 /* SwpShareConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5000B41D9F7B8200EAF199 /* SwpShareConstants.m */; };
-		2D5000C71D9F7B8200EAF199 /* SwpShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5000B61D9F7B8200EAF199 /* SwpShareModel.m */; };
-		2D5000C81D9F7B8200EAF199 /* SwpShareViewTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5000BC1D9F7B8200EAF199 /* SwpShareViewTools.m */; };
-		2D5000C91D9F7B8200EAF199 /* UIView+SwpShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5000BE1D9F7B8200EAF199 /* UIView+SwpShareView.m */; };
-		2D5000CA1D9F7B8200EAF199 /* SwpShareView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2D5000C01D9F7B8200EAF199 /* SwpShareView.bundle */; };
-		2D5000CB1D9F7B8200EAF199 /* SwpShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5000C31D9F7B8200EAF199 /* SwpShareView.m */; };
-		2D5000CC1D9F7B8200EAF199 /* SwpShareViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5000C51D9F7B8200EAF199 /* SwpShareViewCell.m */; };
+		2D5000EE1D9FBE1900EAF199 /* SwpShareConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5000D81D9FBE1900EAF199 /* SwpShareConstants.m */; };
+		2D5000EF1D9FBE1900EAF199 /* SwpShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5000DA1D9FBE1900EAF199 /* SwpShareModel.m */; };
+		2D5000F01D9FBE1900EAF199 /* SwpShareViewTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5000E21D9FBE1900EAF199 /* SwpShareViewTools.m */; };
+		2D5000F11D9FBE1900EAF199 /* UIView+SwpShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5000E41D9FBE1900EAF199 /* UIView+SwpShareView.m */; };
+		2D5000F21D9FBE1900EAF199 /* SwpShareView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2D5000E61D9FBE1900EAF199 /* SwpShareView.bundle */; };
+		2D5000F31D9FBE1900EAF199 /* SwpShareListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5000E91D9FBE1900EAF199 /* SwpShareListView.m */; };
+		2D5000F41D9FBE1900EAF199 /* SwpShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5000EB1D9FBE1900EAF199 /* SwpShareView.m */; };
+		2D5000F51D9FBE1900EAF199 /* SwpShareViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5000ED1D9FBE1900EAF199 /* SwpShareViewCell.m */; };
 		5B4281A2C0AF077587C0B58E /* libPods-SwpShareViewDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 400E6D4064A6001ED0C155C9 /* libPods-SwpShareViewDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -35,20 +36,23 @@
 		2D5000481D9E42DD00EAF199 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D50004B1D9E42DD00EAF199 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D50004D1D9E42DD00EAF199 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2D5000B31D9F7B8200EAF199 /* SwpShareConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwpShareConstants.h; sourceTree = "<group>"; };
-		2D5000B41D9F7B8200EAF199 /* SwpShareConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwpShareConstants.m; sourceTree = "<group>"; };
-		2D5000B51D9F7B8200EAF199 /* SwpShareModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwpShareModel.h; sourceTree = "<group>"; };
-		2D5000B61D9F7B8200EAF199 /* SwpShareModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwpShareModel.m; sourceTree = "<group>"; };
-		2D5000B91D9F7B8200EAF199 /* SwpShareHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwpShareHeader.h; sourceTree = "<group>"; };
-		2D5000BB1D9F7B8200EAF199 /* SwpShareViewTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwpShareViewTools.h; sourceTree = "<group>"; };
-		2D5000BC1D9F7B8200EAF199 /* SwpShareViewTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwpShareViewTools.m; sourceTree = "<group>"; };
-		2D5000BD1D9F7B8200EAF199 /* UIView+SwpShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SwpShareView.h"; sourceTree = "<group>"; };
-		2D5000BE1D9F7B8200EAF199 /* UIView+SwpShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SwpShareView.m"; sourceTree = "<group>"; };
-		2D5000C01D9F7B8200EAF199 /* SwpShareView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SwpShareView.bundle; sourceTree = "<group>"; };
-		2D5000C21D9F7B8200EAF199 /* SwpShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwpShareView.h; sourceTree = "<group>"; };
-		2D5000C31D9F7B8200EAF199 /* SwpShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwpShareView.m; sourceTree = "<group>"; };
-		2D5000C41D9F7B8200EAF199 /* SwpShareViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwpShareViewCell.h; sourceTree = "<group>"; };
-		2D5000C51D9F7B8200EAF199 /* SwpShareViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwpShareViewCell.m; sourceTree = "<group>"; };
+		2D5000D71D9FBE1900EAF199 /* SwpShareConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwpShareConstants.h; sourceTree = "<group>"; };
+		2D5000D81D9FBE1900EAF199 /* SwpShareConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwpShareConstants.m; sourceTree = "<group>"; };
+		2D5000D91D9FBE1900EAF199 /* SwpShareModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwpShareModel.h; sourceTree = "<group>"; };
+		2D5000DA1D9FBE1900EAF199 /* SwpShareModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwpShareModel.m; sourceTree = "<group>"; };
+		2D5000DD1D9FBE1900EAF199 /* SwpShareHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwpShareHeader.h; sourceTree = "<group>"; };
+		2D5000DF1D9FBE1900EAF199 /* SwpShareViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwpShareViewDelegate.h; sourceTree = "<group>"; };
+		2D5000E11D9FBE1900EAF199 /* SwpShareViewTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwpShareViewTools.h; sourceTree = "<group>"; };
+		2D5000E21D9FBE1900EAF199 /* SwpShareViewTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwpShareViewTools.m; sourceTree = "<group>"; };
+		2D5000E31D9FBE1900EAF199 /* UIView+SwpShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SwpShareView.h"; sourceTree = "<group>"; };
+		2D5000E41D9FBE1900EAF199 /* UIView+SwpShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SwpShareView.m"; sourceTree = "<group>"; };
+		2D5000E61D9FBE1900EAF199 /* SwpShareView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SwpShareView.bundle; sourceTree = "<group>"; };
+		2D5000E81D9FBE1900EAF199 /* SwpShareListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwpShareListView.h; sourceTree = "<group>"; };
+		2D5000E91D9FBE1900EAF199 /* SwpShareListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwpShareListView.m; sourceTree = "<group>"; };
+		2D5000EA1D9FBE1900EAF199 /* SwpShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwpShareView.h; sourceTree = "<group>"; };
+		2D5000EB1D9FBE1900EAF199 /* SwpShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwpShareView.m; sourceTree = "<group>"; };
+		2D5000EC1D9FBE1900EAF199 /* SwpShareViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwpShareViewCell.h; sourceTree = "<group>"; };
+		2D5000ED1D9FBE1900EAF199 /* SwpShareViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwpShareViewCell.m; sourceTree = "<group>"; };
 		36860BD75366810331D17F09 /* Pods-SwpShareViewDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwpShareViewDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwpShareViewDemo/Pods-SwpShareViewDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		400E6D4064A6001ED0C155C9 /* libPods-SwpShareViewDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SwpShareViewDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -120,69 +124,80 @@
 		2D5000531D9E430800EAF199 /* SwpShareView */ = {
 			isa = PBXGroup;
 			children = (
-				2D5000B21D9F7B8200EAF199 /* SwpShareViewModels */,
-				2D5000B71D9F7B8200EAF199 /* SwpShareViewOrder */,
-				2D5000BF1D9F7B8200EAF199 /* SwpShareViewResources */,
-				2D5000C11D9F7B8200EAF199 /* SwpShareViewViews */,
+				2D5000D61D9FBE1900EAF199 /* SwpShareViewModels */,
+				2D5000DB1D9FBE1900EAF199 /* SwpShareViewOrder */,
+				2D5000E51D9FBE1900EAF199 /* SwpShareViewResources */,
+				2D5000E71D9FBE1900EAF199 /* SwpShareViewViews */,
 			);
 			name = SwpShareView;
 			path = ../../SwpShareView;
 			sourceTree = "<group>";
 		};
-		2D5000B21D9F7B8200EAF199 /* SwpShareViewModels */ = {
+		2D5000D61D9FBE1900EAF199 /* SwpShareViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				2D5000B31D9F7B8200EAF199 /* SwpShareConstants.h */,
-				2D5000B41D9F7B8200EAF199 /* SwpShareConstants.m */,
-				2D5000B51D9F7B8200EAF199 /* SwpShareModel.h */,
-				2D5000B61D9F7B8200EAF199 /* SwpShareModel.m */,
+				2D5000D71D9FBE1900EAF199 /* SwpShareConstants.h */,
+				2D5000D81D9FBE1900EAF199 /* SwpShareConstants.m */,
+				2D5000D91D9FBE1900EAF199 /* SwpShareModel.h */,
+				2D5000DA1D9FBE1900EAF199 /* SwpShareModel.m */,
 			);
 			path = SwpShareViewModels;
 			sourceTree = "<group>";
 		};
-		2D5000B71D9F7B8200EAF199 /* SwpShareViewOrder */ = {
+		2D5000DB1D9FBE1900EAF199 /* SwpShareViewOrder */ = {
 			isa = PBXGroup;
 			children = (
-				2D5000B81D9F7B8200EAF199 /* SwpShareHeader */,
-				2D5000BA1D9F7B8200EAF199 /* SwpShareViewTools */,
+				2D5000DC1D9FBE1900EAF199 /* SwpShareHeader */,
+				2D5000DE1D9FBE1900EAF199 /* SwpShareViewDelegate */,
+				2D5000E01D9FBE1900EAF199 /* SwpShareViewTools */,
 			);
 			path = SwpShareViewOrder;
 			sourceTree = "<group>";
 		};
-		2D5000B81D9F7B8200EAF199 /* SwpShareHeader */ = {
+		2D5000DC1D9FBE1900EAF199 /* SwpShareHeader */ = {
 			isa = PBXGroup;
 			children = (
-				2D5000B91D9F7B8200EAF199 /* SwpShareHeader.h */,
+				2D5000DD1D9FBE1900EAF199 /* SwpShareHeader.h */,
 			);
 			path = SwpShareHeader;
 			sourceTree = "<group>";
 		};
-		2D5000BA1D9F7B8200EAF199 /* SwpShareViewTools */ = {
+		2D5000DE1D9FBE1900EAF199 /* SwpShareViewDelegate */ = {
 			isa = PBXGroup;
 			children = (
-				2D5000BB1D9F7B8200EAF199 /* SwpShareViewTools.h */,
-				2D5000BC1D9F7B8200EAF199 /* SwpShareViewTools.m */,
-				2D5000BD1D9F7B8200EAF199 /* UIView+SwpShareView.h */,
-				2D5000BE1D9F7B8200EAF199 /* UIView+SwpShareView.m */,
+				2D5000DF1D9FBE1900EAF199 /* SwpShareViewDelegate.h */,
+			);
+			path = SwpShareViewDelegate;
+			sourceTree = "<group>";
+		};
+		2D5000E01D9FBE1900EAF199 /* SwpShareViewTools */ = {
+			isa = PBXGroup;
+			children = (
+				2D5000E11D9FBE1900EAF199 /* SwpShareViewTools.h */,
+				2D5000E21D9FBE1900EAF199 /* SwpShareViewTools.m */,
+				2D5000E31D9FBE1900EAF199 /* UIView+SwpShareView.h */,
+				2D5000E41D9FBE1900EAF199 /* UIView+SwpShareView.m */,
 			);
 			path = SwpShareViewTools;
 			sourceTree = "<group>";
 		};
-		2D5000BF1D9F7B8200EAF199 /* SwpShareViewResources */ = {
+		2D5000E51D9FBE1900EAF199 /* SwpShareViewResources */ = {
 			isa = PBXGroup;
 			children = (
-				2D5000C01D9F7B8200EAF199 /* SwpShareView.bundle */,
+				2D5000E61D9FBE1900EAF199 /* SwpShareView.bundle */,
 			);
 			path = SwpShareViewResources;
 			sourceTree = "<group>";
 		};
-		2D5000C11D9F7B8200EAF199 /* SwpShareViewViews */ = {
+		2D5000E71D9FBE1900EAF199 /* SwpShareViewViews */ = {
 			isa = PBXGroup;
 			children = (
-				2D5000C21D9F7B8200EAF199 /* SwpShareView.h */,
-				2D5000C31D9F7B8200EAF199 /* SwpShareView.m */,
-				2D5000C41D9F7B8200EAF199 /* SwpShareViewCell.h */,
-				2D5000C51D9F7B8200EAF199 /* SwpShareViewCell.m */,
+				2D5000E81D9FBE1900EAF199 /* SwpShareListView.h */,
+				2D5000E91D9FBE1900EAF199 /* SwpShareListView.m */,
+				2D5000EA1D9FBE1900EAF199 /* SwpShareView.h */,
+				2D5000EB1D9FBE1900EAF199 /* SwpShareView.m */,
+				2D5000EC1D9FBE1900EAF199 /* SwpShareViewCell.h */,
+				2D5000ED1D9FBE1900EAF199 /* SwpShareViewCell.m */,
 			);
 			path = SwpShareViewViews;
 			sourceTree = "<group>";
@@ -259,7 +274,7 @@
 				2D50004C1D9E42DD00EAF199 /* LaunchScreen.storyboard in Resources */,
 				2D5000491D9E42DD00EAF199 /* Assets.xcassets in Resources */,
 				2D5000471D9E42DD00EAF199 /* Main.storyboard in Resources */,
-				2D5000CA1D9F7B8200EAF199 /* SwpShareView.bundle in Resources */,
+				2D5000F21D9FBE1900EAF199 /* SwpShareView.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,15 +333,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D5000CC1D9F7B8200EAF199 /* SwpShareViewCell.m in Sources */,
-				2D5000C71D9F7B8200EAF199 /* SwpShareModel.m in Sources */,
-				2D5000CB1D9F7B8200EAF199 /* SwpShareView.m in Sources */,
-				2D5000C81D9F7B8200EAF199 /* SwpShareViewTools.m in Sources */,
-				2D5000C61D9F7B8200EAF199 /* SwpShareConstants.m in Sources */,
+				2D5000EF1D9FBE1900EAF199 /* SwpShareModel.m in Sources */,
+				2D5000F51D9FBE1900EAF199 /* SwpShareViewCell.m in Sources */,
+				2D5000F31D9FBE1900EAF199 /* SwpShareListView.m in Sources */,
+				2D5000F01D9FBE1900EAF199 /* SwpShareViewTools.m in Sources */,
+				2D5000EE1D9FBE1900EAF199 /* SwpShareConstants.m in Sources */,
 				2D5000441D9E42DD00EAF199 /* ViewController.m in Sources */,
-				2D5000C91D9F7B8200EAF199 /* UIView+SwpShareView.m in Sources */,
+				2D5000F11D9FBE1900EAF199 /* UIView+SwpShareView.m in Sources */,
 				2D5000411D9E42DD00EAF199 /* AppDelegate.m in Sources */,
 				2D50003E1D9E42DD00EAF199 /* main.m in Sources */,
+				2D5000F41D9FBE1900EAF199 /* SwpShareView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

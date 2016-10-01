@@ -7,64 +7,92 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+
 @interface SwpShareViewTools : NSObject
 
-
-/*!
- *  @author swp_song
- *
- *  @brief  swpShareViewToolsScreenWidth ( 取出 设备 实际的宽度值 )
- *
- *  @return CGFloat
- */
-+ (CGFloat)swpShareViewToolsScreenWidth;
-
-/*!
- *  @author swp_song
- *
- *  @brief  swpShareViewToolsScreenHeight     ( 取出 设备 实际的高度值 )
- *
- *  @return CGFloat
- */
-+ (CGFloat)swpShareViewToolsScreenHeight;
-
-+ (CGRect)swpShareViewToolsMainScreen;
-
-+ (UIColor *)swpShareViewToolsWithHexadecimal:(NSInteger)hexadecimalValue;
-
-+ (CGRect)swpShareViewToolsCheckFrame:(CGRect)frame;
-
-+ (void)swpShareViewToolsCenterAnimation:(UIView *)addAnimationView setFromValue:(CGPoint)fromValue setToValue:(CGPoint)toValue animationCompletionBlock:(nullable void(^)(BOOL finished))animationCompletionBlock;
-
-+ (void)swpShareViewToolsAlphaAnimation:(UIView *)addAnimationView setFromValue:(CGFloat)fromValue setToValue:(CGFloat)toValue animationCompletionBlock:(nullable void(^)(BOOL finished))animationCompletionBlock;
-
-+ (void)swpShareViewToolsSetLabelWith:(UILabel *)label setTitle:(nullable NSString *)title setFontSize:(CGFloat)fontSize  setTitleColor:(nullable UIColor *)titleColor;
-
-+ (NSArray<NSDictionary *> *)swpShareViewToolsDataProcessing:(NSArray<NSString *> *)data;
-
-#pragma mark - Set View UITapGestureRecognizer Method
-/*!
+/**!
  *  @ author swp_song
  *
- *  @ brief  swpShareViewToolsSetTapGestureRecognizer:setViewTag:setClickCount:setTarget:setAction:setCancelsTouchesInView:    ( 绑定 一个 点击事件 给一个 view )
+ *  @ brief  swpShareViewToolsMainScreen    ( 取出 设备 实际 frame )
  *
- *  @ param  view
- *
- *  @ param  tag
- *
- *  @ param  count
- *
- *  @ param  target
- *
- *  @ param  action
- *
- *  @ param  cancels
- *
- *  @ return UITapGestureRecognizer
+ *  @ return CGRect
  */
-+ (UITapGestureRecognizer *)swpShareViewToolsSetTapGestureRecognizer:(UIView *)view setViewTag:(NSInteger)tag setClickCount:(NSInteger)count setTarget:(id)target setAction:(SEL)action setCancelsTouchesInView:(BOOL)cancels;
++ (CGRect)swpShareViewToolsMainScreen;
+
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareViewToolsCheckFrame:    ( 验证 frame 大小 )
+ *
+ *  @ param  frame
+ *
+ *  @ return CGRect
+ */
++ (CGRect)swpShareViewToolsCheckFrame:(CGRect)frame;
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareViewToolsDataProcessing: ( 数据 处理 )
+ *
+ *  @ param  data
+ *
+ *  @ return NSArray<NSDictionary *>
+ */
++ (NSArray<NSDictionary *> *)swpShareViewToolsDataProcessing:(NSArray<NSString *> *)data;
+
+/**!
+ *
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareViewToolsSetLabelWith:setTitle:setFontSize:setTitleColor:  ( 设置 label 公共 属性 )
+ *
+ *  @ param  label
+ *
+ *  @ param  title
+ *
+ *  @ param  fontSize
+ *
+ *  @ param  titleColor
+ */
++ (void)swpShareViewToolsSetLabelWith:(UILabel *)label setTitle:(nullable NSString *)title setFontSize:(CGFloat)fontSize  setTitleColor:(nullable UIColor *)titleColor;
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareViewToolsCenterAnimation:setFromValue:setToValue:animationCompletionBlock: ( View Center 动画 效果 )
+ *
+ *  @ param  addAnimationView
+ *
+ *  @ param  fromValue
+ *
+ *  @ param  toValue
+ *
+ *  @ param  animationCompletionBlock
+ */
++ (void)swpShareViewToolsCenterAnimation:(UIView *)addAnimationView setFromValue:(CGPoint)fromValue setToValue:(CGPoint)toValue animationCompletionBlock:(nullable void(^)(BOOL finished))animationCompletionBlock;
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareViewToolsAlphaAnimation:setFromValue:setToValue:animationCompletionBlock: ( View Alpha 动画 效果 )
+ *
+ *  @ param  addAnimationView
+ *
+ *  @ param  fromValue
+ *
+ *  @ param  toValue
+ *
+ *  @ param  animationCompletionBlock
+ */
++ (void)swpShareViewToolsAlphaAnimation:(UIView *)addAnimationView setFromValue:(CGFloat)fromValue setToValue:(CGFloat)toValue animationCompletionBlock:(nullable void(^)(BOOL finished))animationCompletionBlock;
+
+
 @end
+
 NS_ASSUME_NONNULL_END

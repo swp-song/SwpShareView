@@ -8,170 +8,171 @@
 
 #import "SwpShareView.h"
 
-#import <POP/POP.h>
-#import "SwpShareViewTools.h"
-#import "UIView+SwpShareView.h"
 
+/*! ---------------------- Tool       ---------------------- !*/
+#import "SwpShareViewTools.h"               //  工具
+#import "UIView+SwpShareView.h"             //  View 分类
+/*! ---------------------- Tool       ---------------------- !*/
 
+/*! ---------------------- Controller ---------------------- !*/
+/*! ---------------------- Controller ---------------------- !*/
 
-#import "SwpShareViewCell.h"
+/*! ---------------------- View       ---------------------- !*/
+#import "SwpShareListView.h"
+#import "SwpShareViewCell.h"                //  显示分享cell
+/*! ---------------------- View       ---------------------- !*/
 
-
-#import "SwpShareModel.h"
-
-
+/*! ---------------------- Model      ---------------------- !*/
+#import "SwpShareModel.h"                   //  分享 数据模型
+/*! ---------------------- Model      ---------------------- !*/
 
 
 static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
 
-@interface SwpShareView () <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate>
+@interface SwpShareView () <SwpShareListViewDelegate>
 
-@property (nonatomic, strong) UICollectionView           *swpShareCollectionView;
-@property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
-
+#pragma mark - UI   Propertys
+/*! ---------------------- UI   Property  ---------------------- !*/
+/*! 显示 分享 titleView !*/
 @property (nonatomic, strong) UILabel                    *swpShareTitleView;
+/*! 显示 分享 view      !*/
+@property (nonatomic, strong) SwpShareListView           *swpShareListView;
+/*! 显示 关闭 页面 按钮 !*/
 @property (nonatomic, strong) UIButton                   *swpShareCloseButton;
+/*! ---------------------- UI   Property  ---------------------- !*/
 
-@property (nonatomic, copy) NSArray<SwpShareModel *>     *swpShares;
-
+#pragma mark - Data Propertys
+/*! ---------------------- Data Property  ---------------------- !*/
+/*! 显示 分享 数据源    !*/
+@property (nonatomic, copy )  NSArray<SwpShareModel *>     *swpShares;
+@property (nonatomic, copy, setter = swpShareListViewDidSelectIndex:) void(^swpShareListViewDidSelectIndex)(SwpShareView *swpShareView, NSInteger didSelectIndex, NSString *swpShareKey);
+/*! ---------------------- Data Property  ---------------------- !*/
 
 @end
 
 @implementation SwpShareView
 
-
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  initWithFrame:  ( Override Init )
+ *
+ *  @ param  frame
+ *
+ *  @ return SwpShareView
+ */
 - (instancetype)initWithFrame:(CGRect)frame {
-    
     if (self = [super initWithFrame:frame]) {
-    
         self.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:1];
-        [self addSubview:self.swpShareTitleView];
-        [self addSubview:self.swpShareCloseButton];
-        [self addSubview:self.swpShareCollectionView];
+        [self setUpUI];
     }
-    
     return self;
 }
 
-
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  setFrame:  ( Override setFrame )
+ *
+ *  @ param  frame
+ */
 - (void)setFrame:(CGRect)frame {
-    
     [super setFrame:[SwpShareViewTools swpShareViewToolsCheckFrame:frame]];
 }
 
+- (void)dealloc {
+    NSLog(@"%s", __FUNCTION__);
+}
 
-+ (void)swpShareViewShowWithData:(NSArray<NSString *> *)shareData {
-    
-    [SwpShareView showViewWithData:shareData];
+#pragma mark - Public Methods
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareViewShowWithData: ( 显示 控件 )
+ *
+ *  @ param  shareData
+ *
+ *  @ return SwpShareView
+ */
++ (instancetype)swpShareViewShowWithData:(NSArray<NSString *> *)shareData {
+    return [SwpShareView initWithData:shareData];
+}
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareListViewDidSelectIndex: ( 点击 每个 分下 回调 )
+ *
+ *  @ param  swpShareListViewDidSelectIndex
+ */
+- (void)swpShareListViewDidSelectIndex:(void (^)(SwpShareView *swpShareView, NSInteger didSelectIndex, NSString *swpShareKey))swpShareListViewDidSelectIndex {
+    _swpShareListViewDidSelectIndex = swpShareListViewDidSelectIndex;
 }
 
 
+#pragma mark - Private Methods
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  setUpUI ( 添加控件 )
+ */
+- (void)setUpUI {
 
-static UIWindow * swpShareWindow_;
+    [self addSubview:self.swpShareTitleView];
+    [self addSubview:self.swpShareCloseButton];
+    [self addSubview:self.swpShareListView];
+}
 
-+ (void)showViewWithData:(NSArray<NSString *> *)shareData {
+static UIWindow *swpShareWindow_;
 
-
-    
-
+/**!
+ *
+ *  @ author swp_song
+ *
+ *  @ brief  initWithData: ( 显示 控件 )
+ *
+ *  @ param  shareData
+ *
+ *  @ return SwpShareView
+ */
++ (instancetype)initWithData:(NSArray<NSString *> *)shareData {
     swpShareWindow_                 = [[UIWindow alloc] initWithFrame:[SwpShareViewTools swpShareViewToolsMainScreen]];
     swpShareWindow_.hidden          = NO;
     swpShareWindow_.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
-    
     
     SwpShareView *swpShareView      = [[SwpShareView alloc] initWithFrame:CGRectMake(0, 0, 1000, 300)];
     swpShareView.swpShares          = [SwpShareModel swpShareWihtGroup:[SwpShareViewTools swpShareViewToolsDataProcessing:shareData]];
     [swpShareView swpShareViewShowAnimation];
     [swpShareWindow_ addSubview:swpShareView];
-    
+    return swpShareView;
 }
 
-
-
-
-#pragma mark - UICollectionView DataSoure Methods
-/*!
+/**!
  *  @ author swp_song
  *
- *  @brief  collectionView DataSource ( collectionView 数据源方法 设置 collectionView 分组个数 )
+ *  @ brief  didButton:   ( 按钮 点击 事件 )
  *
- *  @ param  collectionView
- *
- *  @ return NSInteger
+ *  @ param  button
  */
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
-}
-
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    
-    return self.swpShares.count;
-}
-
-/*!
- *  @ author swp_song
- *
- *  @brief  collectionView DataSource ( collectionView 数据源方法 设置 collectionView 分组中cell显示的数据 | 样式 )
- *
- *  @ param  collectionView
- *
- *  @ param  indexPath
- *
- *  @return UICollectionViewCell
- */
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    SwpShareViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kSwpShareViewCellID forIndexPath:indexPath];
-    cell.swpShare          = self.swpShares[indexPath.item];
-    cell.layer.borderWidth = 1;
-    return cell;
-}
-
-
-
-
-#pragma mark - UICollectionView Delegate Methods
-/*!
- *  @ author swp_song
- *
- *  @brief  collectionView Delegate ( collectionView 代理方法 设置 collectionView  每个cell的宽高 )
- *
- *  @ param  collectionView
- *
- *  @ param  collectionViewLayout
- *
- *  @ param  indexPath
- *
- *  @ return CGSize
- */
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(self.swpShareCollectionView.width / 4.0f - 15 , self.swpShareCollectionView.width / 4.0f);
-}
-
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    
-    return UIEdgeInsetsMake(0, 10, 0, 10);
-}
-
-
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"123");
-}
-
 - (void)didButton:(UIButton *)button {
-    
     [self swpShareViewHiddenAnimation];
 }
 
-
-#pragma mark - Private 
-
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareViewShowAnimation: ( swpShareView 动画显示 )
+ */
 - (void)swpShareViewShowAnimation {
     [SwpShareViewTools swpShareViewToolsCenterAnimation:self setFromValue:CGPointMake(swpShareWindow_.centerX, swpShareWindow_.centerY - 1000) setToValue:swpShareWindow_.center animationCompletionBlock:nil];
 }
 
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareViewHiddenAnimation: ( swpShareView 动画关闭 )
+ */
 - (void)swpShareViewHiddenAnimation {
     
     [SwpShareViewTools swpShareViewToolsAlphaAnimation:swpShareWindow_ setFromValue:1 setToValue:0 animationCompletionBlock:^(BOOL finished) {
@@ -180,15 +181,46 @@ static UIWindow * swpShareWindow_;
     }];
 }
 
-
-
-- (void)dealloc {
-    
-    NSLog(@"%s", __FUNCTION__);
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  setSwpShares:  ( Override Setter )
+ *
+ *  @ param  swpShares
+ */
+- (void)setSwpShares:(NSArray<SwpShareModel *> *)swpShares {
+    _swpShares = swpShares;
+    _swpShareListView.swpShares(_swpShares);
 }
 
 
-#pragma mark -
+#pragma mark - SwpShareListView Delegate Methods
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareListView:didSelectItemAtIndexPath:swpShare:swpShareKey ( swpShareListView 代理方法 点击 cell 时 调用 )
+ *
+ *  @ param  swpShareListView
+ *
+ *  @ param  indexPath
+ *
+ *  @ param  swpShare
+ *
+ *  @ param  swpShareKey
+ */
+- (void)swpShareListView:(SwpShareListView *)swpShareListView didSelectItemAtIndexPath:(NSIndexPath *)indexPath swpShare:(SwpShareModel *)swpShare swpShareKey:(NSString *)swpShareKey {
+
+    if (self.swpShareListViewDidSelectIndex) self.swpShareListViewDidSelectIndex(self, indexPath.item, swpShareKey);
+    
+    if ([self.delegate respondsToSelector:@selector(swpShareView:didSelectIndex:swpShareKey:)]) {
+        [self.delegate swpShareView:self didSelectIndex:indexPath.item swpShareKey:swpShareKey];
+        
+    }
+    
+    [self swpShareViewHiddenAnimation];
+}
+
+#pragma mark - Init UI Methods
 - (UILabel *)swpShareTitleView {
     
     return !_swpShareTitleView ? _swpShareTitleView = ({
@@ -199,30 +231,16 @@ static UIWindow * swpShareWindow_;
     }) : _swpShareTitleView;
 }
 
-- (UICollectionViewFlowLayout *)flowLayout {
+- (SwpShareListView *)swpShareListView {
     
-    return !_flowLayout ? _flowLayout = ({
-        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-        flowLayout.scrollDirection             = UICollectionViewScrollDirectionVertical;
-        flowLayout;
-    }) : _flowLayout;
+    return !_swpShareListView ? _swpShareListView = ({
+        SwpShareListView *swpShareListView        = [[SwpShareListView alloc] initSwpShareListViewWithFrame:CGRectMake(0, CGRectGetMaxY(self.swpShareTitleView.frame), self.width, self.height - self.swpShareCloseButton.height - self.swpShareTitleView.height - 20)];
+        swpShareListView.swpShareListViewDelegate = self;
+        swpShareListView;
+    }) : _swpShareListView;
 }
-
-- (UICollectionView *)swpShareCollectionView {
-    
-    return !_swpShareCollectionView ? _swpShareCollectionView = ({
-        UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.swpShareTitleView.frame), self.width, self.height - self.swpShareCloseButton.height - self.swpShareTitleView.height - 20) collectionViewLayout:self.flowLayout];
-        collectionView.backgroundColor   = [UIColor clearColor];
-        collectionView.dataSource        = self;
-        collectionView.delegate          = self;
-        [collectionView registerClass:[SwpShareViewCell class] forCellWithReuseIdentifier:kSwpShareViewCellID];
-        collectionView;
-    }) : _swpShareCollectionView;
-}
-
 
 - (UIButton *)swpShareCloseButton {
-
     return !_swpShareCloseButton ? _swpShareCloseButton = ({
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame     = CGRectMake((self.width / 2.0f) - (30.0 / 2.0), self.height - 30 - 10, 30, 30);
@@ -232,9 +250,6 @@ static UIWindow * swpShareWindow_;
         button;
     }) : _swpShareCloseButton;
 }
-
-
-
 
 
 /*
