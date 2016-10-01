@@ -1,9 +1,9 @@
 //
 //  SwpShareView.m
-//  PalmHeCheng
+//  swp_song
 //
 //  Created by swp_song on 2016/9/28.
-//  Copyright © 2016年 songweipng. All rights reserved.
+//  Copyright © 2016年 swp_song. All rights reserved.
 //
 
 #import "SwpShareView.h"
@@ -124,6 +124,7 @@ static UIWindow * swpShareWindow_;
     
     SwpShareViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kSwpShareViewCellID forIndexPath:indexPath];
     cell.swpShare          = self.swpShares[indexPath.item];
+    cell.layer.borderWidth = 1;
     return cell;
 }
 
@@ -245,12 +246,3 @@ static UIWindow * swpShareWindow_;
 */
 
 @end
-
-NSString * const SwpShareToQQ               = @"SwpShare-SwpShareToQQ-QQ好友-SwpShareView.bundle/share_qq";
-NSString * const SwpShareToQzone            = @"SwpShare-SwpShareToQzone-QQ空间-SwpShareView.bundle/share_qzone";
-NSString * const SwpShareToTencent          = @"SwpShare-SwpShareToTencent-腾讯微博-SwpShareView.bundle/share_tencent";
-NSString * const SwpShareToWechatSession    = @"SwpShare-SwpShareToWechatSession-微信好友-SwpShareView.bundle/share_wechat";
-NSString * const SwpShareToWechatTimeline   = @"SwpShare-SwpShareToWechatTimeline-朋友圈-SwpShareView.bundle/share_wechattimeline";
-NSString * const SwpShareToSina             = @"SwpShare-SwpShareToSina-新浪微博-SwpShareView.bundle/share_sina";
-NSString * const SwpShareToCopyURL          = @"SwpShare-SwpShareToCopyURL-复制链接-SwpShareView.bundle/share_copy_url";
-

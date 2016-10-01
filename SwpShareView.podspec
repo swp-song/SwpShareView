@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                  = "SwpShareView"
-  s.version               = "1.0.1"
+  s.version               = "1.0.2"
   s.ios.deployment_target = '7.0'
   s.summary               = "分享样式 自定义 UI "
   s.homepage              = "https://github.com/swp-song/SwpShareView"
@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.source                = { :git => "https://github.com/swp-song/SwpShareView.git", :tag => s.version }
   s.requires_arc          = true
   s.source_files          = "SwpShareView/**/*.{h,m}"
-  s.resource              = "SwpShareView/Resources/SwpShareView.bundle"
+  s.resource              = "SwpShareView/SwpShareViewResources/SwpShareView.bundle"
   s.framework             = "UIKit", "Foundation"
   s.dependency "pop"
 end

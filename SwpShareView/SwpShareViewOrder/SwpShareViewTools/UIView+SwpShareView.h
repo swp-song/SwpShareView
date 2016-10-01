@@ -1,9 +1,9 @@
 //
 //  UIView+SwpShareView.h
-//  PalmHeCheng
+//  swp_song
 //
 //  Created by swp_song on 2016/9/28.
-//  Copyright © 2016年 songweipng. All rights reserved.
+//  Copyright © 2016年 swp_song. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

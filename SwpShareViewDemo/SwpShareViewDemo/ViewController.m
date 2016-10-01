@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 
-#import "SwpShareView.h"
+#import "SwpShareHeader.h"
 
 @interface ViewController ()
 
@@ -35,8 +35,7 @@
     
     
     [SwpShareView swpShareViewShowWithData:@[SwpShareToQQ, SwpShareToQzone, SwpShareToTencent, SwpShareToWechatSession, SwpShareToWechatTimeline, SwpShareToSina, SwpShareToCopyURL]];
-    
-    
+
     
 }
 

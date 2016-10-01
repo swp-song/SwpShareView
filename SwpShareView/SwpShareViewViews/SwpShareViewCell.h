@@ -1,9 +1,9 @@
 //
 //  SwpShareViewCell.h
-//  PalmHeCheng
+//  swp_song
 //
-//  Created by swp_song on 2016/9/28.
-//  Copyright © 2016年 songweipng. All rights reserved.
+//  Created by swp_song on 2016/10/1.
+//  Copyright © 2016年 swp_song. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -11,8 +11,8 @@
 @class SwpShareModel;
 
 NS_ASSUME_NONNULL_BEGIN
-@interface SwpShareViewCell : UICollectionViewCell
 
+@interface SwpShareViewCell : UICollectionViewCell
 
 @property (nonatomic, strong) SwpShareModel *swpShare;
 
