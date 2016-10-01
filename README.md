@@ -1,23 +1,23 @@
 # SwpShareView
 
 
-##### 简单 封装 分享 View 
+##### 简单 封装 分享 View
 ```
 	UM 6.0 以后 分享的 view 难看的要死 ( 如果用了, 不保证 不被客户打死 )
-	简单 封装 分享 view 
+	简单 封装 分享 view
 ```
 ---
 
 ##### 效果:
 
-
+![(图片轮播效果)](https://raw.githubusercontent.com/swp-song/SwpShareView/master/Screenshot/SwpShareView.gif)
 
 
 ##### 导入:
 ```
 手动导入：
 
-SwpShareView 文件夹 导入 项目 中, 依赖 POP 
+SwpShareView 文件夹 导入 项目 中, 依赖 POP
 
 #import "SwpShareHeader.h"
 
@@ -70,7 +70,7 @@ swpShareView.delegate = self;
 
 ##### 1.0.1 更新:
 ```Objective-C
-	新增 复制 URL 
+	新增 复制 URL
 ```
 ---
 
@@ -79,5 +79,3 @@ swpShareView.delegate = self;
 	版本 上传 测试, 只显示 view
 ```
 ---
-
-
