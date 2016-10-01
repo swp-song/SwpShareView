@@ -34,9 +34,11 @@ pod 'SwpShareView'
 ```
 ---
 
-##### 介绍:
+##### 代码示例:
 
 ```Objective-C
+
+// 创建
 SwpShareView *swpShareView = [SwpShareView swpShareViewShowWithData:@[SwpShareToQQ, SwpShareToQzone, SwpShareToTencent, SwpShareToWechatSession, SwpShareToWechatTimeline, SwpShareToSina, SwpShareToCopyURL]];
 
 // block 回调
@@ -50,6 +52,9 @@ swpShareView.delegate = self;
 - (void)swpShareView:(SwpShareView *)swpShareView didSelectIndex:(NSInteger)index swpShareKey:(NSString *)swpShareKey {
     NSLog(@"%@", swpShareKey);
 }
+
+....更多查看源码....
+
 ```
 ---
 
@@ -81,5 +86,3 @@ swpShareView.delegate = self;
 持续更新...
 ```
 ---
-
-
