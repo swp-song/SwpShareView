@@ -47,8 +47,8 @@
     swpShareView.swpShareTitleSize(15).swpShareTitle(@"分享").swpShareTitleColor([UIColor redColor]);
     
     // block 回调
-    [swpShareView swpShareListViewDidSelectIndex:^(SwpShareView * _Nonnull swpShareView, NSInteger didSelectIndex, NSString * _Nonnull swpShareKey) {
-        NSLog(@"%@", swpShareKey);
+    [swpShareView swpShareListViewDidSelectIndex:^(SwpShareView * _Nonnull swpShareView, NSInteger didSelectIndex, SwpShareModel * _Nonnull swpShare) {
+        NSLog(@"%@", swpShare.swpShareKey);
     }];
 
 }
@@ -56,10 +56,14 @@
 
 
 // 代理 回调
-- (void)swpShareView:(SwpShareView *)swpShareView didSelectIndex:(NSInteger)index swpShareKey:(NSString *)swpShareKey {
-    NSLog(@"%@", swpShareKey);
+- (void)swpShareView:(SwpShareView *)swpShareView didSelectIndex:(NSInteger)index swpShare:(SwpShareModel *)swpShare {
+    NSLog(@"%@", swpShare.swpShareKey);
 }
 
+
+- (void)swpShareViewClose:(SwpShareView *)swpShareView {
+    NSLog(@"页面已关闭");
+}
 
 
 @end

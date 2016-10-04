@@ -45,7 +45,10 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
 /*! ---------------------- Data Property  ---------------------- !*/
 /*! 显示 分享 数据源    !*/
 @property (nonatomic, copy )  NSArray<SwpShareModel *>     *swpShares;
-@property (nonatomic, copy, setter = swpShareListViewDidSelectIndex:) void(^swpShareListViewDidSelectIndex)(SwpShareView *swpShareView, NSInteger didSelectIndex, NSString *swpShareKey);
+@property (nonatomic, copy )  NSArray<NSNumber      *>     *umShareTypes;
+
+/*! cell 点击 回调     !*/
+@property (nonatomic, copy, setter = swpShareListViewDidSelectIndex:) void(^swpShareListViewDidSelectIndex)(SwpShareView *swpShareView, NSInteger didSelectIndex, SwpShareModel *swpShare);
 /*! ---------------------- Data Property  ---------------------- !*/
 
 @end
@@ -86,7 +89,6 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
 }
 
 #pragma mark - Public Methods
-
 /**!
  *  @ author swp_song
  *
@@ -103,7 +105,7 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
 /**!
  *  @ author swp_song
  *
- *  @ brief  swpShareViewShowWithData: ( 显示 控件 )
+ *  @ brief  swpShareViewShowWithData:setDelegate:  ( 显示 控件 并 设置 代理 )
  *
  *  @ param  shareData
  *
@@ -112,7 +114,24 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
  *  @ return SwpShareView
  */
 + (instancetype)swpShareViewShowWithData:(NSArray<NSString *> *)shareData setDelegate:(id<SwpShareViewDelegate>)delegate {
-    SwpShareView *swpShareView = [SwpShareView initWithData:shareData];
+    return [[self class] swpShareViewShowWithData:shareData setDelegate:delegate setUMType:@[]];
+}
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareViewShowWithData: ( 显示 控件, 设置 代理, 设置  友盟 分享 type, umTypes 参数是个友盟分享类型的数组, 泛型 NSNumber, 例如: @[@(UMSocialPlatformType_QQ), @(UMSocialPlatformType_Qzone)]  )
+ *
+ *  @ param  shareData
+ *
+ *  @ param  delegate
+ *
+ *  @ param  umTypes
+ *
+ *  @ return SwpShareView
+ */
++ (instancetype)swpShareViewShowWithData:(NSArray<NSString *> *)shareData setDelegate:(id<SwpShareViewDelegate>)delegate setUMType:(NSArray<NSNumber *> *)umTypes {
+    SwpShareView *swpShareView = [SwpShareView initWithData:shareData setUMType:umTypes];
     swpShareView.delegate      = delegate;
     return swpShareView;
 }
@@ -124,7 +143,7 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
  *
  *  @ param  swpShareListViewDidSelectIndex
  */
-- (void)swpShareListViewDidSelectIndex:(void (^)(SwpShareView *swpShareView, NSInteger didSelectIndex, NSString *swpShareKey))swpShareListViewDidSelectIndex {
+- (void)swpShareListViewDidSelectIndex:(void (^)(SwpShareView *swpShareView, NSInteger didSelectIndex, SwpShareModel *swpShare))swpShareListViewDidSelectIndex {
     _swpShareListViewDidSelectIndex = swpShareListViewDidSelectIndex;
 }
 
@@ -202,15 +221,16 @@ static UIWindow *swpShareWindow_;
  *
  *  @ param  shareData
  *
+ *  @ param  umTypes
+ *
  *  @ return SwpShareView
  */
-+ (instancetype)initWithData:(NSArray<NSString *> *)shareData {
++ (instancetype)initWithData:(NSArray<NSString *> *)shareData setUMType:(NSArray<NSNumber *> *)umTypes {
     swpShareWindow_                 = [[UIWindow alloc] initWithFrame:[SwpShareViewTools swpShareViewToolsMainScreen]];
     swpShareWindow_.hidden          = NO;
     swpShareWindow_.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
-    
     SwpShareView *swpShareView      = [[SwpShareView alloc] initWithFrame:CGRectMake(0, 0, 1000, 300)];
-    swpShareView.swpShares          = [SwpShareModel swpShareWihtGroup:[SwpShareViewTools swpShareViewToolsDataProcessing:shareData]];
+    swpShareView.swpShares          = [SwpShareModel swpShareWihtGroup:[SwpShareViewTools swpShareViewToolsDataProcessing:shareData] setUMType:umTypes];
     [swpShareView swpShareViewShowAnimation];
     [swpShareWindow_ addSubview:swpShareView];
     return swpShareView;
@@ -243,8 +263,12 @@ static UIWindow *swpShareWindow_;
  */
 - (void)swpShareViewHiddenAnimation {
     
+    __weak typeof(self)weakSelf = self;
     [SwpShareViewTools swpShareViewToolsAlphaAnimation:swpShareWindow_ setFromValue:1 setToValue:0 animationCompletionBlock:^(BOOL finished) {
         swpShareWindow_.hidden = YES;
+        if ([weakSelf.delegate respondsToSelector:@selector(swpShareViewClose:)]) {
+            [weakSelf.delegate swpShareViewClose:self];
+        }
         swpShareWindow_        = nil;
     }];
 }
@@ -278,10 +302,10 @@ static UIWindow *swpShareWindow_;
  */
 - (void)swpShareListView:(SwpShareListView *)swpShareListView didSelectItemAtIndexPath:(NSIndexPath *)indexPath swpShare:(SwpShareModel *)swpShare swpShareKey:(NSString *)swpShareKey {
 
-    if (self.swpShareListViewDidSelectIndex) self.swpShareListViewDidSelectIndex(self, indexPath.item, swpShareKey);
+    if (self.swpShareListViewDidSelectIndex) self.swpShareListViewDidSelectIndex(self, indexPath.item, swpShare);
     
-    if ([self.delegate respondsToSelector:@selector(swpShareView:didSelectIndex:swpShareKey:)]) {
-        [self.delegate swpShareView:self didSelectIndex:indexPath.item swpShareKey:swpShareKey];
+    if ([self.delegate respondsToSelector:@selector(swpShareView:didSelectIndex:swpShare:)]) {
+        [self.delegate swpShareView:self didSelectIndex:indexPath.item swpShare:swpShare];
         
     }
     

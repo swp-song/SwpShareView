@@ -12,11 +12,13 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SwpShareModel : NSObject
 
 /*! 分享 key        !*/
-@property (nonatomic, copy, readonly) NSString *swpShareKey;
+@property (nonatomic, copy, readonly  ) NSString *swpShareKey;
 /*! 分享 title      !*/
-@property (nonatomic, copy, readonly) NSString *swpShareTitle;
+@property (nonatomic, copy, readonly  ) NSString *swpShareTitle;
 /*! 分享 ImageView  !*/
-@property (nonatomic, copy, readonly) NSString *swpShareImageName;
+@property (nonatomic, copy, readonly  ) NSString *swpShareImageName;
+/*! 友盟分享 type   !*/
+@property (nonatomic, assign, readonly) NSInteger swpUMShareType;
 
 /**!
  *  @ author swp_song
@@ -29,9 +31,12 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @ param  swpShareImageName
  *
+ *  @ param  swpUMShareType
+ *
  *  @ return SwpShareModel
  */
-+ (instancetype)swpShareWithShareKey:(NSString *)swpShareKey setSwpShareTitle:(NSString *)swpShareTitle setSwpShareImageName:(NSString *)swpShareImageName;
++ (instancetype)swpShareWithShareKey:(NSString *)swpShareKey setSwpShareTitle:(NSString *)swpShareTitle setSwpShareImageName:(NSString *)swpShareImageName setSwpUMShareType:(NSInteger)swpUMShareType;
+
 /**!
  *  @ author swp_song
  *
@@ -65,6 +70,18 @@ NS_ASSUME_NONNULL_BEGIN
  *  @ return NSArray<SwpShareModel *>
  */
 + (NSArray<SwpShareModel *> *)swpShareWihtGroup:(NSArray<NSDictionary *> *)dictionarys;
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareWihtGroup:setUMType:   ( 数据处理 < 一组 > )
+ *
+ *  @ param  dictionary
+ *
+ *  @ param  umTypes
+ *
+ *  @ return NSArray<SwpShareModel *> *
+ */
++ (NSArray<SwpShareModel *> *)swpShareWihtGroup:(NSArray<NSDictionary *> *)dictionarys setUMType:(NSArray<NSNumber *> *)umTypes;
 
 @end
 NS_ASSUME_NONNULL_END

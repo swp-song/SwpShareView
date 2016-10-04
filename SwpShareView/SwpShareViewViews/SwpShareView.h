@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**!
  *  @ author swp_song
  *
- *  @ brief  swpShareViewShowWithData: ( 显示 控件 )
+ *  @ brief  swpShareViewShowWithData:setDelegate:  ( 显示 控件 并 设置 代理 )
  *
  *  @ param  shareData
  *
@@ -41,6 +41,21 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (instancetype)swpShareViewShowWithData:(NSArray<NSString *> *)shareData setDelegate:(nullable id<SwpShareViewDelegate>)delegate;
 
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareViewShowWithData: ( 显示 控件, 设置 代理, 设置  友盟 分享 type, umTypes 参数是个友盟分享类型的数组, 泛型 NSNumber, 例如: @[@(UMSocialPlatformType_QQ), @(UMSocialPlatformType_Qzone)]  )
+ *
+ *  @ param  shareData
+ *
+ *  @ param  delegate
+ *
+ *  @ param  umTypes
+ *
+ *  @ return SwpShareView
+ */
++ (instancetype)swpShareViewShowWithData:(NSArray<NSString *> *)shareData setDelegate:(id<SwpShareViewDelegate>)delegate setUMType:(NSArray<NSNumber *> *)umTypes;
+
 
 /**!
  *  @ author swp_song
@@ -49,7 +64,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @ param  swpShareListViewDidSelectIndex
  */
-- (void)swpShareListViewDidSelectIndex:(void (^)(SwpShareView *swpShareView, NSInteger didSelectIndex, NSString *swpShareKey))swpShareListViewDidSelectIndex;
+- (void)swpShareListViewDidSelectIndex:(void (^)(SwpShareView *swpShareView, NSInteger didSelectIndex, SwpShareModel *swpShare))swpShareListViewDidSelectIndex;
 
 
 /**!

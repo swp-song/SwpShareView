@@ -11,5 +11,6 @@
 
     #import "SwpShareConstants.h"
     #import "SwpShareView.h"
+    #import "SwpShareModel.h"
 
 #endif /* SwpShareHeader_h */

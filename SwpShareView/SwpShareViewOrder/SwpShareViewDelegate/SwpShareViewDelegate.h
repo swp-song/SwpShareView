@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class SwpShareView;
+@class SwpShareView, SwpShareModel;
 
 NS_ASSUME_NONNULL_BEGIN
 @protocol SwpShareViewDelegate <NSObject>
@@ -24,9 +24,19 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @ param  index
  *
- *  @ param  swpShareKey
+ *  @ param  swpShare
  */
-- (void)swpShareView:(SwpShareView *)swpShareView didSelectIndex:(NSInteger)index swpShareKey:(NSString *)swpShareKey;
+- (void)swpShareView:(SwpShareView *)swpShareView didSelectIndex:(NSInteger)index swpShare:(SwpShareModel *)swpShare;
+
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareViewClose: ( swpShareView 代理方法  分享页面关闭之后 调用 )
+ *
+ *  @ param  swpShareView
+ */
+- (void)swpShareViewClose:(SwpShareView *)swpShareView;
 
 
 @end
