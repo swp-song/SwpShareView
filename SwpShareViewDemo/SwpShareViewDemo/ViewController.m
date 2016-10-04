@@ -40,9 +40,11 @@
                                                                           SwpShareToWechatSession,
                                                                           SwpShareToWechatTimeline,
                                                                           SwpShareToSina,
-                                                                          SwpShareToCopyURL]];
+                                                                          SwpShareToCopyURL] setDelegate:self];
     
-    swpShareView.delegate = self;
+
+    // 修改 分享 显示 title 属性
+    swpShareView.swpShareTitleSize(15).swpShareTitle(@"分享").swpShareTitleColor([UIColor redColor]);
     
     // block 回调
     [swpShareView swpShareListViewDidSelectIndex:^(SwpShareView * _Nonnull swpShareView, NSInteger didSelectIndex, NSString * _Nonnull swpShareKey) {

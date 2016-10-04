@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**!
  *  @ author swp_song
  *
- *  @ brief  swpShareView:didSelectIndex:swpShareKey: ( swpShareView 点击 分享 调用 )
+ *  @ brief  swpShareView:didSelectIndex:swpShareKey: ( swpShareView 代理方法 点击 分享 调用 )
  *
  *  @ param  swpShareView
  *
@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @ param  swpShareKey
  */
 - (void)swpShareView:(SwpShareView *)swpShareView didSelectIndex:(NSInteger)index swpShareKey:(NSString *)swpShareKey;
+
 
 @end
 NS_ASSUME_NONNULL_END

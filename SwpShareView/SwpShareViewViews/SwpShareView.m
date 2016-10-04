@@ -64,6 +64,7 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:1];
+        
         [self setUpUI];
     }
     return self;
@@ -96,7 +97,24 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
  *  @ return SwpShareView
  */
 + (instancetype)swpShareViewShowWithData:(NSArray<NSString *> *)shareData {
-    return [SwpShareView initWithData:shareData];
+    return [[self class] swpShareViewShowWithData:shareData setDelegate:nil];
+}
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareViewShowWithData: ( 显示 控件 )
+ *
+ *  @ param  shareData
+ *
+ *  @ param  delegate
+ *
+ *  @ return SwpShareView
+ */
++ (instancetype)swpShareViewShowWithData:(NSArray<NSString *> *)shareData setDelegate:(id<SwpShareViewDelegate>)delegate {
+    SwpShareView *swpShareView = [SwpShareView initWithData:shareData];
+    swpShareView.delegate      = delegate;
+    return swpShareView;
 }
 
 /**!
@@ -108,6 +126,56 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
  */
 - (void)swpShareListViewDidSelectIndex:(void (^)(SwpShareView *swpShareView, NSInteger didSelectIndex, NSString *swpShareKey))swpShareListViewDidSelectIndex {
     _swpShareListViewDidSelectIndex = swpShareListViewDidSelectIndex;
+}
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareTitleSize: ( 设置 分享 title 字体 大小 )
+ */
+- (SwpShareView *(^)(CGFloat swpShareTitleSize))swpShareTitleSize {
+
+    return ^SwpShareView *(CGFloat swpShareTitleSize) {
+        _swpShareTitleView.font = [UIFont fontWithName:@"GillSans-Italic" size:swpShareTitleSize];
+        return self;
+    };
+}
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareTitle: ( 设置 分享 title )
+ */
+- (SwpShareView *(^)(NSString *swpShareTitle))swpShareTitle {
+    return ^SwpShareView *(NSString *swpShareTitle) {
+        _swpShareTitleView.text = swpShareTitle;
+        return self;
+    };
+}
+
+/**
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareTitle: ( 设置 分享 字体 颜色 )
+ */
+- (SwpShareView *(^)(UIColor *swpShareTitleColor))swpShareTitleColor {
+    return ^SwpShareView *(UIColor *swpShareTitleColor){
+        _swpShareTitleView.textColor = swpShareTitleColor;
+        return self;
+    };
+}
+
+/**
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareTitleFont: ( 设置 分享 字体  )
+ */
+- (SwpShareView *(^)(UIFont *swpShareTitleFont))swpShareTitleFont {
+    
+    return ^SwpShareView *(UIFont *swpShareTitleFont) {
+        _swpShareTitleView.font = swpShareTitleFont;
+        return self;
+    };
 }
 
 
@@ -220,12 +288,14 @@ static UIWindow *swpShareWindow_;
     [self swpShareViewHiddenAnimation];
 }
 
+
 #pragma mark - Init UI Methods
 - (UILabel *)swpShareTitleView {
     
     return !_swpShareTitleView ? _swpShareTitleView = ({
         UILabel *label        = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, self.width, 40)];
         label.backgroundColor = [UIColor clearColor];
+
         [SwpShareViewTools swpShareViewToolsSetLabelWith:label setTitle:@"分享平台" setFontSize:14 setTitleColor:[UIColor redColor]];
         label;
     }) : _swpShareTitleView;
