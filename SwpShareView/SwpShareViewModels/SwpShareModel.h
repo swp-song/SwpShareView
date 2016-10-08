@@ -18,24 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 /*! 分享 ImageView  !*/
 @property (nonatomic, copy, readonly  ) NSString *swpShareImageName;
 /*! 友盟分享 type   !*/
-@property (nonatomic, assign, readonly) NSInteger swpUMShareType;
-
-/**!
- *  @ author swp_song
- *
- *  @ brief  swpShareWithShareKey:setSwpShareTitle:setSwpShareImageName:    ( 数据处理 )
- *
- *  @ param  swpShareKey
- *
- *  @ param  swpShareTitle
- *
- *  @ param  swpShareImageName
- *
- *  @ param  swpUMShareType
- *
- *  @ return SwpShareModel
- */
-+ (instancetype)swpShareWithShareKey:(NSString *)swpShareKey setSwpShareTitle:(NSString *)swpShareTitle setSwpShareImageName:(NSString *)swpShareImageName setSwpUMShareType:(NSInteger)swpUMShareType;
+@property (nonatomic, readonly) id swpUMShareType;
 
 /**!
  *  @ author swp_song
@@ -59,6 +42,33 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareWithShareKey:setSwpShareTitle:setSwpShareImageName:    ( 数据处理 )
+ *
+ *  @ param  swpShareKey
+ *
+ *  @ param  swpShareTitle
+ *
+ *  @ param  swpShareImageName
+ *
+ *  @ param  swpUMShareType
+ *
+ *  @ return SwpShareModel
+ */
++ (instancetype)swpShareWithShareKey:(NSString *)swpShareKey setSwpShareTitle:(NSString *)swpShareTitle setSwpShareImageName:(NSString *)swpShareImageName setSwpUMShareType:(id)swpUMShareType;
+
+/**!
+ *  @ brief  swpShareWithSwpShare:setSwpUMShareType:    ( 数据处理 )
+ *
+ *  @ param  swpShare
+ *
+ *  @ param  swpUMShareType
+ *
+ *  @ return SwpShareModel
+ */
++ (instancetype)swpShareWithSwpShare:(SwpShareModel *)swpShare setSwpUMShareType:(id)swpUMShareType;
 
 /**
  *  @ author swp_song
@@ -70,18 +80,6 @@ NS_ASSUME_NONNULL_BEGIN
  *  @ return NSArray<SwpShareModel *>
  */
 + (NSArray<SwpShareModel *> *)swpShareWihtGroup:(NSArray<NSDictionary *> *)dictionarys;
-/**!
- *  @ author swp_song
- *
- *  @ brief  swpShareWihtGroup:setUMType:   ( 数据处理 < 一组 > )
- *
- *  @ param  dictionary
- *
- *  @ param  umTypes
- *
- *  @ return NSArray<SwpShareModel *> *
- */
-+ (NSArray<SwpShareModel *> *)swpShareWihtGroup:(NSArray<NSDictionary *> *)dictionarys setUMType:(NSArray<NSNumber *> *)umTypes;
 
 @end
 NS_ASSUME_NONNULL_END

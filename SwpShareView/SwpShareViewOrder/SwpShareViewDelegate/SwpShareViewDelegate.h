@@ -32,11 +32,24 @@ NS_ASSUME_NONNULL_BEGIN
 /**!
  *  @ author swp_song
  *
+ *  @ brief  swpShareViewSetTripartiteFrameworkShareType: ( swpShareView 设置 三方分享 type )
+ *
+ *  @ param  swpShareView
+ *  
+ *  @ return NSArray
+ */
+- (NSArray *)swpShareViewSetTripartiteFrameworkShareType:(SwpShareView *)swpShareView;
+
+
+/**!
+ *  @ author swp_song
+ *
  *  @ brief  swpShareViewClose: ( swpShareView 代理方法  分享页面关闭之后 调用 )
  *
  *  @ param  swpShareView
  */
 - (void)swpShareViewClose:(SwpShareView *)swpShareView;
+
 
 
 @end

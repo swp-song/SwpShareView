@@ -45,10 +45,12 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
 /*! ---------------------- Data Property  ---------------------- !*/
 /*! 显示 分享 数据源    !*/
 @property (nonatomic, copy )  NSArray<SwpShareModel *>     *swpShares;
-@property (nonatomic, copy )  NSArray<NSNumber      *>     *umShareTypes;
 
 /*! cell 点击 回调     !*/
-@property (nonatomic, copy, setter = swpShareListViewDidSelectIndex:) void(^swpShareListViewDidSelectIndex)(SwpShareView *swpShareView, NSInteger didSelectIndex, SwpShareModel *swpShare);
+@property (nonatomic, copy, setter = swpShareListViewDidSelectIndexBlock:) void(^swpShareListViewDidSelectIndexBlock)(SwpShareView *swpShareView, NSInteger didSelectIndex, SwpShareModel *swpShare);
+
+/*! SwpShareView 页面关闭回调   !*/
+@property (nonatomic, copy, setter = swpShareViewCloseBlock:) void(^swpShareViewCloseBlock)(SwpShareView *swpShareView);
 /*! ---------------------- Data Property  ---------------------- !*/
 
 @end
@@ -114,24 +116,7 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
  *  @ return SwpShareView
  */
 + (instancetype)swpShareViewShowWithData:(NSArray<NSString *> *)shareData setDelegate:(id<SwpShareViewDelegate>)delegate {
-    return [[self class] swpShareViewShowWithData:shareData setDelegate:delegate setUMType:@[]];
-}
-
-/**!
- *  @ author swp_song
- *
- *  @ brief  swpShareViewShowWithData: ( 显示 控件, 设置 代理, 设置  友盟 分享 type, umTypes 参数是个友盟分享类型的数组, 泛型 NSNumber, 例如: @[@(UMSocialPlatformType_QQ), @(UMSocialPlatformType_Qzone)]  )
- *
- *  @ param  shareData
- *
- *  @ param  delegate
- *
- *  @ param  umTypes
- *
- *  @ return SwpShareView
- */
-+ (instancetype)swpShareViewShowWithData:(NSArray<NSString *> *)shareData setDelegate:(id<SwpShareViewDelegate>)delegate setUMType:(NSArray<NSNumber *> *)umTypes {
-    SwpShareView *swpShareView = [SwpShareView initWithData:shareData setUMType:umTypes];
+    SwpShareView *swpShareView = [SwpShareView initWithData:shareData];
     swpShareView.delegate      = delegate;
     return swpShareView;
 }
@@ -139,12 +124,23 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
 /**!
  *  @ author swp_song
  *
- *  @ brief  swpShareListViewDidSelectIndex: ( 点击 每个 分下 回调 )
+ *  @ brief  swpShareListViewDidSelectIndexBlock: ( swpShareView Block 点击 每个 分享图标 回调 )
  *
- *  @ param  swpShareListViewDidSelectIndex
+ *  @ param  swpShareListViewDidSelectIndexBlock
  */
-- (void)swpShareListViewDidSelectIndex:(void (^)(SwpShareView *swpShareView, NSInteger didSelectIndex, SwpShareModel *swpShare))swpShareListViewDidSelectIndex {
-    _swpShareListViewDidSelectIndex = swpShareListViewDidSelectIndex;
+- (void)swpShareListViewDidSelectIndexBlock:(void (^)(SwpShareView *swpShareView, NSInteger didSelectIndex, SwpShareModel *swpShare))swpShareListViewDidSelectIndexBlock {
+    _swpShareListViewDidSelectIndexBlock = swpShareListViewDidSelectIndexBlock;
+}
+
+/**
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareViewCloseBlock: ( swpShareView Block 分享 页面 关闭之后调用 )
+ *
+ *  @ param swpShareViewCloseBlock
+ */
+- (void)swpShareViewCloseBlock:(void (^)(SwpShareView *swpShareView))swpShareViewCloseBlock {
+    _swpShareViewCloseBlock = swpShareViewCloseBlock;
 }
 
 /**!
@@ -225,12 +221,12 @@ static UIWindow *swpShareWindow_;
  *
  *  @ return SwpShareView
  */
-+ (instancetype)initWithData:(NSArray<NSString *> *)shareData setUMType:(NSArray<NSNumber *> *)umTypes {
++ (instancetype)initWithData:(NSArray<NSString *> *)shareData {
     swpShareWindow_                 = [[UIWindow alloc] initWithFrame:[SwpShareViewTools swpShareViewToolsMainScreen]];
     swpShareWindow_.hidden          = NO;
     swpShareWindow_.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
     SwpShareView *swpShareView      = [[SwpShareView alloc] initWithFrame:CGRectMake(0, 0, 1000, 300)];
-    swpShareView.swpShares          = [SwpShareModel swpShareWihtGroup:[SwpShareViewTools swpShareViewToolsDataProcessing:shareData] setUMType:umTypes];
+    swpShareView.swpShares          = [SwpShareModel swpShareWihtGroup:[SwpShareViewTools swpShareViewToolsDataProcessing:shareData]];
     [swpShareView swpShareViewShowAnimation];
     [swpShareWindow_ addSubview:swpShareView];
     return swpShareView;
@@ -266,8 +262,11 @@ static UIWindow *swpShareWindow_;
     __weak typeof(self)weakSelf = self;
     [SwpShareViewTools swpShareViewToolsAlphaAnimation:swpShareWindow_ setFromValue:1 setToValue:0 animationCompletionBlock:^(BOOL finished) {
         swpShareWindow_.hidden = YES;
+        
+        if (weakSelf.swpShareViewCloseBlock) weakSelf.swpShareViewCloseBlock(weakSelf);
+        
         if ([weakSelf.delegate respondsToSelector:@selector(swpShareViewClose:)]) {
-            [weakSelf.delegate swpShareViewClose:self];
+            [weakSelf.delegate swpShareViewClose:weakSelf];
         }
         swpShareWindow_        = nil;
     }];
@@ -302,14 +301,32 @@ static UIWindow *swpShareWindow_;
  */
 - (void)swpShareListView:(SwpShareListView *)swpShareListView didSelectItemAtIndexPath:(NSIndexPath *)indexPath swpShare:(SwpShareModel *)swpShare swpShareKey:(NSString *)swpShareKey {
 
-    if (self.swpShareListViewDidSelectIndex) self.swpShareListViewDidSelectIndex(self, indexPath.item, swpShare);
+    if (self.swpShareListViewDidSelectIndexBlock) self.swpShareListViewDidSelectIndexBlock(self, indexPath.item, swpShare);
     
     if ([self.delegate respondsToSelector:@selector(swpShareView:didSelectIndex:swpShare:)]) {
         [self.delegate swpShareView:self didSelectIndex:indexPath.item swpShare:swpShare];
-        
     }
     
     [self swpShareViewHiddenAnimation];
+}
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareListView:tripartiteFrameworkShareType: ( swpShareListView 代理方法 获取 三方框架 分享类型 )
+ *
+ *  @ param  swpShareListView
+ *
+ *  @ param  index
+ *
+ *  @ return id
+ */
+- (id)swpShareListView:(SwpShareListView *)swpShareListView tripartiteFrameworkShareType:(NSInteger)index {
+    if ([self.delegate respondsToSelector:@selector(swpShareViewSetTripartiteFrameworkShareType:)]) {
+        NSArray *array = [self.delegate swpShareViewSetTripartiteFrameworkShareType:self];
+        return array && array.count == self.swpShares.count ? array[index] : nil;
+    }
+    return nil;
 }
 
 

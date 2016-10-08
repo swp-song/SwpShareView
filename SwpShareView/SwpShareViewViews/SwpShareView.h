@@ -44,28 +44,20 @@ NS_ASSUME_NONNULL_BEGIN
 /**!
  *  @ author swp_song
  *
- *  @ brief  swpShareViewShowWithData: ( 显示 控件, 设置 代理, 设置  友盟 分享 type, umTypes 参数是个友盟分享类型的数组, 泛型 NSNumber, 例如: @[@(UMSocialPlatformType_QQ), @(UMSocialPlatformType_Qzone)]  )
+ *  @ brief  swpShareListViewDidSelectIndexBlock: ( 点击 每个 分享图标 回调 )
  *
- *  @ param  shareData
- *
- *  @ param  delegate
- *
- *  @ param  umTypes
- *
- *  @ return SwpShareView
+ *  @ param  swpShareListViewDidSelectIndexBlock
  */
-+ (instancetype)swpShareViewShowWithData:(NSArray<NSString *> *)shareData setDelegate:(id<SwpShareViewDelegate>)delegate setUMType:(NSArray<NSNumber *> *)umTypes;
+- (void)swpShareListViewDidSelectIndexBlock:(nullable void (^)(SwpShareView *swpShareView, NSInteger didSelectIndex, SwpShareModel *swpShare))swpShareListViewDidSelectIndexBlock;
 
-
-/**!
+/**
  *  @ author swp_song
  *
- *  @ brief  swpShareListViewDidSelectIndex: ( 点击 每个 分下 回调 )
+ *  @ brief  swpShareViewCloseBlock: ( swpShareView Block 分享 页面 关闭之后调用 )
  *
- *  @ param  swpShareListViewDidSelectIndex
+ *  @ param swpShareViewCloseBlock
  */
-- (void)swpShareListViewDidSelectIndex:(void (^)(SwpShareView *swpShareView, NSInteger didSelectIndex, SwpShareModel *swpShare))swpShareListViewDidSelectIndex;
-
+- (void)swpShareViewCloseBlock:(nullable void (^)(SwpShareView *swpShareView))swpShareViewCloseBlock;
 
 /**!
  *  @ author swp_song

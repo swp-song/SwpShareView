@@ -3,7 +3,7 @@
 ---
 ##### 简单 封装 分享 View
 ```
-UM 6.0 以后 分享的 view 难看的要死 ( 如果用了, 不保证 不被客户打死 )
+UM 6.0 以后 分享的 view 难看的要死 ( 如果用了, 不保证 不被客户打死 😁😁😁😁😁😁😁😁😁 )
 简单 封装 分享 view
 ```
 ---
@@ -15,11 +15,6 @@ UM 6.0 以后 分享的 view 难看的要死 ( 如果用了, 不保证 不被客
 ##### 导入:
 
 ```ruby
-手动导入：
-
-SwpShareView 文件夹 导入 项目 中, 依赖 POP
-
-#import "SwpShareHeader.h"
 
 CocoaPods 导入:
 
@@ -41,9 +36,9 @@ pod 'SwpShareView'
 // 创建
 SwpShareView *swpShareView = [SwpShareView swpShareViewShowWithData:@[SwpShareToQQ, SwpShareToQzone, SwpShareToTencent, SwpShareToWechatSession, SwpShareToWechatTimeline, SwpShareToSina, SwpShareToCopyURL]];
 
-// block 回调
-[swpShareView swpShareListViewDidSelectIndex:^(SwpShareView * _Nonnull swpShareView, NSInteger didSelectIndex, NSString * _Nonnull swpShareKey) {
- 	NSLog(@"%@", swpShareKey);
+// 点击分享 图标 Block 回调
+[swpShareView swpShareListViewDidSelectIndexBlock:^(SwpShareView * _Nonnull swpShareView, NSInteger didSelectIndex, SwpShareModel * _Nonnull swpShare) {
+    NSLog(@"%@", swpShare.swpShareKey);
 }];
 
 swpShareView.delegate = self;
@@ -52,13 +47,21 @@ swpShareView.delegate = self;
 - (void)swpShareView:(SwpShareView *)swpShareView didSelectIndex:(NSInteger)index swpShareKey:(NSString *)swpShareKey {
     NSLog(@"%@", swpShareKey);
 }
-
 ....更多查看源码....
 
 ```
 ---
 
-##### 1.0.5 更新:
+##### 1.0.7 更新:
+```
+1. 2016-10-08
+2. 新增 swpShareViewCloseBlock: 回调方法
+3. 新增 swpShareViewSetTripartiteFrameworkShareType: 代理方法
+4. 取消初始化 设置 三方分享 type 方法
+
+```
+
+##### 1.0.6 更新:
 ```
 1. 2016-10-04
 2. 新增, 代理方法 ---> 分享页面关闭时调用

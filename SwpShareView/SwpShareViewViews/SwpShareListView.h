@@ -33,6 +33,19 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)swpShareListView:(SwpShareListView *)swpShareListView didSelectItemAtIndexPath:(NSIndexPath *)indexPath swpShare:(SwpShareModel *)swpShare swpShareKey:(NSString *)swpShareKey;
 
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareListView:tripartiteFrameworkShareType: ( swpShareListView 代理方法 获取 三方框架 分享类型 )
+ *
+ *  @ param  swpShareListView
+ *
+ *  @ param  index
+ *
+ *  @ return id
+ */
+- (id)swpShareListView:(SwpShareListView *)swpShareListView tripartiteFrameworkShareType:(NSInteger)index;
+
 @end
 
 @interface SwpShareListView : UICollectionView

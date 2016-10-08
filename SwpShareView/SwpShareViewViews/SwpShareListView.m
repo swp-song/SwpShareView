@@ -109,8 +109,12 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
  *  @ return UICollectionViewCell
  */
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
     SwpShareViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kSwpShareViewCellID forIndexPath:indexPath];
-    cell.swpShare = self.swpShareListDatas[indexPath.item];
+    
+    id shareType           = [self getTripartiteFrameworkShareType:indexPath.item];
+    cell.swpShare          = [SwpShareModel swpShareWithSwpShare:self.swpShareListDatas[indexPath.item] setSwpUMShareType:shareType];
     return cell;
 }
 
@@ -162,13 +166,32 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
  *  @ param  indexPath
  */
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
     if ([self.swpShareListViewDelegate respondsToSelector:@selector(swpShareListView:didSelectItemAtIndexPath:swpShare:swpShareKey:)]) {
-        SwpShareModel *swpShare = self.swpShareListDatas[indexPath.item];
-        [self.swpShareListViewDelegate swpShareListView:self didSelectItemAtIndexPath:indexPath swpShare:swpShare swpShareKey:swpShare.swpShareKey];
+        SwpShareViewCell *cell = (SwpShareViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+        [self.swpShareListViewDelegate swpShareListView:self didSelectItemAtIndexPath:indexPath swpShare:cell.swpShare swpShareKey:cell.swpShare.swpShareKey];
     }
 }
 
-#pragma mark - Public Methods 
+#pragma mark - Private Methods
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  getTripartiteFrameworkShareType:   ( 取出 对应 第三方 分享 对应的 type )
+ *
+ *  @ param  index
+ *
+ *  @ return id
+ */
+- (id)getTripartiteFrameworkShareType:(NSInteger)index {
+    if ([self.swpShareListViewDelegate respondsToSelector:@selector(swpShareListView:tripartiteFrameworkShareType:)]) {
+        return [self.swpShareListViewDelegate swpShareListView:self tripartiteFrameworkShareType:index];
+    }
+    return nil;
+}
+
+#pragma mark - Public Methods
 
 /**!
  *  @ author swp_song
