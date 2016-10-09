@@ -45,7 +45,7 @@
 /**!
  *  @ author swp_song
  *
- *  @ brief  swpShareWithShareKey:setSwpShareTitle:setSwpShareImageName:    ( 数据处理 )
+ *  @ brief  swpShareWithShareKey:setSwpShareTitle:setSwpShareImageName:setSwpTripartiteFrameworkShareType:    ( 数据处理 )
  *
  *  @ param  swpShareKey
  *
@@ -53,18 +53,31 @@
  *
  *  @ param  swpShareImageName
  *
- *  @ param  swpUMShareType
+ *  @ param  swpTripartiteFrameworkShareType
  *
  *  @ return SwpShareModel
  */
-+ (instancetype)swpShareWithShareKey:(NSString *)swpShareKey setSwpShareTitle:(NSString *)swpShareTitle setSwpShareImageName:(NSString *)swpShareImageName setSwpUMShareType:(id)swpUMShareType {
-    return [[SwpShareModel alloc] initWithShareKey:swpShareKey setSwpShareTitle:swpShareTitle setSwpShareImageName:swpShareImageName setSwpUMShareType:swpUMShareType];
++ (instancetype)swpShareWithShareKey:(NSString *)swpShareKey setSwpShareTitle:(NSString *)swpShareTitle setSwpShareImageName:(NSString *)swpShareImageName setSwpTripartiteFrameworkShareType:(id)swpTripartiteFrameworkShareType {
+    return [[SwpShareModel alloc] initWithShareKey:swpShareKey setSwpShareTitle:swpShareTitle setSwpShareImageName:swpShareImageName setSwpTripartiteFrameworkShareType:swpTripartiteFrameworkShareType];
+}
+
+/**!
+ *  @ brief  swpShareWithSwpShare:setSwpTripartiteFrameworkShareType:    ( 数据处理 )
+ *
+ *  @ param  swpShare
+ *
+ *  @ param  swpTripartiteFrameworkShareType
+ *
+ *  @ return SwpShareModel
+ */
++ (instancetype)swpShareWithSwpShare:(SwpShareModel *)swpShare setSwpTripartiteFrameworkShareType:(id)swpTripartiteFrameworkShareType {
+    return [[self class] swpShareWithShareKey:swpShare.swpShareKey setSwpShareTitle:swpShare.swpShareTitle setSwpShareImageName:swpShare.swpShareImageName setSwpTripartiteFrameworkShareType:swpTripartiteFrameworkShareType];
 }
 
 /**!
  *  @ author swp_song
  *
- *  @ brief  initWithShareKey:setSwpShareTitle:setSwpShareImageName:    ( 数据处理 )
+ *  @ brief  initWithShareKey:setSwpShareTitle:setSwpShareImageName:setSwpTripartiteFrameworkShareType:    ( 数据处理 )
  *
  *  @ param  swpShareKey
  *
@@ -72,35 +85,24 @@
  *
  *  @ param  swpShareImageName
  *
- *  @ param  swpUMShareType
+ *  @ param  swpTripartiteFrameworkShareType
  *
  *  @ return SwpShareModel
  */
-- (instancetype)initWithShareKey:(NSString *)swpShareKey setSwpShareTitle:(NSString *)swpShareTitle setSwpShareImageName:(NSString *)swpShareImageName setSwpUMShareType:(id)swpUMShareType {
-
+- (instancetype)initWithShareKey:(NSString *)swpShareKey setSwpShareTitle:(NSString *)swpShareTitle setSwpShareImageName:(NSString *)swpShareImageName setSwpTripartiteFrameworkShareType:(id)swpTripartiteFrameworkShareType {
+    
     if (self = [super init]) {
-        _swpShareKey       = swpShareKey;
-        _swpShareTitle     = swpShareTitle;
-        _swpShareImageName = swpShareImageName;
-        _swpUMShareType    = swpUMShareType;
+        _swpShareKey                      = swpShareKey;
+        _swpShareTitle                    = swpShareTitle;
+        _swpShareImageName                = swpShareImageName;
+        _swpTripartiteFrameworkShareType  = swpTripartiteFrameworkShareType;
     }
     return self;
 }
 
 
 
-/**!
- *  @ brief  swpShareWithSwpShare:setSwpUMShareType:    ( 数据处理 )
- *
- *  @ param  swpShare
- *
- *  @ param  swpUMShareType
- *
- *  @ return SwpShareModel
- */
-+ (instancetype)swpShareWithSwpShare:(SwpShareModel *)swpShare setSwpUMShareType:(id)swpUMShareType {
-    return [[self class] swpShareWithShareKey:swpShare.swpShareKey setSwpShareTitle:swpShare.swpShareTitle setSwpShareImageName:swpShare.swpShareImageName setSwpUMShareType:swpUMShareType];
-}
+
 
 /**!
  *  @ author swp_song
@@ -112,11 +114,49 @@
  *  @ return NSArray<SwpShareModel *>
  */
 + (NSArray<SwpShareModel *> *)swpShareWihtGroup:(NSArray<NSDictionary *> *)dictionarys {
+    return [[self class] swpShareWihtGroup:dictionarys setTripartiteFrameworkShareTypes:nil];
+}
+
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareWihtGroup:setTripartiteFrameworkShareTypes: ( 数据处理 < 一组 > )
+ *
+ *  @ param  dictionarys
+ *
+ *  @ param  tripartiteFrameworkShareTypes
+ *
+ *  @ return NSArray<SwpShareModel *>
+ */
++ (NSArray<SwpShareModel *> *)swpShareWihtGroup:(NSArray<NSDictionary *> *)dictionarys setTripartiteFrameworkShareTypes:(NSArray *)tripartiteFrameworkShareTypes {
     NSMutableArray *models = [NSMutableArray array];
     [dictionarys enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [models addObject:[[self class] swpShareWihtDictionary:obj]];
     }];
-    return models.copy;
+    return [[self class] swpShareSetShareType:models setTripartiteFrameworkShareTypes:tripartiteFrameworkShareTypes].copy;
+}
+
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareSetShareType:setTripartiteFrameworkShareTypes: ( 三方分享 Type 数据 处理 )
+ *
+ *  @ param  swpShares
+ *
+ *  @ param  tripartiteFrameworkShareTypes
+ *
+ *  @ return NSArray<SwpShareModel *> *
+ */
++ (NSArray<SwpShareModel *> *)swpShareSetShareType:(NSArray<SwpShareModel *> *)swpShares setTripartiteFrameworkShareTypes:(NSArray *)tripartiteFrameworkShareTypes {
+    if (swpShares.count != tripartiteFrameworkShareTypes.count || !tripartiteFrameworkShareTypes) return swpShares;
+    NSMutableArray *models = [NSMutableArray array];
+    [swpShares enumerateObjectsUsingBlock:^(SwpShareModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        id tripartiteFrameworkShareType = tripartiteFrameworkShareTypes[idx];
+        [models addObject:[[self class] swpShareWithSwpShare:obj setSwpTripartiteFrameworkShareType:tripartiteFrameworkShareType]];
+    }];
+    return models;
 }
 
 @end

@@ -124,6 +124,21 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
 /**!
  *  @ author swp_song
  *
+ *  @ brief  swpShareSetTripartiteFrameworkShareTypes    ( 设置 三方分享type )
+ */
+- (SwpShareView *(^)(NSArray *tripartiteFrameworkShareTypes))swpShareSetTripartiteFrameworkShareTypes {
+    
+    return ^SwpShareView *(NSArray *tripartiteFrameworkShareTypes) {
+        
+        self.swpShares = [SwpShareModel swpShareSetShareType:self.swpShares setTripartiteFrameworkShareTypes:tripartiteFrameworkShareTypes];
+        self.swpShareListView.swpShares(self.swpShares);
+        return self;
+    };
+}
+
+/**!
+ *  @ author swp_song
+ *
  *  @ brief  swpShareListViewDidSelectIndexBlock: ( swpShareView Block 点击 每个 分享图标 回调 )
  *
  *  @ param  swpShareListViewDidSelectIndexBlock
@@ -225,7 +240,9 @@ static UIWindow *swpShareWindow_;
     swpShareWindow_                 = [[UIWindow alloc] initWithFrame:[SwpShareViewTools swpShareViewToolsMainScreen]];
     swpShareWindow_.hidden          = NO;
     swpShareWindow_.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
-    SwpShareView *swpShareView      = [[SwpShareView alloc] initWithFrame:CGRectMake(0, 0, 1000, 300)];
+    
+    SwpShareView *swpShareView      = [[SwpShareView alloc] initWithFrame:[SwpShareViewTools swpShareViewToolsCalculateFrame:shareData.count viewWidth:1000]];
+    
     swpShareView.swpShares          = [SwpShareModel swpShareWihtGroup:[SwpShareViewTools swpShareViewToolsDataProcessing:shareData]];
     [swpShareView swpShareViewShowAnimation];
     [swpShareWindow_ addSubview:swpShareView];
@@ -334,9 +351,8 @@ static UIWindow *swpShareWindow_;
 - (UILabel *)swpShareTitleView {
     
     return !_swpShareTitleView ? _swpShareTitleView = ({
-        UILabel *label        = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, self.width, 40)];
+        UILabel *label        = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, self.width - 20, 40)];
         label.backgroundColor = [UIColor clearColor];
-
         [SwpShareViewTools swpShareViewToolsSetLabelWith:label setTitle:@"分享平台" setFontSize:14 setTitleColor:[UIColor redColor]];
         label;
     }) : _swpShareTitleView;
@@ -354,6 +370,7 @@ static UIWindow *swpShareWindow_;
 - (UIButton *)swpShareCloseButton {
     return !_swpShareCloseButton ? _swpShareCloseButton = ({
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        
         button.frame     = CGRectMake((self.width / 2.0f) - (30.0 / 2.0), self.height - 30 - 10, 30, 30);
         [button addTarget:self action:@selector(didButton:) forControlEvents:UIControlEventTouchUpInside];
         [button setImage:[UIImage imageNamed:@"SwpShareView.bundle/share_close"] forState:UIControlStateNormal];

@@ -92,6 +92,18 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)swpShareViewToolsAlphaAnimation:(UIView *)addAnimationView setFromValue:(CGFloat)fromValue setToValue:(CGFloat)toValue animationCompletionBlock:(nullable void(^)(BOOL finished))animationCompletionBlock;
 
+/**
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareViewToolsCalculateFrame:viewWidth: ( 计算 view frame )
+ *
+ *  @ param  dataCount
+ *
+ *  @ param  width
+ *
+ *  @ return CGRect
+ */
++ (CGRect)swpShareViewToolsCalculateFrame:(NSInteger)dataCount viewWidth:(CGFloat)width;
 
 @end
 

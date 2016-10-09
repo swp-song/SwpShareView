@@ -41,6 +41,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (instancetype)swpShareViewShowWithData:(NSArray<NSString *> *)shareData setDelegate:(nullable id<SwpShareViewDelegate>)delegate;
 
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareSetTripartiteFrameworkShareTypes    ( 设置 三方分享type )
+ */
+- (SwpShareView *(^)(NSArray *tripartiteFrameworkShareTypes))swpShareSetTripartiteFrameworkShareTypes;
+
 /**!
  *  @ author swp_song
  *

@@ -109,12 +109,8 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
  *  @ return UICollectionViewCell
  */
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    
     SwpShareViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kSwpShareViewCellID forIndexPath:indexPath];
-    
-    id shareType           = [self getTripartiteFrameworkShareType:indexPath.item];
-    cell.swpShare          = [SwpShareModel swpShareWithSwpShare:self.swpShareListDatas[indexPath.item] setSwpUMShareType:shareType];
+    cell.swpShare          = [self swpShareDataProcessing:self.swpShareListDatas[indexPath.item] setTripartiteFrameworkShareType:indexPath.item];
     return cell;
 }
 
@@ -153,7 +149,7 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
  *  @ return UIEdgeInsets
  */
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(0, 10, 0, 10);
+    return UIEdgeInsetsMake(10, 10, 10, 10);
 }
 
 /**!
@@ -178,17 +174,20 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
 /**!
  *  @ author swp_song
  *
- *  @ brief  getTripartiteFrameworkShareType:   ( 取出 对应 第三方 分享 对应的 type )
+ *  @ brief  swpShareDataProcessing:setTripartiteFrameworkShareType:    ( SwpShareModel 数据 处理 )
+ *
+ *  @ param  swpShare
  *
  *  @ param  index
  *
- *  @ return id
+ *  @ return SwpShareModel
  */
-- (id)getTripartiteFrameworkShareType:(NSInteger)index {
-    if ([self.swpShareListViewDelegate respondsToSelector:@selector(swpShareListView:tripartiteFrameworkShareType:)]) {
-        return [self.swpShareListViewDelegate swpShareListView:self tripartiteFrameworkShareType:index];
+- (SwpShareModel *)swpShareDataProcessing:(SwpShareModel *)swpShare setTripartiteFrameworkShareType:(NSInteger)index {
+    id tripartiteFrameworkShareType = [self.swpShareListViewDelegate swpShareListView:self tripartiteFrameworkShareType:index];
+    if (tripartiteFrameworkShareType) {
+        return [SwpShareModel swpShareWithSwpShare:swpShare setSwpTripartiteFrameworkShareType:tripartiteFrameworkShareType];
     }
-    return nil;
+    return swpShare;
 }
 
 #pragma mark - Public Methods

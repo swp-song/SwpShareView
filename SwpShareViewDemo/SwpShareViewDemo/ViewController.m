@@ -37,10 +37,12 @@
                                                                           SwpShareToQQ,
                                                                           SwpShareToQzone,
                                                                           SwpShareToTencent,
-                                                                          SwpShareToWechatSession,
-                                                                          SwpShareToWechatTimeline,
-                                                                          SwpShareToSina,
-                                                                          SwpShareToCopyURL] setDelegate:self];
+//                                                                          SwpShareToWechatSession,
+//                                                                          SwpShareToWechatTimeline,
+//                                                                          SwpShareToSina,
+//                                                                          SwpShareToCopyURL,
+                                                                          ]
+                                                            setDelegate:self];
     
 
     // 修改 分享 显示 title 属性
@@ -49,7 +51,6 @@
     // 点击分享 图标 Block 回调
     [swpShareView swpShareListViewDidSelectIndexBlock:^(SwpShareView * _Nonnull swpShareView, NSInteger didSelectIndex, SwpShareModel * _Nonnull swpShare) {
         NSLog(@"%@", swpShare.swpShareKey);
-        NSLog(@"%@", swpShare.swpUMShareType);
     }];
     
     // 页面关闭 Block 回调
@@ -69,11 +70,6 @@
 // 页面 关闭
 - (void)swpShareViewClose:(SwpShareView *)swpShareView {
     NSLog(@"Delegate 页面关闭了");
-}
-
-
-- (NSArray *)swpShareViewSetTripartiteFrameworkShareType:(SwpShareView *)swpShareView {
-    return @[@(12), @(13), @(31), @(20), @(40), @(100), @(300)];
 }
 
 

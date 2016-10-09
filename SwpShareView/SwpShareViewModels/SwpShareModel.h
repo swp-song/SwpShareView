@@ -12,13 +12,13 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SwpShareModel : NSObject
 
 /*! 分享 key        !*/
-@property (nonatomic, copy, readonly  ) NSString *swpShareKey;
+@property (nonatomic, copy, readonly) NSString *swpShareKey;
 /*! 分享 title      !*/
-@property (nonatomic, copy, readonly  ) NSString *swpShareTitle;
+@property (nonatomic, copy, readonly) NSString *swpShareTitle;
 /*! 分享 ImageView  !*/
-@property (nonatomic, copy, readonly  ) NSString *swpShareImageName;
+@property (nonatomic, copy, readonly) NSString *swpShareImageName;
 /*! 友盟分享 type   !*/
-@property (nonatomic, readonly) id swpUMShareType;
+@property (nonatomic, readonly) id swpTripartiteFrameworkShareType;
 
 /**!
  *  @ author swp_song
@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**!
  *  @ author swp_song
  *
- *  @ brief  swpShareWithShareKey:setSwpShareTitle:setSwpShareImageName:    ( 数据处理 )
+ *  @ brief  swpShareWithShareKey:setSwpShareTitle:setSwpShareImageName:setSwpTripartiteFrameworkShareType:    ( 数据处理 )
  *
  *  @ param  swpShareKey
  *
@@ -53,22 +53,22 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @ param  swpShareImageName
  *
- *  @ param  swpUMShareType
+ *  @ param  swpTripartiteFrameworkShareType
  *
  *  @ return SwpShareModel
  */
-+ (instancetype)swpShareWithShareKey:(NSString *)swpShareKey setSwpShareTitle:(NSString *)swpShareTitle setSwpShareImageName:(NSString *)swpShareImageName setSwpUMShareType:(id)swpUMShareType;
++ (instancetype)swpShareWithShareKey:(NSString *)swpShareKey setSwpShareTitle:(NSString *)swpShareTitle setSwpShareImageName:(NSString *)swpShareImageName setSwpTripartiteFrameworkShareType:(nullable id)swpTripartiteFrameworkShareType;
 
 /**!
- *  @ brief  swpShareWithSwpShare:setSwpUMShareType:    ( 数据处理 )
+ *  @ brief  swpShareWithSwpShare:setSwpTripartiteFrameworkShareType:    ( 数据处理 )
  *
  *  @ param  swpShare
  *
- *  @ param  swpUMShareType
+ *  @ param  swpTripartiteFrameworkShareType
  *
  *  @ return SwpShareModel
  */
-+ (instancetype)swpShareWithSwpShare:(SwpShareModel *)swpShare setSwpUMShareType:(id)swpUMShareType;
++ (instancetype)swpShareWithSwpShare:(SwpShareModel *)swpShare setSwpTripartiteFrameworkShareType:(nullable id)swpTripartiteFrameworkShareType;
 
 /**
  *  @ author swp_song
@@ -80,6 +80,32 @@ NS_ASSUME_NONNULL_BEGIN
  *  @ return NSArray<SwpShareModel *>
  */
 + (NSArray<SwpShareModel *> *)swpShareWihtGroup:(NSArray<NSDictionary *> *)dictionarys;
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareWihtGroup:setTripartiteFrameworkShareTypes: ( 数据处理 < 一组 > )
+ *
+ *  @ param  dictionarys
+ *
+ *  @ param  tripartiteFrameworkShareTypes
+ *
+ *  @ return NSArray<SwpShareModel *>
+ */
++ (NSArray<SwpShareModel *> *)swpShareWihtGroup:(NSArray<NSDictionary *> *)dictionarys setTripartiteFrameworkShareTypes:(nullable NSArray *)tripartiteFrameworkShareTypes;
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareSetShareType:setTripartiteFrameworkShareTypes: ( 三方分享 Type 数据 处理 )
+ *
+ *  @ param  swpShares
+ *
+ *  @ param  tripartiteFrameworkShareTypes
+ *
+ *  @ return NSArray<SwpShareModel *> *
+ */
++ (NSArray<SwpShareModel *> *)swpShareSetShareType:(NSArray<SwpShareModel *> *)swpShares setTripartiteFrameworkShareTypes:(nullable NSArray *)tripartiteFrameworkShareTypes;
 
 @end
 NS_ASSUME_NONNULL_END

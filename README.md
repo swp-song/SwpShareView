@@ -44,13 +44,23 @@ SwpShareView *swpShareView = [SwpShareView swpShareViewShowWithData:@[SwpShareTo
 swpShareView.delegate = self;
 
 // 代理 回调
-- (void)swpShareView:(SwpShareView *)swpShareView didSelectIndex:(NSInteger)index swpShareKey:(NSString *)swpShareKey {
-    NSLog(@"%@", swpShareKey);
+- (void)swpShareView:(SwpShareView *)swpShareView didSelectIndex:(NSInteger)index swpShare:(SwpShareModel *)swpShare {
+    NSLog(@"%@", swpShare.swpShareKey);
 }
+
 ....更多查看源码....
 
 ```
 ---
+
+##### 1.0.8 更新:
+```
+1. 2016-10-09
+2. 添加 Demo logo
+3. 优化 分享 view 高度
+4. 新增 swpShareSetTripartiteFrameworkShareTypes 方法 设置 三方框架分享 Type
+
+```
 
 ##### 1.0.7 更新:
 ```

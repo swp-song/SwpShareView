@@ -10,7 +10,7 @@
 
 
 /*! ---------------------- Tool       ---------------------- !*/
-#import <POP/POP.h>                     // POP
+#import "POP.h"                       // POP
 /*! ---------------------- Tool       ---------------------- !*/
 
 /*! ---------------------- Controller ---------------------- !*/
@@ -163,13 +163,35 @@
  */
 + (void)swpShareViewToolsAlphaAnimation:(UIView *)addAnimationView setFromValue:(CGFloat)fromValue setToValue:(CGFloat)toValue animationCompletionBlock:(void(^)(BOOL finished))animationCompletionBlock {
     
-    POPBasicAnimation *positionAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
+    POPBasicAnimation *positionAnimation  = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
     positionAnimation.fromValue           = @(fromValue);
     positionAnimation.toValue             = @(toValue);
     [positionAnimation setCompletionBlock:^(POPAnimation *animation, BOOL finished) {
         if (animationCompletionBlock) animationCompletionBlock (finished);
     }];
     [addAnimationView pop_addAnimation:positionAnimation forKey:nil];
+}
+
+
+/**
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareViewToolsCalculateFrame:viewWidth: ( 计算 view frame )
+ *
+ *  @ param  dataCount
+ *
+ *  @ param  width
+ *
+ *  @ return CGRect
+ */
++ (CGRect)swpShareViewToolsCalculateFrame:(NSInteger)dataCount viewWidth:(CGFloat)width {
+    NSInteger column        = dataCount % 4 ? dataCount / 4 + 1 : dataCount / 4;
+    CGRect    frame         = [self swpShareViewToolsCheckFrame:CGRectMake(0, 0, width, 0)];
+    CGFloat   cellHeight    = frame.size.width / 4.0f;
+    CGFloat   buttonHeight  = 30;
+    CGFloat   labelHeight   = 40;
+    CGFloat   cellClearance = 30 + 10 * column;   // cell 间隙
+    return CGRectMake(0, 0, frame.size.width, cellHeight * column + buttonHeight + labelHeight + cellClearance);
 }
 
 
