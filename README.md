@@ -53,6 +53,13 @@ swpShareView.delegate = self;
 ```
 ---
 
+##### 1.0.9 更新:
+```
+1. 2016-10-10
+2. 新增 隐藏 view 方法
+3. 新增 点击分享 item 是否关闭页面 Block 和 Delegate
+```
+---
 ##### 1.0.8 更新:
 ```
 1. 2016-10-09
@@ -61,7 +68,7 @@ swpShareView.delegate = self;
 4. 新增 swpShareSetTripartiteFrameworkShareTypes 方法 设置 三方框架分享 Type
 
 ```
-
+---
 ##### 1.0.7 更新:
 ```
 1. 2016-10-08
@@ -70,7 +77,7 @@ swpShareView.delegate = self;
 4. 取消初始化 设置 三方分享 type 方法
 
 ```
-
+---
 ##### 1.0.6 更新:
 ```
 1. 2016-10-04

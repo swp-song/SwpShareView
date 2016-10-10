@@ -18,7 +18,7 @@
 /*! ---------------------- Controller ---------------------- !*/
 
 /*! ---------------------- View       ---------------------- !*/
-#import "SwpShareListView.h"
+#import "SwpShareListView.h"                //  显示分享列表view
 #import "SwpShareViewCell.h"                //  显示分享cell
 /*! ---------------------- View       ---------------------- !*/
 
@@ -51,6 +51,9 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
 
 /*! SwpShareView 页面关闭回调   !*/
 @property (nonatomic, copy, setter = swpShareViewCloseBlock:) void(^swpShareViewCloseBlock)(SwpShareView *swpShareView);
+
+/*! 是否关闭分享view 回调        !*/
+@property (nonatomic, copy, setter = swpShareViewWhetherCloseBlock:) BOOL(^swpShareViewWhetherCloseBlock)(SwpShareView *swpShareView);
 /*! ---------------------- Data Property  ---------------------- !*/
 
 @end
@@ -121,6 +124,20 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
     return swpShareView;
 }
 
+
+/**
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareViewHidden:    ( 关闭 swpShareView  )
+ */
+- (SwpShareView *(^)())swpShareViewHidden {
+    
+    return ^SwpShareView *(){
+        [self swpShareViewHiddenAnimation];
+        return self;
+    };
+}
+
 /**!
  *  @ author swp_song
  *
@@ -134,6 +151,18 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
         self.swpShareListView.swpShares(self.swpShares);
         return self;
     };
+}
+
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareViewWhetherCloseBlock: ( 是否 关闭 分享 页面 )
+ *
+ *  @ param  swpShareViewWhetherCloseBlock
+ */
+- (void)swpShareViewWhetherCloseBlock:(BOOL (^)(SwpShareView *swpShareView))swpShareViewWhetherCloseBlock {
+    _swpShareViewWhetherCloseBlock = swpShareViewWhetherCloseBlock;
 }
 
 /**!
@@ -302,6 +331,44 @@ static UIWindow *swpShareWindow_;
 }
 
 
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  setSwpShareListViewDidSelectDelegateOrBlock:swpShare:  ( 设置 代理 和 Block )
+ *
+ *  @ param  indexPath
+ *
+ *  @ param  swpShare
+ */
+- (void)setSwpShareListViewDidSelectDelegateOrBlock:(NSIndexPath *)indexPath swpShare:(SwpShareModel *)swpShare {
+    
+    if (self.swpShareListViewDidSelectIndexBlock) self.swpShareListViewDidSelectIndexBlock(self, indexPath.item, swpShare);
+    if ([self.delegate respondsToSelector:@selector(swpShareView:didSelectIndex:swpShare:)]) {
+        [self.delegate swpShareView:self didSelectIndex:indexPath.item swpShare:swpShare];
+    }
+}
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  setSwpShareListViewWhetherCloseDelegateOrBlock  ( 设置 代理 和 Block )
+ *
+ *  @ return BOOL
+ */
+- (BOOL)setSwpShareListViewWhetherCloseDelegateOrBlock {
+    
+    if (self.swpShareViewWhetherCloseBlock) {
+       return self.swpShareViewWhetherCloseBlock(self);
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(swpShareViewWhetherClose:)]) {
+        return [self.delegate swpShareViewWhetherClose:self];
+    }
+    
+    return YES;
+}
+
+
 #pragma mark - SwpShareListView Delegate Methods
 /**!
  *  @ author swp_song
@@ -318,13 +385,12 @@ static UIWindow *swpShareWindow_;
  */
 - (void)swpShareListView:(SwpShareListView *)swpShareListView didSelectItemAtIndexPath:(NSIndexPath *)indexPath swpShare:(SwpShareModel *)swpShare swpShareKey:(NSString *)swpShareKey {
 
-    if (self.swpShareListViewDidSelectIndexBlock) self.swpShareListViewDidSelectIndexBlock(self, indexPath.item, swpShare);
+    // 设置 点击 事件 代理 和 Block
+    [self setSwpShareListViewDidSelectDelegateOrBlock:indexPath swpShare:swpShare];
     
-    if ([self.delegate respondsToSelector:@selector(swpShareView:didSelectIndex:swpShare:)]) {
-        [self.delegate swpShareView:self didSelectIndex:indexPath.item swpShare:swpShare];
+    if ([self setSwpShareListViewWhetherCloseDelegateOrBlock]) {
+        [self swpShareViewHiddenAnimation];
     }
-    
-    [self swpShareViewHiddenAnimation];
 }
 
 /**!

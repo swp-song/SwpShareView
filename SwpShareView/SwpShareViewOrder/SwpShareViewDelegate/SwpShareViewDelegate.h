@@ -15,6 +15,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 @optional
 
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareViewWhetherClose: ( 点击 分享 item 是否关闭页面, Block 设置 完成 该代理会失效 )
+ *
+ *  @ param  swpShareView
+ *
+ *  @ return BOOL
+ */
+- (BOOL)swpShareViewWhetherClose:(SwpShareView *)swpShareView;
+
 /**!
  *  @ author swp_song
  *
@@ -49,8 +61,6 @@ NS_ASSUME_NONNULL_BEGIN
  *  @ param  swpShareView
  */
 - (void)swpShareViewClose:(SwpShareView *)swpShareView;
-
-
 
 @end
 NS_ASSUME_NONNULL_END

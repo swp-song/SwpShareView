@@ -41,6 +41,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (instancetype)swpShareViewShowWithData:(NSArray<NSString *> *)shareData setDelegate:(nullable id<SwpShareViewDelegate>)delegate;
 
+/**
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareViewHidden:    ( 关闭 swpShareView  )
+ */
+- (SwpShareView *(^)())swpShareViewHidden;
+
 
 /**!
  *  @ author swp_song
@@ -48,6 +55,15 @@ NS_ASSUME_NONNULL_BEGIN
  *  @ brief  swpShareSetTripartiteFrameworkShareTypes    ( 设置 三方分享type )
  */
 - (SwpShareView *(^)(NSArray *tripartiteFrameworkShareTypes))swpShareSetTripartiteFrameworkShareTypes;
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareViewWhetherCloseBlock: ( 是否 关闭 分享 页面 )
+ *
+ *  @ param  swpShareViewWhetherCloseBlock
+ */
+- (void)swpShareViewWhetherCloseBlock:(BOOL (^)(SwpShareView *swpShareView))swpShareViewWhetherCloseBlock;
 
 /**!
  *  @ author swp_song

@@ -37,14 +37,13 @@
                                                                           SwpShareToQQ,
                                                                           SwpShareToQzone,
                                                                           SwpShareToTencent,
-//                                                                          SwpShareToWechatSession,
-//                                                                          SwpShareToWechatTimeline,
-//                                                                          SwpShareToSina,
-//                                                                          SwpShareToCopyURL,
+                                                                          SwpShareToWechatSession,
+                                                                          SwpShareToWechatTimeline,
+                                                                          SwpShareToSina,
+                                                                          SwpShareToCopyURL,
                                                                           ]
                                                             setDelegate:self];
     
-
     // 修改 分享 显示 title 属性
     swpShareView.swpShareTitleSize(15).swpShareTitle(@"分享").swpShareTitleColor([UIColor redColor]);
     
@@ -71,6 +70,7 @@
 - (void)swpShareViewClose:(SwpShareView *)swpShareView {
     NSLog(@"Delegate 页面关闭了");
 }
+
 
 
 @end
