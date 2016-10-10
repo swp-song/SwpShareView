@@ -81,7 +81,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @ param swpShareViewCloseBlock
  */
-- (void)swpShareViewCloseBlock:(nullable void (^)(SwpShareView *swpShareView))swpShareViewCloseBlock;
+- (void)swpShareViewCloseBlock:(nullable void (^)(SwpShareView *swpShareView, SwpShareModel *swpShare))swpShareViewCloseBlock;
 
 /**!
  *  @ author swp_song

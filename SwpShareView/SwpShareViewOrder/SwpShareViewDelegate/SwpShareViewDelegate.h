@@ -59,8 +59,10 @@ NS_ASSUME_NONNULL_BEGIN
  *  @ brief  swpShareViewClose: ( swpShareView 代理方法  分享页面关闭之后 调用 )
  *
  *  @ param  swpShareView
+ *
+ *  @ param  swpShare
  */
-- (void)swpShareViewClose:(SwpShareView *)swpShareView;
+- (void)swpShareView:(SwpShareView *)swpShareView closeSwpShareView:(SwpShareModel *)swpShare;
 
 @end
 NS_ASSUME_NONNULL_END

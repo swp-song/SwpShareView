@@ -53,8 +53,9 @@
     }];
     
     // 页面关闭 Block 回调
-    [swpShareView swpShareViewCloseBlock:^(SwpShareView * _Nonnull swpShareView) {
+    [swpShareView swpShareViewCloseBlock:^(SwpShareView * _Nonnull swpShareView, SwpShareModel * _Nonnull swpShare) {
         NSLog(@"Block 页面关闭了");
+        NSLog(@"%@", swpShare.swpShareKey);
     }];
 }
 
@@ -67,8 +68,9 @@
 }
 
 // 页面 关闭
-- (void)swpShareViewClose:(SwpShareView *)swpShareView {
+- (void)swpShareView:(SwpShareView *)swpShareView closeSwpShareView:(SwpShareModel *)swpShare {
     NSLog(@"Delegate 页面关闭了");
+    NSLog(@"%@", swpShare.swpShareKey);
 }
 
 

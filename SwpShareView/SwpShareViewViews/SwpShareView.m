@@ -43,16 +43,18 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
 
 #pragma mark - Data Propertys
 /*! ---------------------- Data Property  ---------------------- !*/
-/*! 显示 分享 数据源    !*/
-@property (nonatomic, copy )  NSArray<SwpShareModel *>     *swpShares;
+/*! 显示 分享 数据源               !*/
+@property (nonatomic, copy  )  NSArray<SwpShareModel *>     *swpShares;
 
-/*! cell 点击 回调     !*/
+/*! 点击 cell 记录点击的数据模型    !*/
+@property (nonatomic, strong)  SwpShareModel                *swpShare;
+
+/*! cell 点击 回调               !*/
 @property (nonatomic, copy, setter = swpShareListViewDidSelectIndexBlock:) void(^swpShareListViewDidSelectIndexBlock)(SwpShareView *swpShareView, NSInteger didSelectIndex, SwpShareModel *swpShare);
+/*! SwpShareView 页面关闭回调     !*/
+@property (nonatomic, copy, setter = swpShareViewCloseBlock:) void(^swpShareViewCloseBlock)(SwpShareView *swpShareView, SwpShareModel *swpShare);
 
-/*! SwpShareView 页面关闭回调   !*/
-@property (nonatomic, copy, setter = swpShareViewCloseBlock:) void(^swpShareViewCloseBlock)(SwpShareView *swpShareView);
-
-/*! 是否关闭分享view 回调        !*/
+/*! 是否关闭分享view 回调          !*/
 @property (nonatomic, copy, setter = swpShareViewWhetherCloseBlock:) BOOL(^swpShareViewWhetherCloseBlock)(SwpShareView *swpShareView);
 /*! ---------------------- Data Property  ---------------------- !*/
 
@@ -183,7 +185,7 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
  *
  *  @ param swpShareViewCloseBlock
  */
-- (void)swpShareViewCloseBlock:(void (^)(SwpShareView *swpShareView))swpShareViewCloseBlock {
+- (void)swpShareViewCloseBlock:(void (^)(SwpShareView *swpShareView, SwpShareModel *swpShare))swpShareViewCloseBlock {
     _swpShareViewCloseBlock = swpShareViewCloseBlock;
 }
 
@@ -308,12 +310,7 @@ static UIWindow *swpShareWindow_;
     __weak typeof(self)weakSelf = self;
     [SwpShareViewTools swpShareViewToolsAlphaAnimation:swpShareWindow_ setFromValue:1 setToValue:0 animationCompletionBlock:^(BOOL finished) {
         swpShareWindow_.hidden = YES;
-        
-        if (weakSelf.swpShareViewCloseBlock) weakSelf.swpShareViewCloseBlock(weakSelf);
-        
-        if ([weakSelf.delegate respondsToSelector:@selector(swpShareViewClose:)]) {
-            [weakSelf.delegate swpShareViewClose:weakSelf];
-        }
+        [weakSelf setSwpShareListViewCloseDelegateOrBlock:weakSelf.swpShare];
         swpShareWindow_        = nil;
     }];
 }
@@ -369,6 +366,21 @@ static UIWindow *swpShareWindow_;
 }
 
 
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  setSwpShareListViewCloseDelegateOrBlock  ( 设置 swpShareView view 关闭之后 代理 和 Block )
+ *
+ *  @ param  swpShare
+ */
+- (void)setSwpShareListViewCloseDelegateOrBlock:(SwpShareModel *)swpShare {
+    if (self.swpShareViewCloseBlock) self.swpShareViewCloseBlock(self, swpShare);
+    if ([self.delegate respondsToSelector:@selector(swpShareView:closeSwpShareView:)]) {
+        [self.delegate swpShareView:self closeSwpShareView:swpShare];
+    }
+}
+
+
 #pragma mark - SwpShareListView Delegate Methods
 /**!
  *  @ author swp_song
@@ -384,9 +396,10 @@ static UIWindow *swpShareWindow_;
  *  @ param  swpShareKey
  */
 - (void)swpShareListView:(SwpShareListView *)swpShareListView didSelectItemAtIndexPath:(NSIndexPath *)indexPath swpShare:(SwpShareModel *)swpShare swpShareKey:(NSString *)swpShareKey {
-
+    
+    self.swpShare = swpShare;
     // 设置 点击 事件 代理 和 Block
-    [self setSwpShareListViewDidSelectDelegateOrBlock:indexPath swpShare:swpShare];
+    [self setSwpShareListViewDidSelectDelegateOrBlock:indexPath swpShare:self.swpShare];
     
     if ([self setSwpShareListViewWhetherCloseDelegateOrBlock]) {
         [self swpShareViewHiddenAnimation];
