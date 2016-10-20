@@ -57,7 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @ return SwpShareModel
  */
-+ (instancetype)swpShareWithShareKey:(NSString *)swpShareKey setSwpShareTitle:(NSString *)swpShareTitle setSwpShareImageName:(NSString *)swpShareImageName setSwpTripartiteFrameworkShareType:(nullable id)swpTripartiteFrameworkShareType;
++ (instancetype)swpShareWithShareKey:(NSString *)swpShareKey setSwpShareTitle:(nullable NSString *)swpShareTitle setSwpShareImageName:(nullable NSString *)swpShareImageName setSwpTripartiteFrameworkShareType:(nullable id)swpTripartiteFrameworkShareType;
 
 /**!
  *  @ brief  swpShareWithSwpShare:setSwpTripartiteFrameworkShareType:    ( 数据处理 )

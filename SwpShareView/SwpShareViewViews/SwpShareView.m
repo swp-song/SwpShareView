@@ -127,6 +127,18 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
 }
 
 
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareViewCustomItems:   ( 自定义 分享 items )
+ */
+- (SwpShareView *(^)(NSArray<SwpShareModel *> *swpShareCustomItems))swpShareViewCustomItems {
+    return ^SwpShareView *(NSArray<SwpShareModel *> *swpShareCustomItems) {
+        self.swpShareListView.swpShareCustomItems(swpShareCustomItems);
+        return self;
+    };
+}
+
 /**
  *  @ author swp_song
  *

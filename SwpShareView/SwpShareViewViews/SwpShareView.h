@@ -41,7 +41,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (instancetype)swpShareViewShowWithData:(NSArray<NSString *> *)shareData setDelegate:(nullable id<SwpShareViewDelegate>)delegate;
 
-/**
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareViewCustomItems: ( 自定义 分享 items )
+ */
+- (SwpShareView *(^)(NSArray<SwpShareModel *> *swpShareCustomItems))swpShareViewCustomItems;
+
+/**!
  *  @ author swp_song
  *
  *  @ brief  swpShareViewHidden:    ( 关闭 swpShareView  )

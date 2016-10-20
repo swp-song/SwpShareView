@@ -190,6 +190,26 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
     return swpShare;
 }
 
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareDataAppend:appendData: ( 数据追加 )
+ *
+ *  @ param  originalData
+ *
+ *  @ param  appendData
+ *
+ *  @ return NSArray<SwpShareModel *> *
+ */
+- (NSArray<SwpShareModel *> *)swpShareDataAppend:(NSArray<SwpShareModel *> *)originalData appendData:(NSArray<SwpShareModel *> *)appendData {
+    
+    NSMutableArray<SwpShareModel *> *models = [NSMutableArray arrayWithArray:originalData];
+    [appendData enumerateObjectsUsingBlock:^(SwpShareModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [models addObject:obj];
+    }];
+    return models.copy;
+}
+
 #pragma mark - Public Methods
 
 /**!
@@ -216,6 +236,19 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
 
     return ^SwpShareListView *(NSArray<SwpShareModel *> * swpShares) {
         _swpShareListDatas = swpShares;
+        [self reloadData];
+        return self;
+    };
+}
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareCustomItems: (  设置 追加 自定义 数据  )
+ */
+- (SwpShareListView *(^)(NSArray<SwpShareModel *> *swpShareCustomItems))swpShareCustomItems {
+    return ^SwpShareListView *(NSArray<SwpShareModel *> *swpShareCustomItems) {
+        _swpShareListDatas = [self swpShareDataAppend:_swpShareListDatas appendData:swpShareCustomItems];
         [self reloadData];
         return self;
     };

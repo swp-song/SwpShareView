@@ -58,6 +58,10 @@
  *  @ return SwpShareModel
  */
 + (instancetype)swpShareWithShareKey:(NSString *)swpShareKey setSwpShareTitle:(NSString *)swpShareTitle setSwpShareImageName:(NSString *)swpShareImageName setSwpTripartiteFrameworkShareType:(id)swpTripartiteFrameworkShareType {
+    
+    swpShareTitle     = swpShareTitle     || swpShareTitle.length     ? swpShareTitle     : @"标题";
+    swpShareImageName = swpShareImageName || swpShareImageName.length ? swpShareImageName : @"SwpShareView.bundle/share_default";
+    
     return [[SwpShareModel alloc] initWithShareKey:swpShareKey setSwpShareTitle:swpShareTitle setSwpShareImageName:swpShareImageName setSwpTripartiteFrameworkShareType:swpTripartiteFrameworkShareType];
 }
 

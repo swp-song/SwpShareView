@@ -68,6 +68,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (SwpShareListView *(^)(NSArray<SwpShareModel *> *))swpShares;
 
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareCustomItems: (  设置 追加 自定义 数据  )
+ */
+- (SwpShareListView *(^)(NSArray<SwpShareModel *> *swpShareCustomItems))swpShareCustomItems;
+
 /*! 代理属性 !*/
 @property (nullable, nonatomic, weak) id<SwpShareListViewDelegate>swpShareListViewDelegate;
 
