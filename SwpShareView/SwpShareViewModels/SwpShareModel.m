@@ -98,7 +98,7 @@
  *  @ return SwpShareModel
  */
 + (instancetype)swpShareWithSwpShare:(SwpShareModel *)swpShare setSwpTripartiteFrameworkShareType:(id)swpTripartiteFrameworkShareType {
-    return [[self class] swpShareWithShareKey:swpShare.swpShareKey setSwpShareTitle:swpShare.swpShareTitle setSwpShareImageName:swpShare.swpShareImageName setSwpTripartiteFrameworkShareType:swpTripartiteFrameworkShareType];
+    return [[self class] swpShareWithShareKey:swpShare.swpShareKey setSwpShareTitle:swpShare.swpShareTitle setSwpShareImageName:swpShare.swpShareImageName setSwpTripartiteFrameworkShareType:swpTripartiteFrameworkShareType setSwpShareCanOpenURLString:swpShare.swpShareCanOpenURLString setSwpShareEnabled:swpShare.swpShareEnabled];
 }
 
 /**!
