@@ -20,6 +20,8 @@
 /*! ---------------------- View       ---------------------- !*/
 
 /*! ---------------------- Model      ---------------------- !*/
+#import "SwpShareModel.h"
+#import "SwpShareConstants.h"
 /*! ---------------------- Model      ---------------------- !*/
 
 @implementation SwpShareViewTools
@@ -172,8 +174,74 @@
     [addAnimationView pop_addAnimation:positionAnimation forKey:nil];
 }
 
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareViewToolsDataAppend:appendData: ( 数据追加 )
+ *
+ *  @ param  originalData
+ *
+ *  @ param  appendData
+ *
+ *  @ return NSArray<SwpShareModel *> *
+ */
++ (NSArray<SwpShareModel *> *)swpShareViewToolsDataAppend:(NSArray<SwpShareModel *> *)originalData appendData:(NSArray<SwpShareModel *> *)appendData {
+    
+    NSMutableArray<SwpShareModel *> *models = [NSMutableArray arrayWithArray:originalData];
+    [appendData enumerateObjectsUsingBlock:^(SwpShareModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [models addObject:obj];
+    }];
+    return models.copy;
+}
 
-/**
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareViewToolsSwpShareItemTypeDataProcessing:   ( 数据追加 )
+ *
+ *  @ param  swpShares
+ *
+ *  @ param  swpShareItemType
+ *
+ *  @ return NSArray<SwpShareModel *>
+ */
++ (NSArray<SwpShareModel *> *)swpShareViewToolsSwpShareItemTypeDataProcessing:(NSArray<SwpShareModel *> *)swpShares swpShareItemType:(SwpShareItemType)swpShareItemType {
+    
+    if (!swpShares) {
+        NSAssert(nil, @"SwpShares data is empty");
+    }
+    
+    NSMutableArray<SwpShareModel *> *models = [NSMutableArray array];
+    
+    
+    switch (swpShareItemType) {
+            
+        case SwpShareItemTypeNormal: {
+            models = [NSMutableArray arrayWithArray:swpShares];
+        }
+            break;
+            
+        case SwpShareItemTypeHide: {
+            models = [[self class] swpShareViewToolsHideShareItem:swpShares];
+        }
+        
+            break;
+        case SwpShareItemTypeEnabled: {
+            
+            models = [[self class] swpShareViewToolsEnabledShareItem:swpShares];
+        }
+            break;
+    }
+
+    return models.copy;
+}
+
+
+
+
+
+/**!
  *  @ author swp_song
  *
  *  @ brief  swpShareViewToolsCalculateFrame:viewWidth: ( 计算 view frame )
@@ -193,6 +261,88 @@
     CGFloat   cellClearance = 30 + 10 * column;   // cell 间隙
     return CGRectMake(0, 0, frame.size.width, cellHeight * column + buttonHeight + labelHeight + cellClearance);
 }
+
+#pragma mark - Private 
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareViewToolsCanOpenURL:   ( 验证 是否 安装 App )
+ *
+ *  @ param  canOpenURL
+ *
+ *  @ return BOOL
+ */
++ (BOOL)swpShareViewToolsCanOpenURL:(NSString *)canOpenURL {
+    return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:canOpenURL]];
+}
+
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareViewToolsHideShareItem:    ( 隐藏 未安装 App图标 )
+ *
+ *  @ param  swpShares
+ */
++ (NSMutableArray<SwpShareModel *> *)swpShareViewToolsHideShareItem:(NSArray<SwpShareModel *> *)swpShares {
+    
+    NSMutableArray<SwpShareModel *> *models = [NSMutableArray array];
+    
+    [swpShares enumerateObjectsUsingBlock:^(SwpShareModel * _Nonnull swpShare, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if ([swpShare.swpShareKey isEqualToString:SwpShareToSinaKey] ||
+            [swpShare.swpShareKey isEqualToString:SwpShareToCopyURLKey] ||
+            swpShare.swpShareCanOpenURLString == nil) {
+            //  新浪微博 自定义item 分享链接 item 不用隐藏
+            [models addObject:swpShare];
+        } else {
+            if ([[self class] swpShareViewToolsCanOpenURL:swpShare.swpShareCanOpenURLString]) {
+                // 安装 App 安装 不用 隐藏
+                [models addObject:swpShare];
+            }
+        }
+    }];
+    return models;
+}
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareViewToolsEnabledShareItem:    ( 设置 是否 开启 item  )
+ *
+ *  @ param  swpShares
+ */
++ (NSMutableArray<SwpShareModel *> *)swpShareViewToolsEnabledShareItem:(NSArray<SwpShareModel *> *)swpShares {
+    
+    NSMutableArray<SwpShareModel *> *models = [NSMutableArray array];
+    
+    [swpShares enumerateObjectsUsingBlock:^(SwpShareModel * _Nonnull swpShare, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if ([swpShare.swpShareKey isEqualToString:SwpShareToSinaKey] ||
+            [swpShare.swpShareKey isEqualToString:SwpShareToCopyURLKey] ||
+            swpShare.swpShareCanOpenURLString == nil) {
+            // 开启
+            [models addObject:[SwpShareModel swpShareWithSwpShare:swpShare setSwpShareEnabled:YES]];
+            
+        } else {
+            if ([[self class] swpShareViewToolsCanOpenURL:swpShare.swpShareCanOpenURLString]) {
+                // 安装 App 安装 开启
+                [models addObject:[SwpShareModel swpShareWithSwpShare:swpShare setSwpShareEnabled:YES]];
+                
+            } else {
+                // 关闭
+                [models addObject:[SwpShareModel swpShareWithSwpShare:swpShare setSwpShareEnabled:NO]];
+            }
+        }
+        
+    }];
+    
+    return models;
+}
+
+
+
 
 
 @end

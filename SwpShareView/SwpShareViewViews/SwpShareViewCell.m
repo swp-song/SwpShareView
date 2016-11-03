@@ -93,9 +93,29 @@
  *  @ param  swpShare
  */
 - (void)setSwpShare:(SwpShareModel *)swpShare {
-    _swpShare                    = swpShare;
-    self.swpShareTitleView.text  = swpShare.swpShareTitle;
-    self.swpShareImageView.image = [UIImage imageNamed:swpShare.swpShareImageName];
+    _swpShare               = swpShare;
+    _swpShareTitleView.text = swpShare.swpShareTitle;
+    [self setSetStyles:swpShare];
+    
+}
+
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  setSetStyles:  ( 设置 文字 和 图片 样式 )
+ *
+ *  @ param  swpShare
+ */
+- (void)setSetStyles:(SwpShareModel *)swpShare {
+ 
+    if (swpShare.isSwpShareEnabled) {
+        _swpShareTitleView.textColor = [UIColor blackColor];
+        _swpShareImageView.image     = [UIImage imageNamed:swpShare.swpShareImageName];
+    } else {
+        _swpShareTitleView.textColor = [UIColor lightGrayColor];
+        _swpShareImageView.image     = [UIImage imageNamed:[NSString stringWithFormat:@"%@_no", swpShare.swpShareImageName]];
+    }
 }
 
 

@@ -44,10 +44,13 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
 #pragma mark - Data Propertys
 /*! ---------------------- Data Property  ---------------------- !*/
 /*! 显示 分享 数据源               !*/
-@property (nonatomic, copy  )  NSArray<SwpShareModel *>     *swpShares;
+@property (nonatomic, copy  ) NSArray<SwpShareModel *>     *swpShares;
 
 /*! 点击 cell 记录点击的数据模型    !*/
-@property (nonatomic, strong)  SwpShareModel                *swpShare;
+@property (nonatomic, strong) SwpShareModel                *swpShare;
+
+/*! 点击 cell 记录点击的数据模型    !*/
+@property (nonatomic, assign) SwpShareItemType             shareItemType;
 
 /*! cell 点击 回调               !*/
 @property (nonatomic, copy, setter = swpShareListViewDidSelectIndexBlock:) void(^swpShareListViewDidSelectIndexBlock)(SwpShareView *swpShareView, NSInteger didSelectIndex, SwpShareModel *swpShare);
@@ -132,9 +135,10 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
  *
  *  @ brief  swpShareViewCustomItems:   ( 自定义 分享 items )
  */
-- (SwpShareView *(^)(NSArray<SwpShareModel *> *swpShareCustomItems))swpShareViewCustomItems {
+- (__kindof SwpShareView *(^)(NSArray<SwpShareModel *> *swpShareCustomItems))swpShareViewCustomItems {
     return ^SwpShareView *(NSArray<SwpShareModel *> *swpShareCustomItems) {
-        self.swpShareListView.swpShareCustomItems(swpShareCustomItems);
+        self.swpShares = [SwpShareViewTools swpShareViewToolsDataAppend:self.swpShares appendData:swpShareCustomItems];
+        self.swpShareListView.swpShareCustomItems(self.swpShares);
         return self;
     };
 }
@@ -144,7 +148,7 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
  *
  *  @ brief  swpShareViewHidden:    ( 关闭 swpShareView  )
  */
-- (SwpShareView *(^)())swpShareViewHidden {
+- (__kindof SwpShareView *(^)())swpShareViewHidden {
     
     return ^SwpShareView *(){
         [self swpShareViewHiddenAnimation];
@@ -157,11 +161,29 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
  *
  *  @ brief  swpShareSetTripartiteFrameworkShareTypes    ( 设置 三方分享type )
  */
-- (SwpShareView *(^)(NSArray *tripartiteFrameworkShareTypes))swpShareSetTripartiteFrameworkShareTypes {
+- (__kindof SwpShareView *(^)(NSArray *tripartiteFrameworkShareTypes))swpShareSetTripartiteFrameworkShareTypes {
     
     return ^SwpShareView *(NSArray *tripartiteFrameworkShareTypes) {
         
         self.swpShares = [SwpShareModel swpShareSetShareType:self.swpShares setTripartiteFrameworkShareTypes:tripartiteFrameworkShareTypes];
+        self.swpShareListView.swpShares(self.swpShares);
+        
+        return self;
+    };
+}
+
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareItemType   ( 隐藏 未安装 App )
+ */
+- (__kindof SwpShareView *(^)(SwpShareItemType swpShareItemType))swpShareItemType {
+    
+    return ^SwpShareView *(SwpShareItemType swpShareItemType) {
+        _shareItemType = swpShareItemType;
+    
+        self.swpShares = [SwpShareViewTools swpShareViewToolsSwpShareItemTypeDataProcessing:self.swpShares swpShareItemType:swpShareItemType];
         self.swpShareListView.swpShares(self.swpShares);
         return self;
     };
@@ -190,7 +212,7 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
     _swpShareListViewDidSelectIndexBlock = swpShareListViewDidSelectIndexBlock;
 }
 
-/**
+/**!
  *  @ author swp_song
  *
  *  @ brief  swpShareViewCloseBlock: ( swpShareView Block 分享 页面 关闭之后调用 )
@@ -206,7 +228,7 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
  *
  *  @ brief  swpShareTitleSize: ( 设置 分享 title 字体 大小 )
  */
-- (SwpShareView *(^)(CGFloat swpShareTitleSize))swpShareTitleSize {
+- (__kindof SwpShareView *(^)(CGFloat swpShareTitleSize))swpShareTitleSize {
 
     return ^SwpShareView *(CGFloat swpShareTitleSize) {
         _swpShareTitleView.font = [UIFont fontWithName:@"GillSans-Italic" size:swpShareTitleSize];
@@ -219,7 +241,7 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
  *
  *  @ brief  swpShareTitle: ( 设置 分享 title )
  */
-- (SwpShareView *(^)(NSString *swpShareTitle))swpShareTitle {
+- (__kindof SwpShareView *(^)(NSString *swpShareTitle))swpShareTitle {
     return ^SwpShareView *(NSString *swpShareTitle) {
         _swpShareTitleView.text = swpShareTitle;
         return self;
@@ -231,7 +253,7 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
  *
  *  @ brief  swpShareTitle: ( 设置 分享 字体 颜色 )
  */
-- (SwpShareView *(^)(UIColor *swpShareTitleColor))swpShareTitleColor {
+- (__kindof SwpShareView *(^)(UIColor *swpShareTitleColor))swpShareTitleColor {
     return ^SwpShareView *(UIColor *swpShareTitleColor){
         _swpShareTitleView.textColor = swpShareTitleColor;
         return self;
@@ -243,7 +265,7 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
  *
  *  @ brief  swpShareTitleFont: ( 设置 分享 字体  )
  */
-- (SwpShareView *(^)(UIFont *swpShareTitleFont))swpShareTitleFont {
+- (__kindof SwpShareView *(^)(UIFont *swpShareTitleFont))swpShareTitleFont {
     
     return ^SwpShareView *(UIFont *swpShareTitleFont) {
         _swpShareTitleView.font = swpShareTitleFont;
@@ -410,6 +432,10 @@ static UIWindow *swpShareWindow_;
 - (void)swpShareListView:(SwpShareListView *)swpShareListView didSelectItemAtIndexPath:(NSIndexPath *)indexPath swpShare:(SwpShareModel *)swpShare swpShareKey:(NSString *)swpShareKey {
     
     self.swpShare = swpShare;
+    
+    // 是否 被禁用
+    if (!self.swpShare.isSwpShareEnabled) return;
+    
     // 设置 点击 事件 代理 和 Block
     [self setSwpShareListViewDidSelectDelegateOrBlock:indexPath swpShare:self.swpShare];
     

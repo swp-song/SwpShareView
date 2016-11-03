@@ -35,13 +35,40 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     
     if (self = [super init]) {
-        _swpShareKey       = dictionary[@"SwpShare_1"];
-        _swpShareTitle     = dictionary[@"SwpShare_2"];
-        _swpShareImageName = dictionary[@"SwpShare_3"];
+        _swpShareKey              = dictionary[@"SwpShare_1"];
+        _swpShareTitle            = dictionary[@"SwpShare_2"];
+        _swpShareImageName        = dictionary[@"SwpShare_3"];
+        _swpShareCanOpenURLString = dictionary[@"SwpShare_4"];
+        _swpShareEnabled          = YES;
     }
     return self;
 }
 
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareWithShareKey:setSwpShareTitle:setSwpShareTitle:setSwpShareImageName:setSwpTripartiteFrameworkShareType:setSwpShareCanOpenURLString:setSwpShareEnabled:    ( 数据处理 设置 每个 属性的值 )
+ *
+ *  @ param swpShareKey
+ *
+ *  @ param swpShareTitle
+ *
+ *  @ param swpShareImageName
+ *
+ *  @ param swpTripartiteFrameworkShareType
+ *
+ *  @ param swpShareCanOpenURLString
+ *
+ *  @ param swpShareEnabled
+ *
+ *  @ return
+ */
++ (instancetype)swpShareWithShareKey:(NSString *)swpShareKey setSwpShareTitle:(NSString *)swpShareTitle setSwpShareImageName:(NSString *)swpShareImageName setSwpTripartiteFrameworkShareType:(id)swpTripartiteFrameworkShareType setSwpShareCanOpenURLString:(NSString *)swpShareCanOpenURLString setSwpShareEnabled:(BOOL)swpShareEnabled {
+    swpShareTitle     = swpShareTitle     || swpShareTitle.length     ? swpShareTitle     : @"标题";
+    swpShareImageName = swpShareImageName || swpShareImageName.length ? swpShareImageName : @"SwpShareView.bundle/share_default";
+    return [[SwpShareModel alloc] initWithShareKey:swpShareKey setSwpShareTitle:swpShareTitle setSwpShareImageName:swpShareImageName setSwpTripartiteFrameworkShareType:swpTripartiteFrameworkShareType setSwpShareCanOpenURLString:swpShareCanOpenURLString setSwpShareEnabled:swpShareEnabled];
+}
 /**!
  *  @ author swp_song
  *
@@ -58,15 +85,11 @@
  *  @ return SwpShareModel
  */
 + (instancetype)swpShareWithShareKey:(NSString *)swpShareKey setSwpShareTitle:(NSString *)swpShareTitle setSwpShareImageName:(NSString *)swpShareImageName setSwpTripartiteFrameworkShareType:(id)swpTripartiteFrameworkShareType {
-    
-    swpShareTitle     = swpShareTitle     || swpShareTitle.length     ? swpShareTitle     : @"标题";
-    swpShareImageName = swpShareImageName || swpShareImageName.length ? swpShareImageName : @"SwpShareView.bundle/share_default";
-    
-    return [[SwpShareModel alloc] initWithShareKey:swpShareKey setSwpShareTitle:swpShareTitle setSwpShareImageName:swpShareImageName setSwpTripartiteFrameworkShareType:swpTripartiteFrameworkShareType];
+    return [[self class] swpShareWithShareKey:swpShareKey setSwpShareTitle:swpShareTitle setSwpShareImageName:swpShareImageName setSwpTripartiteFrameworkShareType:swpTripartiteFrameworkShareType setSwpShareCanOpenURLString:nil setSwpShareEnabled:YES];
 }
 
 /**!
- *  @ brief  swpShareWithSwpShare:setSwpTripartiteFrameworkShareType:    ( 数据处理 )
+ *  @ brief  swpShareWithSwpShare:setSwpTripartiteFrameworkShareType:    ( 数据处理 设置 三方分享 key )
  *
  *  @ param  swpShare
  *
@@ -76,6 +99,19 @@
  */
 + (instancetype)swpShareWithSwpShare:(SwpShareModel *)swpShare setSwpTripartiteFrameworkShareType:(id)swpTripartiteFrameworkShareType {
     return [[self class] swpShareWithShareKey:swpShare.swpShareKey setSwpShareTitle:swpShare.swpShareTitle setSwpShareImageName:swpShare.swpShareImageName setSwpTripartiteFrameworkShareType:swpTripartiteFrameworkShareType];
+}
+
+/**!
+ *  @ brief  swpShareWithSwpShare:setSwpShareEnabled:    ( 数据处理 设置 是否启用 item )
+ *
+ *  @ param  swpShare
+ *
+ *  @ param  setSwpShareEnabled
+ *
+ *  @ return SwpShareModel
+ */
++ (instancetype)swpShareWithSwpShare:(SwpShareModel *)swpShare setSwpShareEnabled:(BOOL)swpShareEnabled {
+    return [[self class] swpShareWithShareKey:swpShare.swpShareKey setSwpShareTitle:swpShare.swpShareTitle setSwpShareImageName:swpShare.swpShareImageName setSwpTripartiteFrameworkShareType:swpShare.swpTripartiteFrameworkShareType setSwpShareCanOpenURLString:nil setSwpShareEnabled:swpShareEnabled];
 }
 
 /**!
@@ -91,21 +127,24 @@
  *
  *  @ param  swpTripartiteFrameworkShareType
  *
+ *  @ param  swpShareCanOpenURLString
+ *
+ *  @ param  swpShareEnabled
+ *
  *  @ return SwpShareModel
  */
-- (instancetype)initWithShareKey:(NSString *)swpShareKey setSwpShareTitle:(NSString *)swpShareTitle setSwpShareImageName:(NSString *)swpShareImageName setSwpTripartiteFrameworkShareType:(id)swpTripartiteFrameworkShareType {
+- (instancetype)initWithShareKey:(NSString *)swpShareKey setSwpShareTitle:(NSString *)swpShareTitle setSwpShareImageName:(NSString *)swpShareImageName setSwpTripartiteFrameworkShareType:(id)swpTripartiteFrameworkShareType setSwpShareCanOpenURLString:(NSString *)swpShareCanOpenURLString setSwpShareEnabled:(BOOL)swpShareEnabled {
     
     if (self = [super init]) {
         _swpShareKey                      = swpShareKey;
         _swpShareTitle                    = swpShareTitle;
         _swpShareImageName                = swpShareImageName;
         _swpTripartiteFrameworkShareType  = swpTripartiteFrameworkShareType;
+        _swpShareCanOpenURLString         = swpShareCanOpenURLString;
+        _swpShareEnabled                  = swpShareEnabled;
     }
     return self;
 }
-
-
-
 
 
 /**!

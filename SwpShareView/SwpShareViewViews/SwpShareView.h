@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "SwpShareViewDelegate.h"
+#import "SwpShareCustomTypes.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -46,14 +47,14 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @ brief  swpShareViewCustomItems: ( 自定义 分享 items )
  */
-- (SwpShareView *(^)(NSArray<SwpShareModel *> *swpShareCustomItems))swpShareViewCustomItems;
+- (__kindof SwpShareView *(^)(NSArray<SwpShareModel *> *swpShareCustomItems))swpShareViewCustomItems;
 
 /**!
  *  @ author swp_song
  *
  *  @ brief  swpShareViewHidden:    ( 关闭 swpShareView  )
  */
-- (SwpShareView *(^)())swpShareViewHidden;
+- (__kindof SwpShareView *(^)())swpShareViewHidden;
 
 
 /**!
@@ -61,7 +62,14 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @ brief  swpShareSetTripartiteFrameworkShareTypes    ( 设置 三方分享type )
  */
-- (SwpShareView *(^)(NSArray *tripartiteFrameworkShareTypes))swpShareSetTripartiteFrameworkShareTypes;
+- (__kindof SwpShareView *(^)(NSArray *tripartiteFrameworkShareTypes))swpShareSetTripartiteFrameworkShareTypes;
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareItemType   ( 隐藏 未安装 App )
+ */
+- (__kindof SwpShareView *(^)(SwpShareItemType swpShareItemType))swpShareItemType;
 
 /**!
  *  @ author swp_song
@@ -95,28 +103,28 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @ brief  swpShareTitleSize: ( 设置 分享 title 字体 大小 )
  */
-- (SwpShareView *(^)(CGFloat swpShareTitleSize))swpShareTitleSize;
+- (__kindof SwpShareView *(^)(CGFloat swpShareTitleSize))swpShareTitleSize;
 
 /**!
  *  @ author swp_song
  *
  *  @ brief  swpShareTitle: ( 设置 分享 title )
  */
-- (SwpShareView *(^)(NSString *swpShareTitle))swpShareTitle;
+- (__kindof SwpShareView *(^)(NSString *swpShareTitle))swpShareTitle;
 
 /**
  *  @ author swp_song
  *
  *  @ brief  swpShareTitle: ( 设置 分享 字体 颜色 )
  */
-- (SwpShareView *(^)(UIColor *swpShareTitleColor))swpShareTitleColor;
+- (__kindof SwpShareView *(^)(UIColor *swpShareTitleColor))swpShareTitleColor;
 
 /**
  *  @ author swp_song
  *
  *  @ brief  swpShareTitleFont: ( 设置 分享 字体  )
  */
-- (SwpShareView *(^)(UIFont *swpShareTitleFont))swpShareTitleFont;
+- (__kindof SwpShareView *(^)(UIFont *swpShareTitleFont))swpShareTitleFont;
 
 @end
 

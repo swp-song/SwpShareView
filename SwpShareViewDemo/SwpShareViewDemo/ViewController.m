@@ -49,7 +49,7 @@
     SwpShareModel *teype = [SwpShareModel swpShareWithShareKey:@"custom" setSwpShareTitle:@"自定义" setSwpShareImageName:@"share_custom" setSwpTripartiteFrameworkShareType:@200];
     
     // 添加 自定义 分享 图标
-    swpShareView.swpShareViewCustomItems(@[teype]);
+    swpShareView.swpShareViewCustomItems(@[teype]).swpShareItemType(SwpShareItemTypeEnabled);
     
     // 修改 分享 显示 title 属性
     swpShareView.swpShareTitleSize(15).swpShareTitle(@"分享").swpShareTitleColor([UIColor redColor]);

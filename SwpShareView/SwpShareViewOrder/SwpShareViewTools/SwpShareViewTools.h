@@ -10,6 +10,10 @@
 
 #import <UIKit/UIKit.h>
 
+#import "SwpShareCustomTypes.h"
+
+@class SwpShareModel;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SwpShareViewTools : NSObject
@@ -92,6 +96,19 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)swpShareViewToolsAlphaAnimation:(UIView *)addAnimationView setFromValue:(CGFloat)fromValue setToValue:(CGFloat)toValue animationCompletionBlock:(nullable void(^)(BOOL finished))animationCompletionBlock;
 
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareViewToolsDataAppend:appendData: ( 数据追加 )
+ *
+ *  @ param  originalData
+ *
+ *  @ param  appendData
+ *
+ *  @ return NSArray<SwpShareModel *> *
+ */
++ (NSArray<SwpShareModel *> *)swpShareViewToolsDataAppend:(NSArray<SwpShareModel *> *)originalData appendData:(NSArray<SwpShareModel *> *)appendData;
+
 /**
  *  @ author swp_song
  *
@@ -104,6 +121,20 @@ NS_ASSUME_NONNULL_BEGIN
  *  @ return CGRect
  */
 + (CGRect)swpShareViewToolsCalculateFrame:(NSInteger)dataCount viewWidth:(CGFloat)width;
+
+
+/**!
+ *  @ author swp_song
+ *
+ *  @ brief  swpShareViewToolsSwpShareItemTypeDataProcessing:   ( 数据追加 )
+ *
+ *  @ param  swpShares
+ *
+ *  @ param  swpShareItemType
+ *
+ *  @ return NSArray<SwpShareModel *>
+ */
++ (NSArray<SwpShareModel *> *)swpShareViewToolsSwpShareItemTypeDataProcessing:(NSArray<SwpShareModel *> *)swpShares swpShareItemType:(SwpShareItemType)swpShareItemType;
 
 @end
 
