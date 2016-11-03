@@ -469,7 +469,7 @@
 				DEVELOPMENT_TEAM = 3YF9H349G2;
 				INFOPLIST_FILE = SwpShareViewDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "swp-song.SwpShareViewDemo";
+				PRODUCT_BUNDLE_IDENTIFIER = com.youdro.;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "8c8a2dad-34a0-4fe3-8dab-b2f094bb980f";
 				PROVISIONING_PROFILE_SPECIFIER = youdroAll;
@@ -484,7 +484,7 @@
 				DEVELOPMENT_TEAM = 3YF9H349G2;
 				INFOPLIST_FILE = SwpShareViewDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "swp-song.SwpShareViewDemo";
+				PRODUCT_BUNDLE_IDENTIFIER = com.youdro.;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "8c8a2dad-34a0-4fe3-8dab-b2f094bb980f";
 				PROVISIONING_PROFILE_SPECIFIER = youdroAll;
