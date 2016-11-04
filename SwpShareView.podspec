@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                  = "SwpShareView"
-  s.version               = "1.1.4"
+  s.version               = "1.1.5"
   s.ios.deployment_target = '7.0'
   s.summary               = "分享样式 自定义 UI "
   s.homepage              = "https://github.com/swp-song/SwpShareView"

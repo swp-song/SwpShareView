@@ -138,12 +138,12 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
 - (__kindof SwpShareView *(^)(NSArray<SwpShareModel *> *swpShareCustomItems))swpShareViewCustomItems {
     return ^SwpShareView *(NSArray<SwpShareModel *> *swpShareCustomItems) {
         self.swpShares = [SwpShareViewTools swpShareViewToolsDataAppend:self.swpShares appendData:swpShareCustomItems];
-        self.swpShareListView.swpShareCustomItems(self.swpShares);
+        self.swpShareListView.swpShares(self.swpShares);
         return self;
     };
 }
 
-/**
+/**!
  *  @ author swp_song
  *
  *  @ brief  swpShareViewHidden:    ( 关闭 swpShareView  )

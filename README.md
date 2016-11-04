@@ -17,6 +17,13 @@ UM 6.0 以后 分享的 view 难看的要死 ( 如果用了, 不保证 不被客
 
 ```ruby
 
+
+导入：
+
+SwpShareView 文件夹 导入 项目 中, 依赖  pop 以上版本, 需要手动导入 pop 库文件
+
+#import "SwpShareView.h"
+
 CocoaPods 导入:
 
 使用  CocoaPods 会自动 pod POP
@@ -49,9 +56,21 @@ swpShareView.delegate = self;
     NSLog(@"%@", swpShare.swpShareKey);
 }
 
+
+PS: 需要检索 是否 安装应用 请在 Info.plist 加入 白名单
+
 ....更多查看源码....
 
 ```
+
+--
+##### 1.1.5 更新:
+```
+1. 2016-11-04
+2. 解决 已知 BUG
+
+```
+
 ---
 
 ##### 1.1.4 更新:

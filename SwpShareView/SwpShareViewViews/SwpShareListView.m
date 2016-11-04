@@ -241,19 +241,6 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
     };
 }
 
-/**!
- *  @ author swp_song
- *
- *  @ brief  swpShareCustomItems: (  设置 追加 自定义 数据  )
- */
-- (SwpShareListView *(^)(NSArray<SwpShareModel *> *swpShareCustomItems))swpShareCustomItems {
-    return ^SwpShareListView *(NSArray<SwpShareModel *> *swpShareCustomItems) {
-        _swpShareListDatas = [self swpShareDataAppend:_swpShareListDatas appendData:swpShareCustomItems];
-        [self reloadData];
-        return self;
-    };
-}
-
 #pragma mark - Init UI Methods
 - (UICollectionViewFlowLayout *)swpShareListFlowLayout {
     
