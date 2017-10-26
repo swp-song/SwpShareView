@@ -18,31 +18,31 @@ NS_ASSUME_NONNULL_BEGIN
 
 @optional
 
-/**!
- *  @ author swp_song
+/**
+ *  @author swp_song
  *
- *  @ brief  swpShareListView:didSelectItemAtIndexPath:swpShare:swpShareKey ( swpShareListView 代理方法 点击 cell 时 调用 )
+ *  @brief  swpShareListView:didSelectItemAtIndexPath:swpShare:swpShareKey: ( SwpShareListView 代理方法，点击 Cell 时调用 )
  *
- *  @ param  swpShareListView
+ *  @param  swpShareListView    swpShareListView
  *
- *  @ param  indexPath
+ *  @param  indexPath           indexPath
  *
- *  @ param  swpShare
+ *  @param  swpShare            swpShare
  *
- *  @ param  swpShareKey
+ *  @param  swpShareKey         swpShareKey
  */
 - (void)swpShareListView:(SwpShareListView *)swpShareListView didSelectItemAtIndexPath:(NSIndexPath *)indexPath swpShare:(SwpShareModel *)swpShare swpShareKey:(NSString *)swpShareKey;
 
-/**!
- *  @ author swp_song
+/**
+ *  @author swp_song
  *
- *  @ brief  swpShareListView:tripartiteFrameworkShareType: ( swpShareListView 代理方法 获取 三方框架 分享类型 )
+ *  @brief  swpShareListView:tripartiteFrameworkShareType: ( SwpShareListView 代理方法，获取三方框架分享类型 )
  *
- *  @ param  swpShareListView
+ *  @param  swpShareListView    swpShareListView
  *
- *  @ param  index
+ *  @param  index               index
  *
- *  @ return id
+ *  @return id                  id
  */
 - (id)swpShareListView:(SwpShareListView *)swpShareListView tripartiteFrameworkShareType:(NSInteger)index;
 
@@ -50,25 +50,25 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SwpShareListView : UICollectionView
 
-/**!
- *  @ author swp_song
+/**
+ *  @author swp_song
  *
- *  @ brief  initSwpShareListViewWithFrame: ( 初始化 数据 )
+ *  @brief  initSwpShareListViewWithFrame:  ( 快速初始化 )
  *
- *  @ param  frame
+ *  @param  frame   frame
  *
- *  @ return SwpShareListView
+ *  @return SwpShareListView
  */
 - (instancetype)initSwpShareListViewWithFrame:(CGRect)frame;
 
-/**!
- *  @ author swp_song
+/**
+ *  @author swp_song
  *
- *  @ brief  swpShares: ( 设置 数据  )
+ *  @brief  swpShares:  ( 设置数据 )
  */
 - (SwpShareListView *(^)(NSArray<SwpShareModel *> *))swpShares;
 
-/*! 代理属性 !*/
+/* 代理属性 */
 @property (nullable, nonatomic, weak) id<SwpShareListViewDelegate>swpShareListViewDelegate;
 
 

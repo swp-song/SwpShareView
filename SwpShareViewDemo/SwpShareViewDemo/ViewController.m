@@ -33,37 +33,33 @@
 
 - (IBAction)clickButton:(UIButton *)button {
 
-    SwpShareView *swpShareView = [SwpShareView swpShareViewShowWithData:@[
-                                                                          SwpShareToQQ,
-                                                                          SwpShareToQzone,
-                                                                          SwpShareToTencent,
-                                                                          SwpShareToWechatSession,
-                                                                          SwpShareToWechatTimeline,
-                                                                          SwpShareToSina,
-                                                                          SwpShareToCopyURL,
-                                                                          ]
-                                                            setDelegate:self];
+
     
-    
-    // 自定义 分享图标
+
+    // 自定义分享图标
     SwpShareModel *teype = [SwpShareModel swpShareWithShareKey:@"custom" setSwpShareTitle:@"自定义" setSwpShareImageName:@"share_custom" setSwpTripartiteFrameworkShareType:@200];
     
-    // 添加 自定义 分享 图标
-    swpShareView.swpShareViewCustomItems(@[teype]).swpShareItemType(SwpShareItemTypeEnabled);
+    NSArray *datas =  @[SwpShareToQQ, SwpShareToQzone, SwpShareToTencent, SwpShareToWechatSession, SwpShareToWechatTimeline, SwpShareToSina, SwpShareToCopyURL];
     
-    // 修改 分享 显示 title 属性
-    swpShareView.swpShareTitleSize(15).swpShareTitle(@"分享").swpShareTitleColor([UIColor redColor]);
-    
-    // 点击分享 图标 Block 回调
-    [swpShareView swpShareListViewDidSelectIndexBlock:^(SwpShareView * _Nonnull swpShareView, NSInteger didSelectIndex, SwpShareModel * _Nonnull swpShare) {
+    SwpShareView.swpShareViewShowInitWithDelegate(datas, self)
+    // 追加自定义 item
+    .swpShareViewCustomItems(@[teype])
+    // 未安装软件处理
+    .swpShareItemType(SwpShareItemTypeEnabled)
+    // Title 字体大小
+    .swpShareTitleSize(15)
+    // 文字
+    .swpShareTitle(@"分享")
+    // item 点击回调
+    .swpShareListViewDidSelectIndexBlockChain(^(SwpShareView *swpShareView, NSInteger didSelectIndex, SwpShareModel *swpShare){
         NSLog(@"%@", swpShare.swpShareKey);
-    }];
-    
-    // 页面关闭 Block 回调
-    [swpShareView swpShareViewCloseBlock:^(SwpShareView * _Nonnull swpShareView, SwpShareModel * _Nonnull swpShare) {
+    })
+    // 页面关闭回调
+    .swpShareViewCloseBlockChain(^(SwpShareView *swpShareView, SwpShareModel *swpShare){
         NSLog(@"Block 页面关闭了");
         NSLog(@"%@", swpShare.swpShareKey);
-    }];
+    });
+
 }
 
 

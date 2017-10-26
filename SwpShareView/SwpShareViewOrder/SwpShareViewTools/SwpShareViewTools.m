@@ -9,65 +9,65 @@
 #import "SwpShareViewTools.h"
 
 
-/*! ---------------------- Tool       ---------------------- !*/
+/* ---------------------- Tool       ---------------------- */
 #import "POP.h"                       // POP
-/*! ---------------------- Tool       ---------------------- !*/
+/* ---------------------- Tool       ---------------------- */
 
-/*! ---------------------- Controller ---------------------- !*/
-/*! ---------------------- Controller ---------------------- !*/
+/* ---------------------- Controller ---------------------- */
+/* ---------------------- Controller ---------------------- */
 
-/*! ---------------------- View       ---------------------- !*/
-/*! ---------------------- View       ---------------------- !*/
+/* ---------------------- View       ---------------------- */
+/* ---------------------- View       ---------------------- */
 
-/*! ---------------------- Model      ---------------------- !*/
+/* ---------------------- Model      ---------------------- */
 #import "SwpShareModel.h"
 #import "SwpShareConstants.h"
-/*! ---------------------- Model      ---------------------- !*/
+/* ---------------------- Model      ---------------------- */
 
 @implementation SwpShareViewTools
 
-/**!
- *  @ author swp_song
+/**
+ *  @author swp_song
  *
- *  @ brief  swpShareViewToolsScreenWidth ( 取出 设备 实际的宽度值 )
+ *  @brief  swpShareViewToolsScreenWidth    ( 获取设备宽度 )
  *
- *  @ return CGFloat
+ *  @return CGFloat
  */
 + (CGFloat)swpShareViewToolsScreenWidth {
-    return [[UIScreen mainScreen] bounds].size.width;
+    return UIScreen.mainScreen.bounds.size.width;
 }
 
-/**!
- *  @ author swp_song
+/**
+ *  @author swp_song
  *
- *  @ brief  swpShareViewToolsScreenHeight     ( 取出 设备 实际的高度值 )
+ *  @brief  swpShareViewToolsScreenHeight   ( 获取设备宽高 )
  *
- *  @ return CGFloat
+ *  @return CGFloat
  */
 + (CGFloat)swpShareViewToolsScreenHeight {
-    return [[UIScreen mainScreen] bounds].size.height;
+    return UIScreen.mainScreen.bounds.size.height;
 }
 
 
-/**!
- *  @ author swp_song
+/**
+ *  @author swp_song
  *
- *  @ brief  swpShareViewToolsMainScreen    ( 取出 设备 实际 frame )
+ *  @brief  swpShareViewToolsMainScreen ( 获取设备 bounds )
  *
- *  @ return CGRect
+ *  @return CGRect
  */
 + (CGRect)swpShareViewToolsMainScreen {
     return UIScreen.mainScreen.bounds;
 }
 
-/**!
- *  @ author swp_song
+/**
+ *  @author swp_song
  *
- *  @ brief  swpShareViewToolsCheckFrame:    ( 验证 frame 大小 )
+ *  @brief  swpShareViewToolsCheckFrame:    ( 验证 frame 大小 )
  *
- *  @ param  frame
+ *  @param  frame   frame
  *
- *  @ return CGRect
+ *  @return CGRect
  */
 + (CGRect)swpShareViewToolsCheckFrame:(CGRect)frame {
     if ([SwpShareViewTools swpShareViewToolsScreenHeight] < frame.size.height) {
@@ -81,14 +81,14 @@
     return frame;
 }
 
-/**!
- *  @ author swp_song
+/**
+ *  @author swp_song
  *
- *  @ brief  swpShareViewToolsDataProcessing: ( 数据 处理 )
+ *  @brief  swpShareViewToolsDataProcessing:    ( 数据处理 )
  *
- *  @ param  data
+ *  @param  data    data
  *
- *  @ return NSArray<NSDictionary *>
+ *  @return NSArray
  */
 + (NSArray<NSDictionary *> *)swpShareViewToolsDataProcessing:(NSArray<NSString *> *)data {
     NSMutableArray *dictionarys = [NSMutableArray array];
@@ -104,18 +104,18 @@
     return dictionarys.copy;
 }
 
-/**!
- *  @ author swp_song
+/**
+ *  @author swp_song
  *
- *  @ brief  swpShareViewToolsSetLabelWith:setTitle:setFontSize:setTitleColor:  ( 设置 label 公共 属性 )
+ *  @brief  swpShareViewToolsSetLabelWith:setTitle:setFontSize:setTitleColor:   ( 设置 label 公共属性 )
  *
- *  @ param  label
+ *  @param  label       label
  *
- *  @ param  title
+ *  @param  title       title
  *
- *  @ param  fontSize
+ *  @param  fontSize    fontSize
  *
- *  @ param  titleColor
+ *  @param  titleColor  titleColor
  */
 + (void)swpShareViewToolsSetLabelWith:(UILabel *)label setTitle:(NSString *)title setFontSize:(CGFloat)fontSize  setTitleColor:(UIColor *)titleColor {
     label.font      = [UIFont fontWithName:@"GillSans-Italic" size:fontSize];
@@ -124,18 +124,18 @@
 }
 
 
-/**!
- *  @ author swp_song
+/**
+ *  @author swp_song
  *
- *  @ brief  swpShareViewToolsCenterAnimation:setFromValue:setToValue:animationCompletionBlock: ( View Center 动画 效果 )
+ *  @brief  swpShareViewToolsCenterAnimation:setFromValue:setToValue:animationCompletionBlock:  ( View Center 动画 效果 )
  *
- *  @ param  addAnimationView
+ *  @param  addAnimationView            addAnimationView
  *
- *  @ param  fromValue
+ *  @param  fromValue                   fromValue
  *
- *  @ param  toValue
+ *  @param  toValue                     toValue
  *
- *  @ param  animationCompletionBlock
+ *  @param  animationCompletionBlock    animationCompletionBlock
  */
 + (void)swpShareViewToolsCenterAnimation:(UIView *)addAnimationView setFromValue:(CGPoint)fromValue setToValue:(CGPoint)toValue animationCompletionBlock:(void(^)(BOOL finished))animationCompletionBlock {
     
@@ -150,18 +150,18 @@
     [addAnimationView pop_addAnimation:springAnimation forKey:nil];
 }
 
-/**!
- *  @ author swp_song
+/**
+ *  @author swp_song
  *
- *  @ brief  swpShareViewToolsAlphaAnimation:setFromValue:setToValue:animationCompletionBlock: ( View Alpha 动画 效果 )
+ *  @brief  swpShareViewToolsAlphaAnimation:setFromValue:setToValue:animationCompletionBlock:   ( View Alpha 动画 效果 )
  *
- *  @ param  addAnimationView
+ *  @param  addAnimationView            addAnimationView
  *
- *  @ param  fromValue
+ *  @param  fromValue                   fromValue
  *
- *  @ param  toValue
+ *  @param  toValue                     toValue
  *
- *  @ param  animationCompletionBlock
+ *  @param  animationCompletionBlock    animationCompletionBlock
  */
 + (void)swpShareViewToolsAlphaAnimation:(UIView *)addAnimationView setFromValue:(CGFloat)fromValue setToValue:(CGFloat)toValue animationCompletionBlock:(void(^)(BOOL finished))animationCompletionBlock {
     
@@ -174,16 +174,16 @@
     [addAnimationView pop_addAnimation:positionAnimation forKey:nil];
 }
 
-/**!
- *  @ author swp_song
+/**
+ *  @author swp_song
  *
- *  @ brief  swpShareViewToolsDataAppend:appendData: ( 数据追加 )
+ *  @brief  swpShareViewToolsDataAppend:appendData: ( 数据追加 )
  *
- *  @ param  originalData
+ *  @param  originalData    originalData
  *
- *  @ param  appendData
+ *  @param  appendData      appendData
  *
- *  @ return NSArray<SwpShareModel *> *
+ *  @return NSArray
  */
 + (NSArray<SwpShareModel *> *)swpShareViewToolsDataAppend:(NSArray<SwpShareModel *> *)originalData appendData:(NSArray<SwpShareModel *> *)appendData {
     
@@ -195,16 +195,16 @@
 }
 
 
-/**!
- *  @ author swp_song
+/**
+ *  @author swp_song
  *
- *  @ brief  swpShareViewToolsSwpShareItemTypeDataProcessing:   ( 数据追加 )
+ *  @brief  swpShareViewToolsSwpShareItemTypeDataProcessing:    ( 分享类型数据处理 )
  *
- *  @ param  swpShares
+ *  @param  swpShares               swpShares
  *
- *  @ param  swpShareItemType
+ *  @param  swpShareItemType        swpShareItemType
  *
- *  @ return NSArray<SwpShareModel *>
+ *  @return NSArray
  */
 + (NSArray<SwpShareModel *> *)swpShareViewToolsSwpShareItemTypeDataProcessing:(NSArray<SwpShareModel *> *)swpShares swpShareItemType:(SwpShareItemType)swpShareItemType {
     
@@ -239,18 +239,16 @@
 
 
 
-
-
-/**!
- *  @ author swp_song
+/**
+ *  @author swp_song
  *
- *  @ brief  swpShareViewToolsCalculateFrame:viewWidth: ( 计算 view frame )
+ *  @brief  swpShareViewToolsCalculateFrame:viewWidth:  ( 计算 View Frame )
  *
- *  @ param  dataCount
+ *  @param  dataCount   dataCount
  *
- *  @ param  width
+ *  @param  width       width
  *
- *  @ return CGRect
+ *  @return CGRect
  */
 + (CGRect)swpShareViewToolsCalculateFrame:(NSInteger)dataCount viewWidth:(CGFloat)width {
     NSInteger column        = dataCount % 4 ? dataCount / 4 + 1 : dataCount / 4;
@@ -264,26 +262,28 @@
 
 #pragma mark - Private 
 
-/**!
- *  @ author swp_song
+/**
+ *  @author swp_song
  *
- *  @ brief  swpShareViewToolsCanOpenURL:   ( 验证 是否 安装 App )
+ *  @brief  swpShareViewToolsCanOpenURL:   ( 验证是否安装 App )
  *
- *  @ param  canOpenURL
+ *  @param  canOpenURL  canOpenURL
  *
- *  @ return BOOL
+ *  @return BOOL
  */
 + (BOOL)swpShareViewToolsCanOpenURL:(NSString *)canOpenURL {
-    return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:canOpenURL]];
+    return [UIApplication.sharedApplication canOpenURL:[NSURL URLWithString:canOpenURL]];
 }
 
 
-/**!
- *  @ author swp_song
+/**
+ *  @author swp_song
  *
- *  @ brief  swpShareViewToolsHideShareItem:    ( 隐藏 未安装 App图标 )
+ *  @brief  swpShareViewToolsHideShareItem: ( 隐藏未安装 App 图标 )
  *
- *  @ param  swpShares
+ *  @param  swpShares   swpShares
+ *
+ *  @return NSMutableArray
  */
 + (NSMutableArray<SwpShareModel *> *)swpShareViewToolsHideShareItem:(NSArray<SwpShareModel *> *)swpShares {
     
@@ -306,12 +306,14 @@
     return models;
 }
 
-/**!
- *  @ author swp_song
+/**
+ *  @author swp_song
  *
- *  @ brief  swpShareViewToolsEnabledShareItem:    ( 设置 是否 开启 item  )
+ *  @brief  swpShareViewToolsEnabledShareItem:  ( 设置是否开启 item  )
  *
- *  @ param  swpShares
+ *  @param  swpShares   swpShares
+ *
+ *  @return NSMutableArray
  */
 + (NSMutableArray<SwpShareModel *> *)swpShareViewToolsEnabledShareItem:(NSArray<SwpShareModel *> *)swpShares {
     
@@ -339,6 +341,53 @@
     }];
     
     return models;
+}
+
+/**
+ *  @author swp_song
+ *
+ *  @brief  swpShareViewToolsSetTapGestureRecognizer:setViewTag:setClickCount:setTarget:setAction:setCancelsTouchesInView:    ( 绑定 一个 点击事件 给一个 view )
+ *
+ *  @param  view        view
+ *
+ *  @param  tag         tag
+ *
+ *  @param  count       count
+ *
+ *  @param  target      target
+ *
+ *  @param  action      action
+ *
+ *  @param  cancels     cancels
+ *
+ *  @return UITapGestureRecognizer
+ */
++ (UITapGestureRecognizer *)swpShareViewToolsSetTapGestureRecognizer:(UIView *)view setViewTag:(NSInteger)tag setClickCount:(NSInteger)count setTarget:(id)target setAction:(SEL)action setCancelsTouchesInView:(BOOL)cancels {
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
+    tap.numberOfTapsRequired    = count;
+    tap.cancelsTouchesInView    = cancels;
+    view.tag                    = tag;
+    [tap addTarget:target action:action];
+    view.userInteractionEnabled = YES;
+    [view addGestureRecognizer:tap];
+    return tap;
+}
+
+/**
+ *  @author swp_song
+ *
+ *  @brief  swpShareViewToolsCreateToolbarCover:    ( 创建遮罩 )
+ *
+ *  @param  frame   frame
+ *
+ *  @return UIToolbar
+ */
++ (UIToolbar *)swpShareViewToolsCreateToolbarCover:(CGRect)frame {
+    UIToolbar *toolBar = [UIToolbar new];
+    toolBar.barStyle = UIBarStyleBlack;
+    toolBar.userInteractionEnabled = YES;
+    toolBar.frame    = frame;
+    return toolBar;
 }
 
 

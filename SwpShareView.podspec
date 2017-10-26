@@ -1,15 +1,38 @@
+#
+# Be sure to run `pod lib lint SwpShareView.podspec' to ensure this is a
+# valid spec before submitting.
+#
+# Any lines starting with a # are optional, but their use is encouraged
+# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
+#
+
 Pod::Spec.new do |s|
-  s.name                  = "SwpShareView"
-  s.version               = "1.1.5"
-  s.ios.deployment_target = '7.0'
-  s.summary               = "分享样式 自定义 UI "
-  s.homepage              = "https://github.com/swp-song/SwpShareView"
-  s.license               = { :type => "MIT", :file => "LICENSE" }
-  s.author                = { "swp-song" => "396587868@qq.com" }
-  s.source                = { :git => "https://github.com/swp-song/SwpShareView.git", :tag => s.version }
-  s.requires_arc          = true
-  s.source_files          = "SwpShareView/**/*.{h,m}"
-  s.resource              = "SwpShareView/SwpShareViewResources/SwpShareView.bundle"
-  s.framework             = "UIKit", "Foundation"
+  s.name             = 'SwpShareView'
+  s.version          = '2.0.1'
+  s.summary          = " 分享样式自定义 UI  "
+
+  # This description is used to generate tags and improve search results.
+  #   * Think: What does it do? Why did you write it? What is the focus?
+  #   * Try to keep it short, snappy and to the point.
+  #   * Write the description between the DESC delimiters below.
+  #   * Finally, don't worry about the indent, CocoaPods strips it!
+
+  s.description      = <<-DESC
+  TODO: 分享样式自定义 UI
+                       DESC
+
+  s.homepage         = 'https://github.com/swp-song/SwpShareView'
+  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
+  s.license          = { :type => 'MIT', :file => 'LICENSE' }
+  s.author           = { 'swp-song' => '396587868@qq.com' }
+  s.source           = { :git => 'https://github.com/swp-song/SwpShareView.git', :tag => s.version.to_s }
+  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+
+
+  s.requires_arc     = true
+  s.source_files     = "SwpShareView/**/*.{h,m}"
+  s.resource         = "SwpShareView/SwpShareViewResources/SwpShareView.bundle"
+  s.frameworks       = 'UIKit', 'MapKit'
   s.dependency "pop"
+
 end

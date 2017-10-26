@@ -8,48 +8,48 @@
 
 #import "SwpShareViewCell.h"
 
-/*! ---------------------- Tool       ---------------------- !*/
+/* ---------------------- Tool       ---------------------- */
 #import "SwpShareViewTools.h"               //  工具
 #import "UIView+SwpShareView.h"             //  View 分类
-/*! ---------------------- Tool       ---------------------- !*/
+/* ---------------------- Tool       ---------------------- */
 
-/*! ---------------------- Controller ---------------------- !*/
-/*! ---------------------- Controller ---------------------- !*/
+/* ---------------------- Controller ---------------------- */
+/* ---------------------- Controller ---------------------- */
 
-/*! ---------------------- View       ---------------------- !*/
-/*! ---------------------- View       ---------------------- !*/
+/* ---------------------- View       ---------------------- */
+/* ---------------------- View       ---------------------- */
 
-/*! ---------------------- Model      ---------------------- !*/
+/* ---------------------- Model      ---------------------- */
 #import "SwpShareModel.h"                   //  分享 数据模型
-/*! ---------------------- Model      ---------------------- !*/
+/* ---------------------- Model      ---------------------- */
 
 @interface SwpShareViewCell ()
 
 #pragma mark - UI   Propertys
-/*! ---------------------- UI   Property  ---------------------- !*/
-/*! 显示 分享 图片 view !*/
+/* ---------------------- UI   Property  ---------------------- */
+/* 显示 分享 图片 view */
 @property (nonatomic, strong) UILabel     *swpShareTitleView;
-/*! 显示 分享 文字 view !*/
+/* 显示 分享 文字 view */
 @property (nonatomic, strong) UIImageView *swpShareImageView;
-/*! ---------------------- UI   Property  ---------------------- !*/
+/* ---------------------- UI   Property  ---------------------- */
 
 #pragma mark - Data Propertys
-/*! ---------------------- Data Property  ---------------------- !*/
+/* ---------------------- Data Property  ---------------------- */
 
-/*! ---------------------- Data Property  ---------------------- !*/
+/* ---------------------- Data Property  ---------------------- */
 
 @end
 
 @implementation SwpShareViewCell
 
-/**!
- *  @ author swp_song
+/**
+ *  @author swp_song
  *
- *  @ brief  initWithFrame:  ( Override Init )
+ *  @brief  initWithFrame:  ( Override Init )
  *
- *  @ param  frame
+ *  @param  frame   frame
  *
- *  @ return SwpShareViewCell
+ *  @return SwpShareViewCell
  */
 - (instancetype)initWithFrame:(CGRect)frame {
     
@@ -61,10 +61,11 @@
 }
 
 
-/**!
- *  @ author swp_song
+
+/**
+ *  @author swp_song
  *
- *  @ brief  setUpUI ( 添加控件 )
+ *  @brief  setUpUI ( 添加控件 )
  */
 - (void)setUpUI {
     
@@ -72,25 +73,27 @@
     [self.contentView addSubview:self.swpShareImageView];
 }
 
-/**!
- *  @ author swp_song
+/**
+ *  @author swp_song
  *
- *  @ brief  setUIFrame ( 设置控件的自动布局 )
+ *  @brief  setUIFrame ( 设置控件的自动布局 )
  */
 - (void)setUIFrame:(CGRect)frame {
-    _swpShareImageView.frame = CGRectMake(5, 5, self.contentView.width - 10, self.contentView.width - 10);
-    _swpShareTitleView.frame = CGRectMake(0, self.contentView.height - 20, self.contentView.width, 20);
+    self.swpShareImageView.frame = CGRectMake(5, 5, self.contentView.width - 10, self.contentView.width - 10);
+    self.swpShareTitleView.frame = CGRectMake(0, self.contentView.height - 20, self.contentView.width, 20);
+    self.swpShareImageView.layer.cornerRadius  = self.swpShareImageView.frame.size.width / 2.0;
+    self.swpShareImageView.layer.masksToBounds = YES;
     
 }
 
 #pragma mark - Public Methods
 
-/**!
- *  @ author swp_song
+/**
+ *  @author swp_song
  *
- *  @ brief  setSwpShare:   ( Override Setter )
+ *  @brief  setSwpShare:    ( Override Setter )
  *
- *  @ param  swpShare
+ *  @param  swpShare    swpShare
  */
 - (void)setSwpShare:(SwpShareModel *)swpShare {
     _swpShare               = swpShare;
@@ -100,17 +103,17 @@
 }
 
 
-/**!
- *  @ author swp_song
+/**
+ *  @author swp_song
  *
- *  @ brief  setSetStyles:  ( 设置 文字 和 图片 样式 )
+ *  @brief  setSetStyles:  ( 设置文字和图片样式 )
  *
- *  @ param  swpShare
+ *  @param  swpShare    swpShare
  */
 - (void)setSetStyles:(SwpShareModel *)swpShare {
  
     if (swpShare.isSwpShareEnabled) {
-        _swpShareTitleView.textColor = [UIColor blackColor];
+        _swpShareTitleView.textColor = [UIColor whiteColor];
         _swpShareImageView.image     = [UIImage imageNamed:swpShare.swpShareImageName];
     } else {
         _swpShareTitleView.textColor = [UIColor lightGrayColor];

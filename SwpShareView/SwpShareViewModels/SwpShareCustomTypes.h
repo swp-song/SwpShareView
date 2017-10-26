@@ -10,12 +10,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-// App 隐藏 item
+
+/**
+ - SwpShareItemTypeNormal:      全部显示
+ - SwpShareItemTypeHide:        未安装 App 隐藏
+ - SwpShareItemTypeEnabled:     未安装 App 禁止点击
+ */
 typedef NS_ENUM(NSInteger, SwpShareItemType) {
     
-    SwpShareItemTypeNormal = 0,     // 全部显示
-    SwpShareItemTypeHide,           // 未安装 App 隐藏
-    SwpShareItemTypeEnabled,        // 未安装 App 禁止点击
+    SwpShareItemTypeNormal = 0,
+    SwpShareItemTypeHide,
+    SwpShareItemTypeEnabled,
 };
 
 NS_ASSUME_NONNULL_END

@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SwpShareViewCell : UICollectionViewCell
 
-/*! 分享 数据模型 !*/
+/* 分享数据模型 */
 @property (nonatomic, strong) SwpShareModel *swpShare;
 
 @end

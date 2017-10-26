@@ -1,12 +1,20 @@
 PODS:
-  - pop (1.0.9)
+  - pop (1.0.10)
+  - SwpShareView (2.0.1):
+    - pop
 
 DEPENDENCIES:
   - pop
+  - SwpShareView (from `../`)
+
+EXTERNAL SOURCES:
+  SwpShareView:
+    :path: ../
 
 SPEC CHECKSUMS:
-  pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
+  pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
+  SwpShareView: 3062415e1b225743d6ea3c341f18cad1aba5cd85
 
-PODFILE CHECKSUM: 7500546dbc1cd5305fc23e840be5f9df309e2aa6
+PODFILE CHECKSUM: 3512e0135e97c2d05d72af8112cb4c8a86e5c5c2
 
-COCOAPODS: 1.1.0.rc.2
+COCOAPODS: 1.4.0.beta.2

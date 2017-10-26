@@ -8,20 +8,20 @@
 
 #import "SwpShareListView.h"
 
-/*! ---------------------- Tool       ---------------------- !*/
+/* ---------------------- Tool       ---------------------- */
 #import "UIView+SwpShareView.h"             //  View 分类
-/*! ---------------------- Tool       ---------------------- !*/
+/* ---------------------- Tool       ---------------------- */
 
-/*! ---------------------- Controller ---------------------- !*/
-/*! ---------------------- Controller ---------------------- !*/
+/* ---------------------- Controller ---------------------- */
+/* ---------------------- Controller ---------------------- */
 
-/*! ---------------------- View       ---------------------- !*/
+/* ---------------------- View       ---------------------- */
 #import "SwpShareViewCell.h"                //  显示分享cell
-/*! ---------------------- View       ---------------------- !*/
+/* ---------------------- View       ---------------------- */
 
-/*! ---------------------- Model      ---------------------- !*/
+/* ---------------------- Model      ---------------------- */
 #import "SwpShareModel.h"                   //  分享 数据模型
-/*! ---------------------- Model      ---------------------- !*/
+/* ---------------------- Model      ---------------------- */
 
 
 static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
@@ -29,31 +29,31 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
 @interface SwpShareListView () <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate>
 
 #pragma mark - UI   Propertys
-/*! ---------------------- UI   Property  ---------------------- !*/
-/*! SwpShareListView 布局 文件 !*/
+/* ---------------------- UI   Property  ---------------------- */
+/* SwpShareListView 布局 文件 */
 @property (nonatomic, strong) UICollectionViewFlowLayout *swpShareListFlowLayout;
-/*! ---------------------- UI   Property  ---------------------- !*/
+/* ---------------------- UI   Property  ---------------------- */
 
 #pragma mark - Data Propertys
-/*! ---------------------- Data Property  ---------------------- !*/
-/*! SwpShareListView 数据源     !*/
+/* ---------------------- Data Property  ---------------------- */
+/* SwpShareListView 数据源     */
 @property (nonatomic, copy  ) NSArray<SwpShareModel *> *swpShareListDatas;
-/*! ---------------------- Data Property  ---------------------- !*/
+/* ---------------------- Data Property  ---------------------- */
 
 @end
 
 @implementation SwpShareListView
 
-/**!
- *  @ author swp_song
+/**
+ *  @author swp_song
  *
- *  @ brief  initWithFrame:  ( Override Init )
+ *  @brief  initWithFrame:collectionViewLayout: ( Override Init )
  *
- *  @ param  frame
+ *  @param  frame   frame
  *
- *  @ param  layout
+ *  @param  layout  layout
  *
- *  @ return SwpShareListView
+ *  @return SwpShareListView
  */
 - (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout {
     
@@ -68,45 +68,45 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
 }
 
 #pragma mark - UICollectionView DataSoure Methods
-
-/**!
- *  @ author swp_song
+/**
+ *  @author swp_song
  *
- *  @ brief  numberOfSectionsInCollectionView: ( collectionView 数据源方法 设置 collectionView 分组个数 )
+ *  @brief  numberOfSectionsInCollectionView:   ( CollectionView 数据源方法，设置 CollectionView 分组个数 )
  *
- *  @ param  collectionView
+ *  @param  collectionView  collectionView
  *
- *  @ return NSInteger
+ *  @return NSInteger       NSInteger
  */
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
 
-/**!
- *  @ author swp_song
+
+/**
+ *  @author swp_song
  *
- *  @ brief  collectionView:numberOfItemsInSection: ( collectionView 数据源方法 每组 cell 个数 )
+ *  @brief  collectionView:numberOfItemsInSection:  ( CollectionView 数据源方法，设置 CollectionView 分组中 cell 显示的个数 )
  *
- *  @ param  collectionView
+ *  @param  collectionView  collectionView
  *
- *  @ param  section
+ *  @param  section         section
  *
- *  @ return NSInteger
+ *  @return NSInteger       NSInteger
  */
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.swpShareListDatas.count;
 }
 
-/**!
- *  @ author swp_song
+/**
+ *  @author swp_song
  *
- *  @ brief  collectionView:cellForItemAtIndexPath: ( collectionView 数据源方法 设置 cell 显示的数据 | 样式 )
+ *  @brief  collectionView:cellForItemAtIndexPath:  ( CollectionView 数据源方法，设置 CollectionView 分组中 Cell 显示的数据 | 样式 )
  *
- *  @ param  collectionView
+ *  @param  collectionView          collectionView
  *
- *  @ param  indexPath
+ *  @param  indexPath               indexPath
  *
- *  @ return UICollectionViewCell
+ *  @return UICollectionViewCell    UICollectionViewCell
  */
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     SwpShareViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kSwpShareViewCellID forIndexPath:indexPath];
@@ -118,48 +118,49 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
 
 
 #pragma mark - UICollectionView Delegate Methods
-/**!
- *  @ author swp_song
+/**
+ *  @author swp_song
  *
- *  @ brief  collectionView:layout:sizeForItemAtIndexPath: ( collectionView 代理方法 设置每个 cell size )
+ *  @brief  collectionView:layout:insetForSectionAtIndex:   ( CollectionView 代理方法，设置 CollectionView 每个 cell 上-左-下-右边距 )
  *
- *  @ param  collectionView
+ *  @param  collectionView          collectionView
  *
- *  @ param  collectionViewLayout
+ *  @param  collectionViewLayout    collectionViewLayout
  *
- *  @ param  indexPath
+ *  @param  section                 section
  *
- *  @ return CGSize
- */
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(self.width / 4.0f - 15 , self.width / 4.0f);
-}
-
-/**!
- *  @ author swp_song
- *
- *  @ brief  collectionView:layout:insetForSectionAtIndex: ( collectionView 代理方法 设置 cell 上左下右 边距 )
- *
- *  @ param  collectionView
- *
- *  @ param  collectionViewLayout
- *
- *  @ param  section
- *
- *  @ return UIEdgeInsets
+ *  @return UIEdgeInsets            UIEdgeInsets
  */
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     return UIEdgeInsetsMake(10, 10, 10, 10);
 }
 
-/**!
- *  @ author swp_song
+/**
+ *  @author swp_song
  *
- *  @ brief  collectionView:didSelectItemAtIndexPath:   ( collectionView 代理方法 cell 点击 回调  )
+ *  @brief  collectionView:layout:sizeForItemAtIndexPath:   ( CollectionView 代理方法，设置 CollectionView  每个cell的宽高 )
  *
- *  @ param  collectionView
+ *  @param  collectionView          collectionView
  *
- *  @ param  indexPath
+ *  @param  collectionViewLayout    collectionViewLayout
+ *
+ *  @param  indexPath               indexPath
+ *
+ *  @return CGSize
+ */
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return CGSizeMake(self.width / 4.0f - 15 , self.width / 4.0f);
+}
+
+
+/**
+ *  @author swp_song
+ *
+ *  @brief  collectionView:didSelectItemAtIndexPath:    ( CollectionView 代理方法 cell 点击调用  )
+ *
+ *  @param  collectionView  collectionView
+ *
+ *  @param  indexPath       indexPath
  */
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -171,16 +172,16 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
 
 #pragma mark - Private Methods
 
-/**!
- *  @ author swp_song
+/**
+ *  @author swp_song
  *
- *  @ brief  swpShareDataProcessing:setTripartiteFrameworkShareType:    ( SwpShareModel 数据 处理 )
+ *  @brief  swpShareDataProcessing:setTripartiteFrameworkShareType:    ( SwpShareModel 数据 处理 )
  *
- *  @ param  swpShare
+ *  @param  swpShare        swpShare
  *
- *  @ param  index
+ *  @param  index           index
  *
- *  @ return SwpShareModel
+ *  @return SwpShareModel   SwpShareModel
  */
 - (SwpShareModel *)swpShareDataProcessing:(SwpShareModel *)swpShare setTripartiteFrameworkShareType:(NSInteger)index {
     id tripartiteFrameworkShareType = [self.swpShareListViewDelegate swpShareListView:self tripartiteFrameworkShareType:index];
@@ -190,16 +191,16 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
     return swpShare;
 }
 
-/**!
- *  @ author swp_song
+/**
+ *  @author swp_song
  *
- *  @ brief  swpShareDataAppend:appendData: ( 数据追加 )
+ *  @brief  swpShareDataAppend:appendData: ( 数据追加 )
  *
- *  @ param  originalData
+ *  @param  originalData    originalData
  *
- *  @ param  appendData
+ *  @param  appendData      appendData
  *
- *  @ return NSArray<SwpShareModel *> *
+ *  @return NSArray
  */
 - (NSArray<SwpShareModel *> *)swpShareDataAppend:(NSArray<SwpShareModel *> *)originalData appendData:(NSArray<SwpShareModel *> *)appendData {
     
@@ -211,15 +212,14 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
 }
 
 #pragma mark - Public Methods
-
-/**!
- *  @ author swp_song
+/**
+ *  @author swp_song
  *
- *  @ brief  initSwpShareListViewWithFrame: ( 初始化 数据 )
+ *  @brief  initSwpShareListViewWithFrame:  ( 快速初始化 )
  *
- *  @ param  frame
+ *  @param  frame   frame
  *
- *  @ return SwpShareListView
+ *  @return SwpShareListView
  */
 - (instancetype)initSwpShareListViewWithFrame:(CGRect)frame {
     SwpShareListView *swpShareListView = [[SwpShareListView alloc] initWithFrame:frame collectionViewLayout:self.swpShareListFlowLayout];
@@ -227,10 +227,10 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
 }
 
 
-/**!
- *  @ author swp_song
+/**
+ *  @author swp_song
  *
- *  @ brief  swpShares: ( 设置 数据  )
+ *  @brief  swpShares:  ( 设置数据 )
  */
 - (SwpShareListView *(^)(NSArray<SwpShareModel *> *))swpShares {
 

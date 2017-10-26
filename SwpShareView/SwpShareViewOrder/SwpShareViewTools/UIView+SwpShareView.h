@@ -11,21 +11,21 @@
 NS_ASSUME_NONNULL_BEGIN
 @interface UIView (SwpShareView)
 
-/*! x值       !*/
+/* x值       */
 @property (nonatomic, assign) CGFloat x;
-/*! y值       !*/
+/* y值       */
 @property (nonatomic, assign) CGFloat y;
-/*! 中心x     !*/
+/* 中心x     */
 @property (nonatomic, assign) CGFloat centerX;
-/*! 中心y     !*/
+/* 中心y     */
 @property (nonatomic, assign) CGFloat centerY;
-/*! 宽度      !*/
+/* 宽度      */
 @property (nonatomic, assign) CGFloat width;
-/*! 高度      !*/
+/* 高度      */
 @property (nonatomic, assign) CGFloat height;
-/*! 宽高      !*/
+/* 宽高      */
 @property (nonatomic, assign) CGSize  size;
-/*! 起点 x, y !*/
+/* 起点 x, y */
 @property (nonatomic, assign) CGPoint origin;
  
 
