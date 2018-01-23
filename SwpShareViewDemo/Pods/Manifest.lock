@@ -1,6 +1,6 @@
 PODS:
   - pop (1.0.10)
-  - SwpShareView (2.0.3):
+  - SwpShareView (2.0.4):
     - pop
 
 DEPENDENCIES:
@@ -13,7 +13,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
-  SwpShareView: 8bd2b08ba82128a5b3057687677b5477b9d83e01
+  SwpShareView: bd6147f1f626c699e948bb77b1f04e1de3d759fd
 
 PODFILE CHECKSUM: 3512e0135e97c2d05d72af8112cb4c8a86e5c5c2
 
