@@ -11,6 +11,9 @@ target 'SwpShareViewDemo' do
 
   # Pods for SwpShareViewDemo
   
+  
+    inhibit_all_warnings!
+    
     pod 'pop'
     
     pod 'SwpShareView', :path => '../'

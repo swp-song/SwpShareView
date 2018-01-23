@@ -81,8 +81,8 @@ SwpShareView.swpShareViewShowInitWithDelegate(datas, self)
 
 -------
 
-> * 版本版本：2.0.4
-> * 更新时间：2018-01-23 16:39:34
+> * 版本版本：2.0.5
+> * 更新时间：2018-01-23 17:00:56
 > * 更新内容：
 > 
 > > * 更新版本号
