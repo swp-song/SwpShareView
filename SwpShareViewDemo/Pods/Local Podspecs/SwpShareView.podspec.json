@@ -1,6 +1,6 @@
 {
   "name": "SwpShareView",
-  "version": "2.0.1",
+  "version": "2.0.3",
   "summary": "分享样式自定义 UI",
   "description": "TODO: 分享样式自定义 UI",
   "homepage": "https://github.com/swp-song/SwpShareView",
@@ -13,7 +13,10 @@
   },
   "source": {
     "git": "https://github.com/swp-song/SwpShareView.git",
-    "tag": "2.0.1"
+    "tag": "2.0.3"
+  },
+  "platforms": {
+    "ios": "8.0"
   },
   "requires_arc": true,
   "source_files": "SwpShareView/**/*.{h,m}",
@@ -26,11 +29,5 @@
     "pop": [
 
     ]
-  },
-  "platforms": {
-    "osx": null,
-    "ios": null,
-    "tvos": null,
-    "watchos": null
   }
 }
