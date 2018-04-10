@@ -235,7 +235,7 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
 - (SwpShareListView *(^)(NSArray<SwpShareModel *> *))swpShares {
 
     return ^SwpShareListView *(NSArray<SwpShareModel *> * swpShares) {
-        _swpShareListDatas = swpShares;
+        self.swpShareListDatas = swpShares;
         [self reloadData];
         return self;
     };

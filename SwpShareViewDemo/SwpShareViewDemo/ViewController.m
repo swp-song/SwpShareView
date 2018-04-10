@@ -33,15 +33,14 @@
 
 - (IBAction)clickButton:(UIButton *)button {
 
-
-    
-
     // 自定义分享图标
     SwpShareModel *teype = [SwpShareModel swpShareWithShareKey:@"custom" setSwpShareTitle:@"自定义" setSwpShareImageName:@"share_custom" setSwpTripartiteFrameworkShareType:@200];
     
     NSArray *datas =  @[SwpShareToQQ, SwpShareToQzone, SwpShareToTencent, SwpShareToWechatSession, SwpShareToWechatTimeline, SwpShareToSina, SwpShareToCopyURL];
     
-    SwpShareView.swpShareViewShowInitWithDelegate(datas, self)
+    SwpShareView *swpShareView =
+    SwpShareView.swpShareViewShowInit(datas)
+    .delegate(self)
     // 追加自定义 item
     .swpShareViewCustomItems(@[teype])
     // 未安装软件处理
@@ -57,8 +56,11 @@
     // 页面关闭回调
     .swpShareViewCloseBlockChain(^(SwpShareView *swpShareView, SwpShareModel *swpShare){
         NSLog(@"Block 页面关闭了");
-        NSLog(@"%@", swpShare.swpShareKey);
     });
+    
+    
+    NSLog(@"SwpShareViewInfo    = %@", swpShareView.swpShareViewInfo);
+    NSLog(@"SwpShareViewVersion = %@", swpShareView.swpShareViewVersion);
 
 }
 
@@ -73,7 +75,6 @@
 // 页面 关闭
 - (void)swpShareView:(SwpShareView *)swpShareView closeSwpShareView:(SwpShareModel *)swpShare {
     NSLog(@"Delegate 页面关闭了");
-    NSLog(@"%@", swpShare.swpShareKey);
 }
 
 

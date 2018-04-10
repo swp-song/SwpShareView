@@ -1,1 +1,1 @@
-../../../../../SwpShareView/SwpShareViewMain/SwpShareView.h
+../../../../../SwpShareView/Class/Main/SwpShareView.h

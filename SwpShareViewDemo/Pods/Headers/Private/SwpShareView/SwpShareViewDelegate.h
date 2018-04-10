@@ -1,1 +1,1 @@
-../../../../../SwpShareView/SwpShareViewOrder/SwpShareViewDelegate/SwpShareViewDelegate.h
+../../../../../SwpShareView/Class/Main/SwpShareViewDelegate.h

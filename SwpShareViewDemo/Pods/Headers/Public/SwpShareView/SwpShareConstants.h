@@ -1,1 +1,1 @@
-../../../../../SwpShareView/SwpShareViewModels/SwpShareConstants.h
+../../../../../SwpShareView/Class/SwpShareViewModels/SwpShareConstants.h

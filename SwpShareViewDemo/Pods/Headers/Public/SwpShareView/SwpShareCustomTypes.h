@@ -1,1 +1,1 @@
-../../../../../SwpShareView/SwpShareViewModels/SwpShareCustomTypes.h
+../../../../../SwpShareView/Class/SwpShareViewModels/SwpShareCustomTypes.h

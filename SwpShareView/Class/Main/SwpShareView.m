@@ -27,30 +27,31 @@
 /* ---------------------- Model      ---------------------- */
 
 
-static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
 
 @interface SwpShareView () <SwpShareListViewDelegate>
 
 #pragma mark - UI   Propertys
 /* ---------------------- UI   Property  ---------------------- */
 /* 显示 分享 titleView */
-@property (nonatomic, strong) UILabel                    *swpShareTitleView;
+@property (nonatomic, strong) UILabel           *swpShareTitleView;
 /* 显示 分享 view      */
-@property (nonatomic, strong) SwpShareListView           *swpShareListView;
+@property (nonatomic, strong) SwpShareListView  *swpShareListView;
 /* 显示 关闭 页面 按钮 */
-@property (nonatomic, strong) UIButton                   *swpShareCloseButton;
+@property (nonatomic, strong) UIButton          *swpShareCloseButton;
 /* ---------------------- UI   Property  ---------------------- */
 
 #pragma mark - Data Propertys
 /* ---------------------- Data Property  ---------------------- */
 /* 显示 分享 数据源               */
-@property (nonatomic, copy  ) NSArray<SwpShareModel *>     *swpShares;
+@property (nonatomic, copy  ) NSArray<SwpShareModel *>  *swpShares;
 
 /* 点击 cell 记录点击的数据模型    */
-@property (nonatomic, strong) SwpShareModel                *swpShare;
+@property (nonatomic, strong) SwpShareModel             *swpShare;
 
 /* 点击 cell 记录点击的数据模型    */
-@property (nonatomic, assign) SwpShareItemType             shareItemType;
+@property (nonatomic, assign) SwpShareItemType          shareItemType;
+/* 代理属性 */
+@property (nonatomic, weak) id<SwpShareViewDelegate>_delegate;
 
 /* SwpShareView 回调，是否关闭分享页面  */
 @property (nonatomic, copy, setter = swpShareViewWhetherCloseBlock:) BOOL(^swpShareViewWhetherCloseBlock)(SwpShareView *swpShareView);
@@ -104,6 +105,29 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
 }
 
 #pragma mark - Public Methods
+
+/**
+ *  @author swp_song
+ *
+ *  @brief  swpShareViewInfo   ( 读取 SwpShareView 信息资源文件 )
+ *
+ *  @return NSDictionary
+ */
+- (NSDictionary *)swpShareViewInfo {
+    return [SwpShareViewTools swpShareViewToolsReadInfo];
+}
+
+/**
+ *  @author swp_song
+ *
+ *  @brief  swpShareViewVersion ( 读取 SwpShareView 版本号 )
+ *
+ *  @return NSString
+ */
+- (NSString *)swpShareViewVersion {
+    return [SwpShareViewTools swpShareViewToolsReadVersion];
+}
+
 /**
  *  @author swp_song
  *
@@ -142,8 +166,8 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
  *  @return SwpShareView
  */
 + (instancetype)swpShareViewShowWithData:(NSArray<NSString *> *)shareData setDelegate:(id<SwpShareViewDelegate>)delegate {
-    SwpShareView *swpShareView = [SwpShareView initWithData:shareData];
-    swpShareView.delegate      = delegate;
+    SwpShareView *swpShareView  = [SwpShareView initWithData:shareData];
+    swpShareView._delegate      = delegate;
     return swpShareView;
 }
 
@@ -157,6 +181,20 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
     
     return ^(NSArray<NSString *> *shareData, id<SwpShareViewDelegate>delegate) {
         return [self.class swpShareViewShowWithData:shareData setDelegate:delegate];
+    };
+}
+
+
+
+/**
+ *  @author swp_song
+ *
+ *  @brief  delegate    ( 设置代理 )
+ */
+- (__kindof SwpShareView * _Nonnull (^)(id<SwpShareViewDelegate>))delegate {
+    return ^(id<SwpShareViewDelegate>delegate) {
+        self._delegate = delegate;
+        return self;
     };
 }
 
@@ -211,9 +249,8 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
 - (__kindof SwpShareView *(^)(SwpShareItemType swpShareItemType))swpShareItemType {
     
     return ^SwpShareView *(SwpShareItemType swpShareItemType) {
-        _shareItemType = swpShareItemType;
-    
-        self.swpShares = [SwpShareViewTools swpShareViewToolsSwpShareItemTypeDataProcessing:self.swpShares swpShareItemType:swpShareItemType];
+        self.shareItemType = swpShareItemType;
+        self.swpShares     = [SwpShareViewTools swpShareViewToolsSwpShareItemTypeDataProcessing:self.swpShares swpShareItemType:swpShareItemType];
         self.swpShareListView.swpShares(self.swpShares);
         return self;
     };
@@ -227,7 +264,7 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
 - (__kindof SwpShareView *(^)(CGFloat swpShareTitleSize))swpShareTitleSize {
 
     return ^SwpShareView *(CGFloat swpShareTitleSize) {
-        _swpShareTitleView.font = [UIFont fontWithName:@"GillSans-Italic" size:swpShareTitleSize];
+        self.swpShareTitleView.font = [UIFont fontWithName:@"GillSans-Italic" size:swpShareTitleSize];
         return self;
     };
 }
@@ -239,7 +276,7 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
  */
 - (__kindof SwpShareView *(^)(NSString *swpShareTitle))swpShareTitle {
     return ^SwpShareView *(NSString *swpShareTitle) {
-        _swpShareTitleView.text = swpShareTitle;
+        self.swpShareTitleView.text = swpShareTitle;
         return self;
     };
 }
@@ -251,7 +288,7 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
  */
 - (__kindof SwpShareView *(^)(UIColor *swpShareTitleColor))swpShareTitleColor {
     return ^SwpShareView *(UIColor *swpShareTitleColor){
-        _swpShareTitleView.textColor = swpShareTitleColor;
+        self.swpShareTitleView.textColor = swpShareTitleColor;
         return self;
     };
 }
@@ -264,7 +301,7 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
 - (__kindof SwpShareView *(^)(UIFont *swpShareTitleFont))swpShareTitleFont {
     
     return ^SwpShareView *(UIFont *swpShareTitleFont) {
-        _swpShareTitleView.font = swpShareTitleFont;
+        self.swpShareTitleView.font = swpShareTitleFont;
         return self;
     };
 }
@@ -289,7 +326,7 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
 - (__kindof SwpShareView * _Nonnull (^)(BOOL (^)(SwpShareView * _Nonnull)))swpShareViewWhetherCloseBlockChain {
     
     return ^(BOOL (^swpShareViewWhetherCloseBlock)(SwpShareView *swpShareView)){
-        _swpShareViewWhetherCloseBlock = swpShareViewWhetherCloseBlock;
+        [self swpShareViewWhetherCloseBlock:swpShareViewWhetherCloseBlock];
         return self;
     };
     
@@ -317,7 +354,7 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
 - (__kindof SwpShareView * _Nonnull (^)(void (^)(SwpShareView * _Nonnull, NSInteger, SwpShareModel * _Nonnull)))swpShareListViewDidSelectIndexBlockChain {
     
     return ^(void (^swpShareListViewDidSelectIndexBlock)(SwpShareView *swpShareView, NSInteger didSelectIndex, SwpShareModel *swpShare)) {
-        _swpShareListViewDidSelectIndexBlock = swpShareListViewDidSelectIndexBlock;
+        [self swpShareListViewDidSelectIndexBlock:swpShareListViewDidSelectIndexBlock];
         return self;
     };
 }
@@ -342,7 +379,7 @@ static NSString * const kSwpShareViewCellID = @"swpShareViewCellID";
 - (__kindof SwpShareView * _Nonnull (^)(void (^)(SwpShareView * _Nonnull, SwpShareModel * _Nonnull)))swpShareViewCloseBlockChain {
     
     return ^(void (^swpShareViewCloseBlock)(SwpShareView *swpShareView, SwpShareModel *swpShare)) {
-        _swpShareViewCloseBlock = swpShareViewCloseBlock;
+        [self swpShareViewCloseBlock:swpShareViewCloseBlock];
         return self;
     };
 }
@@ -439,7 +476,6 @@ static UIWindow *swpShareWindow_;
  */
 - (void)swpShareViewHiddenAnimation {
     
-    
     __weak typeof(self)weakSelf = self;
     [SwpShareViewTools swpShareViewToolsAlphaAnimation:swpShareWindow_ setFromValue:1 setToValue:0 animationCompletionBlock:^(BOOL finished) {
         swpShareWindow_.hidden = YES;
@@ -474,8 +510,8 @@ static UIWindow *swpShareWindow_;
         return self.swpShareViewWhetherCloseBlock(self);
     }
     
-    if ([self.delegate respondsToSelector:@selector(swpShareViewWhetherClose:)]) {
-        return [self.delegate swpShareViewWhetherClose:self];
+    if ([self._delegate respondsToSelector:@selector(swpShareViewWhetherClose:)]) {
+        return [self._delegate swpShareViewWhetherClose:self];
     }
     
     return YES;
@@ -493,13 +529,10 @@ static UIWindow *swpShareWindow_;
 - (void)setSwpShareListViewDidSelectDelegateOrBlock:(NSIndexPath *)indexPath swpShare:(SwpShareModel *)swpShare {
     
     if (self.swpShareListViewDidSelectIndexBlock) self.swpShareListViewDidSelectIndexBlock(self, indexPath.item, swpShare);
-    if ([self.delegate respondsToSelector:@selector(swpShareView:didSelectIndex:swpShare:)]) {
-        [self.delegate swpShareView:self didSelectIndex:indexPath.item swpShare:swpShare];
+    if ([self._delegate respondsToSelector:@selector(swpShareView:didSelectIndex:swpShare:)]) {
+        [self._delegate swpShareView:self didSelectIndex:indexPath.item swpShare:swpShare];
     }
 }
-
-
-
 
 /**
  *  @author swp_song
@@ -510,8 +543,8 @@ static UIWindow *swpShareWindow_;
  */
 - (void)setSwpShareListViewCloseDelegateOrBlock:(SwpShareModel *)swpShare {
     if (self.swpShareViewCloseBlock) self.swpShareViewCloseBlock(self, swpShare);
-    if ([self.delegate respondsToSelector:@selector(swpShareView:closeSwpShareView:)]) {
-        [self.delegate swpShareView:self closeSwpShareView:swpShare];
+    if ([self._delegate respondsToSelector:@selector(swpShareView:closeSwpShareView:)]) {
+        [self._delegate swpShareView:self closeSwpShareView:swpShare];
     }
 }
 
@@ -557,8 +590,8 @@ static UIWindow *swpShareWindow_;
  *  @return id                  id
  */
 - (id)swpShareListView:(SwpShareListView *)swpShareListView tripartiteFrameworkShareType:(NSInteger)index {
-    if ([self.delegate respondsToSelector:@selector(swpShareViewSetTripartiteFrameworkShareType:)]) {
-        NSArray *array = [self.delegate swpShareViewSetTripartiteFrameworkShareType:self];
+    if ([self._delegate respondsToSelector:@selector(swpShareViewSetTripartiteFrameworkShareType:)]) {
+        NSArray *array = [self._delegate swpShareViewSetTripartiteFrameworkShareType:self];
         return array && array.count == self.swpShares.count ? array[index] : nil;
     }
     return nil;

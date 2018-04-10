@@ -167,6 +167,26 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (UIToolbar *)swpShareViewToolsCreateToolbarCover:(CGRect)frame;
 
+
+/**
+ *  @author swp_song
+ *
+ *  @brief  swpShareViewToolsReadInfo  ( 读取 SwpShareView 信息资源文件 )
+ *
+ *  @return NSDictionary
+ */
++ (NSDictionary *)swpShareViewToolsReadInfo;
+
+
+/**
+ *  @author swp_song
+ *
+ *  @brief  swpShareViewToolsReadVersion   ( 读取 SwpShareView 版本号 )
+ *
+ *  @return NSString
+ */
++ (NSString *)swpShareViewToolsReadVersion;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -8,15 +8,33 @@
 
 #import <UIKit/UIKit.h>
 
+/* ---------------------- Tool       ---------------------- */
 #import "SwpShareViewDelegate.h"
 #import "SwpShareCustomTypes.h"
+/* ---------------------- Tool       ---------------------- */
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SwpShareView : UIView
 
-/*! 代理 属性 !*/
-@property (nullable, nonatomic, weak) id<SwpShareViewDelegate>delegate;
+
+/**
+ *  @author swp_song
+ *
+ *  @brief  swpShareViewInfo   ( 读取 SwpShareView 信息资源文件 )
+ *
+ *  @return NSDictionary
+ */
+- (NSDictionary *)swpShareViewInfo;
+
+/**
+ *  @author swp_song
+ *
+ *  @brief  swpShareViewVersion ( 读取 SwpShareView 版本号 )
+ *
+ *  @return NSString
+ */
+- (NSString *)swpShareViewVersion;
 
 /**
  *  @author swp_song
@@ -59,6 +77,13 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  @author swp_song
  *
+ *  @brief  delegate    ( 设置代理 )
+ */
+- (__kindof SwpShareView * _Nonnull (^)(id<SwpShareViewDelegate> _Nullable))delegate;
+
+/**
+ *  @author swp_song
+ *
  *  @brief  swpShareViewCustomItems:   ( 自定义分享 items )
  */
 - (__kindof SwpShareView *(^)(NSArray<SwpShareModel *> *swpShareCustomItems))swpShareViewCustomItems;
@@ -77,14 +102,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (__kindof SwpShareView *(^)(NSArray *tripartiteFrameworkShareTypes))swpShareSetTripartiteFrameworkShareTypes;
 
-
 /**
  *  @author swp_song
  *
  *  @brief  swpShareItemType   ( 隐藏未安装 App )
  */
 - (__kindof SwpShareView *(^)(SwpShareItemType swpShareItemType))swpShareItemType;
-
 
 
 /**

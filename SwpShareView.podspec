@@ -7,18 +7,20 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = 'SwpShareView'
-  s.version          = '2.0.5'
-  s.summary          = " 分享样式自定义 UI  "
 
-  # This description is used to generate tags and improve search results.
-  #   * Think: What does it do? Why did you write it? What is the focus?
-  #   * Try to keep it short, snappy and to the point.
-  #   * Write the description between the DESC delimiters below.
-  #   * Finally, don't worry about the indent, CocoaPods strips it!
+
+  s.name             = 'SwpShareView'
+  s.version          = '2.1.0'
+  s.summary          = ' 分享样式自定义 UI '
+
+# This description is used to generate tags and improve search results.
+#   * Think: What does it do? Why did you write it? What is the focus?
+#   * Try to keep it short, snappy and to the point.
+#   * Write the description between the DESC delimiters below.
+#   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-  TODO: 分享样式自定义 UI
+TODO: 分享样式自定义 UI
                        DESC
 
   s.homepage         = 'https://github.com/swp-song/SwpShareView'
@@ -29,11 +31,20 @@ Pod::Spec.new do |s|
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
+  s.source_files          = 'SwpShareView/Class/**/*.{h,m}'
+  s.resource              = 'SwpShareView/Resources/SwpShareView.bundle'
+  s.frameworks            = 'UIKit'
+  s.requires_arc          = true
 
-  s.requires_arc     = true
-  s.source_files     = "SwpShareView/**/*.{h,m}"
-  s.resource         = "SwpShareView/SwpShareViewResources/SwpShareView.bundle"
-  s.frameworks       = 'UIKit', 'MapKit'
-  s.dependency "pop"
+  # s.resource_bundles = {
+  #   'SwpShareView' => ['SwpShareView/Assets/*.png']
+  # }
+
+  # s.public_header_files = 'Pod/Classes/**/*.h'
+  # s.frameworks = 'UIKit', 'MapKit'
+  # s.dependency 'AFNetworking', '~> 2.3'
+
+  s.dependency 'pop'
+
 
 end

@@ -10,7 +10,7 @@
 
 
 /* ---------------------- Tool       ---------------------- */
-#import "POP.h"                       // POP
+#import <pop/POP.h> // POP
 /* ---------------------- Tool       ---------------------- */
 
 /* ---------------------- Controller ---------------------- */
@@ -391,6 +391,29 @@
 }
 
 
+
+/**
+ *  @author swp_song
+ *
+ *  @brief  swpShareViewToolsReadInfo  ( 读取 SwpShareView 信息资源文件 )
+ *
+ *  @return NSDictionary
+ */
++ (NSDictionary *)swpShareViewToolsReadInfo {
+    return [NSDictionary dictionaryWithContentsOfFile:[NSBundle.mainBundle pathForResource:@"SwpShareView.bundle/SwpShareView.plist" ofType:nil]].copy;
+}
+
+
+/**
+ *  @author swp_song
+ *
+ *  @brief  swpShareViewToolsReadVersion   ( 读取 SwpShareView 版本号 )
+ *
+ *  @return NSString
+ */
++ (NSString *)swpShareViewToolsReadVersion {
+    return [self.class swpShareViewToolsReadInfo][@"Version"];
+}
 
 
 
